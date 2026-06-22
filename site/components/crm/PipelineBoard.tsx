@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { STAGES, TYPE_ICON, CHANNEL_META, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage } from "@/lib/types";
 import ScoreBadge from "./ScoreBadge";
@@ -8,12 +9,36 @@ function needsRelance(p: Project): boolean {
   return p.stage === "devis" && p.lastActivityDaysAgo >= 6;
 }
 
-function ProjectCard({ p, onClick }: { p: Project; onClick: () => void }) {
+function ProjectCard({
+  p,
+  onClick,
+  onDragStart,
+  onDragEnd,
+  dragging,
+}: {
+  p: Project;
+  onClick: () => void;
+  onDragStart: () => void;
+  onDragEnd: () => void;
+  dragging: boolean;
+}) {
   const relance = needsRelance(p);
   return (
-    <button
+    <div
+      role="button"
+      tabIndex={0}
+      draggable
       onClick={onClick}
-      className="group w-full rounded-xl border border-border bg-paper p-3 text-left transition hover:-translate-y-0.5 hover:border-clay/50 hover:shadow-md"
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onClick()}
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", p.id);
+        e.dataTransfer.effectAllowed = "move";
+        onDragStart();
+      }}
+      onDragEnd={onDragEnd}
+      className={`group w-full cursor-grab rounded-xl border border-border bg-paper p-3 text-left transition hover:-translate-y-0.5 hover:border-clay/50 hover:shadow-md active:cursor-grabbing ${
+        dragging ? "opacity-40" : ""
+      }`}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
@@ -37,29 +62,53 @@ function ProjectCard({ p, onClick }: { p: Project; onClick: () => void }) {
 
       <div className="mt-2 flex items-center justify-between border-t border-border/70 pt-2 text-[10.5px]">
         <span className="text-muted">{joursLabel(p.lastActivityDaysAgo)}</span>
-        {relance && (
-          <span className="font-medium text-terracotta-dark">⚠️ à relancer</span>
-        )}
+        {relance && <span className="font-medium text-terracotta-dark">⚠️ à relancer</span>}
       </div>
-    </button>
+    </div>
   );
 }
 
 export default function PipelineBoard({
   projects,
   onSelect,
+  onMove,
 }: {
   projects: Project[];
   onSelect: (id: string) => void;
+  onMove: (id: string, stage: Stage) => void;
 }) {
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [overStage, setOverStage] = useState<Stage | null>(null);
+
   return (
     <div className="thin-scroll overflow-x-auto pb-3">
       <div className="flex min-w-max gap-3">
         {STAGES.map((s) => {
           const cards = projects.filter((p) => p.stage === (s.key as Stage));
           const sum = cards.reduce((a, p) => a + p.estValue, 0);
+          const isOver = overStage === s.key && dragId !== null;
           return (
-            <div key={s.key} className="w-[248px] shrink-0">
+            <div
+              key={s.key}
+              className="w-[248px] shrink-0"
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = "move";
+                if (overStage !== s.key) setOverStage(s.key);
+              }}
+              onDragLeave={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setOverStage((o) => (o === s.key ? null : o));
+                }
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                const id = e.dataTransfer.getData("text/plain");
+                if (id) onMove(id, s.key);
+                setOverStage(null);
+                setDragId(null);
+              }}
+            >
               <div className="mb-2 flex items-center justify-between px-1">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full" style={{ background: s.color }} />
@@ -68,13 +117,27 @@ export default function PipelineBoard({
                 </div>
               </div>
               <div className="mb-2 px-1 text-[10.5px] text-muted">{euro(sum)}</div>
-              <div className="flex flex-col gap-2.5">
+              <div
+                className={`flex min-h-[80px] flex-col gap-2.5 rounded-xl p-1 transition ${
+                  isOver ? "bg-terracotta/10 outline-2 outline-dashed outline-terracotta/40" : ""
+                }`}
+              >
                 {cards.map((p) => (
-                  <ProjectCard key={p.id} p={p} onClick={() => onSelect(p.id)} />
+                  <ProjectCard
+                    key={p.id}
+                    p={p}
+                    onClick={() => onSelect(p.id)}
+                    onDragStart={() => setDragId(p.id)}
+                    onDragEnd={() => {
+                      setDragId(null);
+                      setOverStage(null);
+                    }}
+                    dragging={dragId === p.id}
+                  />
                 ))}
                 {cards.length === 0 && (
                   <div className="rounded-xl border border-dashed border-border py-6 text-center text-[11px] text-muted">
-                    —
+                    {isOver ? "Déposer ici" : "—"}
                   </div>
                 )}
               </div>

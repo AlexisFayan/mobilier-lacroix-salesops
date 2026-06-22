@@ -23,6 +23,9 @@ export default function Footer() {
             Rendu du projet
           </Link>
         </div>
+        <p className="text-[10.5px] text-muted/80">
+          Projet pédagogique fictif · Photos d'illustration sous licence Creative Commons (Flickr).
+        </p>
       </div>
     </footer>
   );

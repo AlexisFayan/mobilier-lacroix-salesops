@@ -6,11 +6,13 @@ import type { Project, Stage } from "@/lib/types";
 import Header from "@/components/Header";
 import KpiBar from "@/components/crm/KpiBar";
 import PipelineBoard from "@/components/crm/PipelineBoard";
+import ProjectList from "@/components/crm/ProjectList";
 import ProjectDrawer from "@/components/crm/ProjectDrawer";
 
 export default function CrmPage() {
   const [projects, setProjects] = useState<Project[]>(PROJECTS);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [view, setView] = useState<"kanban" | "liste">("kanban");
   const selected = projects.find((p) => p.id === selectedId) || null;
 
   function handleStage(id: string, stage: Stage) {
@@ -40,16 +42,42 @@ export default function CrmPage() {
               copilote de relance et résumé d'échanges.
             </p>
           </div>
-          <span className="rounded-full border border-border bg-paper px-3 py-1 text-[11px] text-muted">
-            Cliquez une fiche projet pour ouvrir le copilote IA →
-          </span>
+          <div className="flex items-center gap-1 rounded-full border border-border bg-paper p-1">
+            <button
+              onClick={() => setView("kanban")}
+              className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
+                view === "kanban" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
+              }`}
+            >
+              ▦ Pipeline
+            </button>
+            <button
+              onClick={() => setView("liste")}
+              className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
+                view === "liste" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
+              }`}
+            >
+              ☰ Liste
+            </button>
+          </div>
         </div>
 
         <KpiBar projects={projects} />
 
-        <div className="mt-6">
-          <PipelineBoard projects={projects} onSelect={setSelectedId} />
+        <div className="mt-4 mb-3 flex items-center justify-between text-[11.5px] text-muted">
+          <span>
+            {view === "kanban"
+              ? "Glissez une carte d'une colonne à l'autre pour faire avancer un dossier."
+              : "Cliquez un en-tête pour trier · cliquez une ligne pour ouvrir le copilote IA."}
+          </span>
+          <span className="hidden sm:inline">Cliquez une fiche → copilote IA →</span>
         </div>
+
+        {view === "kanban" ? (
+          <PipelineBoard projects={projects} onSelect={setSelectedId} onMove={handleStage} />
+        ) : (
+          <ProjectList projects={projects} onSelect={setSelectedId} />
+        )}
       </main>
 
       {selected && (
