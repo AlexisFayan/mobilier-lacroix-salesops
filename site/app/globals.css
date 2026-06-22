@@ -17,8 +17,8 @@
   --color-gold: #c39a45;
   --color-rouille: #a23d23;
 
-  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
-    Palatino, "Hoefler Text", "Times New Roman", Georgia, serif;
+  --font-serif: var(--font-display), "Iowan Old Style", "Palatino Linotype",
+    "Book Antiqua", Palatino, "Hoefler Text", "Times New Roman", Georgia, serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
 }
