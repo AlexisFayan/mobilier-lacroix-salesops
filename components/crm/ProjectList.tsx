@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { STAGES, STAGE_LABEL, TYPE_ICON, euro, joursLabel } from "@/lib/types";
+import { STAGES, STAGE_LABEL, TYPE_LABEL, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage } from "@/lib/types";
 
 type SortKey = "client" | "stage" | "estValue" | "score" | "lastActivityDaysAgo";
@@ -40,10 +40,13 @@ export default function ProjectList({
     return asc ? d : -d;
   });
 
-  const arrow = (k: SortKey) => (sort === k ? (asc ? " ▲" : " ▼") : "");
+  const arrow = (k: SortKey) => (sort === k ? (asc ? " ↑" : " ↓") : "");
 
-  const Th = ({ k, label, className }: { k: SortKey; label: string; className?: string }) => (
-    <th className={`cursor-pointer px-4 py-2.5 font-semibold select-none hover:text-terracotta-dark ${className ?? ""}`} onClick={() => toggle(k)}>
+  const Th = ({ k, label }: { k: SortKey; label: string }) => (
+    <th
+      className="cursor-pointer select-none px-4 py-2.5 font-semibold hover:text-terracotta-dark"
+      onClick={() => toggle(k)}
+    >
       {label}
       <span className="text-[10px] text-terracotta-dark">{arrow(k)}</span>
     </th>
@@ -71,12 +74,9 @@ export default function ProjectList({
                 className={`cursor-pointer transition hover:bg-sand/40 ${i % 2 ? "bg-paper" : "bg-cream/50"}`}
               >
                 <td className="px-4 py-2.5">
-                  <div className="flex items-center gap-2">
-                    <span>{TYPE_ICON[p.type]}</span>
-                    <div>
-                      <div className="font-medium text-bois-dark">{p.client}</div>
-                      <div className="text-[11px] text-muted">{p.city}</div>
-                    </div>
+                  <div className="font-medium text-bois-dark">{p.client}</div>
+                  <div className="text-[11px] text-muted">
+                    {TYPE_LABEL[p.type]} · {p.city}
                   </div>
                 </td>
                 <td className="px-4 py-2.5">
@@ -88,7 +88,7 @@ export default function ProjectList({
                 <td className="px-4 py-2.5 font-medium text-terracotta-dark">{euro(p.estValue)}</td>
                 <td className="px-4 py-2.5">
                   {p.stage === "perdu" ? (
-                    <span className="text-muted">—</span>
+                    <span className="text-muted">·</span>
                   ) : (
                     <span className={`font-semibold ${p.score >= 70 ? "text-olive" : p.score >= 40 ? "text-[#a07d20]" : "text-muted"}`}>
                       {p.score}
@@ -97,7 +97,7 @@ export default function ProjectList({
                 </td>
                 <td className="px-4 py-2.5 text-muted">
                   {joursLabel(p.lastActivityDaysAgo)}
-                  {relance && <span className="ml-2 font-medium text-terracotta-dark">⚠️</span>}
+                  {relance && <span className="ml-2 font-medium text-terracotta-dark">à relancer</span>}
                 </td>
               </tr>
             );

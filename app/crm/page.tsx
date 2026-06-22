@@ -38,7 +38,7 @@ export default function CrmPage() {
           <div>
             <h1 className="font-serif text-2xl font-semibold text-bois-dark">Pilotage commercial</h1>
             <p className="mt-0.5 text-sm text-muted">
-              Le carnet de commandes de l'atelier, augmenté par l'IA — pipeline, scoring des devis,
+              Le carnet de commandes de l'atelier, augmenté par l'IA, pipeline, scoring des devis,
               copilote de relance et résumé d'échanges.
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function CrmPage() {
                 view === "kanban" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
               }`}
             >
-              ▦ Pipeline
+              Pipeline
             </button>
             <button
               onClick={() => setView("liste")}
@@ -57,7 +57,7 @@ export default function CrmPage() {
                 view === "liste" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
               }`}
             >
-              ☰ Liste
+              Liste
             </button>
           </div>
         </div>

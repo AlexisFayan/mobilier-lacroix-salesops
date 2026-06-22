@@ -1,7 +1,7 @@
 import type { Project } from "./types";
 
 /**
- * Données de démonstration — Mobilier Lacroix (fabrication sur mesure CHR, région lyonnaise).
+ * Données de démonstration, Mobilier Lacroix (fabrication sur mesure CHR, région lyonnaise).
  * Reconstitue un mois type : ~16 demandes, 3-5 signatures, panier 5-15 k€.
  * Inclut volontairement des fuites du funnel (devis non relancés) pour la démo du diagnostic.
  */
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 8,
     lastActivityDaysAgo: 8,
     devisSent: false,
-    nextAction: "Relancer pour qualifier — risque de demande peu mûre",
+    nextAction: "Relancer pour qualifier, risque de demande peu mûre",
     exchanges: [
       { id: "e1", daysAgo: 8, type: "email", author: "Léa Marchetti", content: "On réfléchit à ouvrir un bar à vins, on regarde un peu les prix du mobilier sur mesure. Pas pressés." },
     ],
@@ -154,7 +154,7 @@ export const PROJECTS: Project[] = [
     nextAction: "Recevoir les plans définitifs de l'architecte avant chiffrage",
     exchanges: [
       { id: "e1", daysAgo: 14, type: "email", author: "Sophie Boca", content: "Bonjour, je suis archi d'intérieur, j'ai un projet de café pour lequel je cherche un atelier de confiance pour la fabrication sur mesure. On m'a parlé de vous." },
-      { id: "e2", daysAgo: 4, type: "visite", author: "Atelier", content: "RDV à l'atelier avec l'architecte. Excellent contact — pourrait devenir un canal récurrent (elle a 2-3 projets/an)." },
+      { id: "e2", daysAgo: 4, type: "visite", author: "Atelier", content: "RDV à l'atelier avec l'architecte. Excellent contact, pourrait devenir un canal récurrent (elle a 2-3 projets/an)." },
     ],
   },
 
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 21,
     lastActivityDaysAgo: 6,
     devisSent: true,
-    nextAction: "Relancer — devis envoyé il y a 6 jours, sans réponse",
+    nextAction: "Relancer, devis envoyé il y a 6 jours, sans réponse",
     exchanges: [
       { id: "e1", daysAgo: 21, type: "appel", author: "Atelier", content: "Client fidèle (déjà équipé en 2023). Veut prolonger l'esprit de la salle sur l'extension." },
       { id: "e2", daysAgo: 13, type: "visite", author: "Atelier", content: "Prise de mesures sur site, validation des essences." },
@@ -196,7 +196,7 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 17,
     lastActivityDaysAgo: 9,
     devisSent: true,
-    nextAction: "⚠️ Devis envoyé il y a 9 jours, aucune relance — fuite typique",
+    nextAction: "Devis envoyé il y a 9 jours, aucune relance, fuite typique",
     exchanges: [
       { id: "e1", daysAgo: 17, type: "appel", author: "Atelier", content: "Veut remplacer un mobilier vieillissant. Compare avec un fournisseur en série moins cher." },
       { id: "e2", daysAgo: 12, type: "visite", author: "Atelier", content: "Visite atelier, a vu la différence de qualité. Hésite sur le budget." },
@@ -289,11 +289,11 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 24,
     lastActivityDaysAgo: 1,
     devisSent: true,
-    nextAction: "Lancer la fabrication — acompte reçu",
+    nextAction: "Lancer la fabrication, acompte reçu",
     exchanges: [
       { id: "e1", daysAgo: 24, type: "email", author: "Atelier", content: "Projet apporté par un agenceur partenaire." },
       { id: "e2", daysAgo: 12, type: "visite", author: "Atelier", content: "Validation maquette et essences." },
-      { id: "e3", daysAgo: 1, type: "note", author: "Atelier", content: "Devis signé ✅ — acompte 40 % reçu. Démarrage fabrication semaine prochaine." },
+      { id: "e3", daysAgo: 1, type: "note", author: "Atelier", content: "Devis signé, acompte 40 % reçu. Démarrage fabrication semaine prochaine." },
     ],
   },
   {
@@ -315,7 +315,7 @@ export const PROJECTS: Project[] = [
     exchanges: [
       { id: "e1", daysAgo: 19, type: "appel", author: "Atelier", content: "Recommandé par Coffee Shop Hmaya (réseau coffee specialty)." },
       { id: "e2", daysAgo: 8, type: "visite", author: "Atelier", content: "Visite atelier, choix du frêne huilé." },
-      { id: "e3", daysAgo: 2, type: "note", author: "Atelier", content: "Devis signé ✅ — 6 200 € HT." },
+      { id: "e3", daysAgo: 2, type: "note", author: "Atelier", content: "Devis signé, 6 200 € HT." },
     ],
   },
   {
@@ -333,11 +333,11 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 30,
     lastActivityDaysAgo: 3,
     devisSent: true,
-    nextAction: "Fabrication en cours — point d'étape prévu",
+    nextAction: "Fabrication en cours, point d'étape prévu",
     exchanges: [
       { id: "e1", daysAgo: 30, type: "visite", author: "Atelier", content: "Contact salon EquipHotel." },
       { id: "e2", daysAgo: 14, type: "devis", author: "Atelier", content: "Devis 9 600 € HT." },
-      { id: "e3", daysAgo: 3, type: "note", author: "Atelier", content: "Signé ✅ après une relance bien placée." },
+      { id: "e3", daysAgo: 3, type: "note", author: "Atelier", content: "Signé après une relance bien placée." },
     ],
   },
 
@@ -357,11 +357,11 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 48,
     lastActivityDaysAgo: 31,
     devisSent: true,
-    nextAction: "Perdu — devis sans relance, parti chez un concurrent",
+    nextAction: "Perdu, devis sans relance, parti chez un concurrent",
     exchanges: [
       { id: "e1", daysAgo: 48, type: "appel", author: "Atelier", content: "Bon contact, projet clair." },
       { id: "e2", daysAgo: 40, type: "devis", author: "Atelier", content: "Devis 8 900 € HT envoyé." },
-      { id: "e3", daysAgo: 31, type: "note", author: "Atelier", content: "❌ Jamais relancé. A signé ailleurs. « On vous avait presque oubliés. »" },
+      { id: "e3", daysAgo: 31, type: "note", author: "Atelier", content: "Jamais relancé. A signé ailleurs. « On vous avait presque oubliés. »" },
     ],
   },
   {
@@ -379,7 +379,7 @@ export const PROJECTS: Project[] = [
     createdDaysAgo: 35,
     lastActivityDaysAgo: 20,
     devisSent: true,
-    nextAction: "Perdu sur le prix — cible peu qualifiée au départ",
+    nextAction: "Perdu sur le prix, cible peu qualifiée au départ",
     exchanges: [
       { id: "e1", daysAgo: 35, type: "email", author: "Théo Nguyen", content: "Vu sur Insta, j'adore mais je ne sais pas si j'ai le budget." },
       { id: "e2", daysAgo: 25, type: "devis", author: "Atelier", content: "Devis 5 200 € HT." },

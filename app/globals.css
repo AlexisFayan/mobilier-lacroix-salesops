@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette Atelier — chaleureux, artisanal (archétype Créateur) */
+  /* Palette Atelier, chaleureux, artisanal (archétype Créateur) */
   --color-cream: #faf6ef;
   --color-paper: #fffdf8;
   --color-sand: #f1e8d8;

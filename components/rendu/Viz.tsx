@@ -161,10 +161,10 @@ export function CompetitorMap() {
         })}
       </div>
       <div className="mt-4 rounded-xl border border-terracotta/40 bg-terracotta/5 p-4">
-        <h4 className="font-serif text-[15px] font-semibold text-terracotta-dark">🎯 Le trou de marché à occuper</h4>
+        <h4 className="font-serif text-[15px] font-semibold text-terracotta-dark">Le trou de marché à occuper</h4>
         <p className="mt-1 text-[13px] text-ink/85">
           La <strong>sous-traitance « marque blanche » pour agenceurs &amp; architectes</strong> (seul Atelier Media
-          l'assume frontalement) et la <strong>réfection/recouvrement de banquettes</strong> (revenu récurrent) —
+          l'assume frontalement) et la <strong>réfection/recouvrement de banquettes</strong> (revenu récurrent),
           le tout porté par la <strong>proximité lyonnaise</strong> (prise de cotes, délais, SAV) que les fabricants
           nationaux (Acces-Sit, Conforel) n'offrent pas.
         </p>

@@ -15,7 +15,7 @@ export function Src({ ids }: { ids: readonly string[] }) {
             href={s.url}
             target="_blank"
             rel="noopener noreferrer"
-            title={`${s.org} — ${s.title}`}
+            title={`${s.org}, ${s.title}`}
             className="font-semibold text-terracotta-dark hover:underline"
           >
             [{i}]

@@ -1,25 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  STAGES,
-  STAGE_LABEL,
-  TYPE_ICON,
-  CHANNEL_META,
-  euro,
-  joursLabel,
-} from "@/lib/types";
+import { STAGES, STAGE_LABEL, CHANNEL_META, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage, ExchangeType } from "@/lib/types";
 import type { ScoreResult, RelanceResult, ResumeResult } from "@/lib/ai";
 import { aiScore, aiRelance, aiResume } from "@/lib/aiClient";
 import ScoreBadge from "./ScoreBadge";
 
-const EX_ICON: Record<ExchangeType, string> = {
-  appel: "📞",
-  email: "✉️",
-  visite: "🪑",
-  devis: "📄",
-  note: "📌",
+const EX_LABEL: Record<ExchangeType, string> = {
+  appel: "Appel",
+  email: "Email",
+  visite: "Visite",
+  devis: "Devis",
+  note: "Note",
 };
 
 function SourceBadge({ engine, real }: { engine: string; real: boolean }) {
@@ -56,7 +49,6 @@ export default function ProjectDrawer({
   const [loading, setLoading] = useState<{ [k: string]: boolean }>({});
   const [copied, setCopied] = useState(false);
 
-  // réinitialise quand on change de projet
   useEffect(() => {
     setScore(null);
     setRelance(null);
@@ -91,23 +83,18 @@ export default function ProjectDrawer({
         {/* En-tête */}
         <div className="flex items-start justify-between gap-3 border-b border-border bg-paper px-5 py-4">
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{TYPE_ICON[project.type]}</span>
-              <h2 className="truncate font-serif text-xl font-semibold text-bois-dark">{project.client}</h2>
-            </div>
+            <h2 className="truncate font-serif text-xl font-semibold text-bois-dark">{project.client}</h2>
             <p className="mt-0.5 text-[12.5px] text-muted">
               {project.city} · {project.contactName} ({project.contactRole})
             </p>
-            <p className="mt-1 text-[11px] text-muted">
-              {CHANNEL_META[project.channel].icon} {CHANNEL_META[project.channel].label}
-            </p>
+            <p className="mt-1 text-[11px] text-muted">{CHANNEL_META[project.channel].label}</p>
           </div>
           <button
             onClick={onClose}
-            className="rounded-full p-1.5 text-muted transition hover:bg-sand hover:text-ink"
+            className="rounded-full px-2 py-1 text-lg leading-none text-muted transition hover:bg-sand hover:text-ink"
             aria-label="Fermer"
           >
-            ✕
+            ×
           </button>
         </div>
 
@@ -150,7 +137,7 @@ export default function ProjectDrawer({
           {/* 1. Scoring IA */}
           <section className="rounded-xl border border-border bg-paper p-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">🎯 Scoring IA du devis</h3>
+              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">Scoring IA du devis</h3>
               {score && <SourceBadge engine={score.source.engine} real={score.source.real} />}
             </div>
 
@@ -177,11 +164,11 @@ export default function ProjectDrawer({
                   {score.factors.map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-[12.5px]">
                       <span
-                        className={`mt-0.5 font-bold ${
+                        className={`mt-0.5 w-3 text-center font-bold ${
                           f.impact === "+" ? "text-olive" : f.impact === "-" ? "text-rouille" : "text-muted"
                         }`}
                       >
-                        {f.impact === "+" ? "▲" : f.impact === "-" ? "▼" : "■"}
+                        {f.impact}
                       </span>
                       <span className="text-ink/85">{f.label}</span>
                     </li>
@@ -206,7 +193,7 @@ export default function ProjectDrawer({
           {/* 2. Copilote relance */}
           <section className="rounded-xl border border-border bg-paper p-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">✍️ Copilote de relance</h3>
+              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">Copilote de relance</h3>
               {relance && <SourceBadge engine={relance.source.engine} real={relance.source.real} />}
             </div>
 
@@ -234,7 +221,7 @@ export default function ProjectDrawer({
                   }}
                   className="mt-2 text-[12px] font-medium text-terracotta-dark hover:underline"
                 >
-                  {copied ? "✓ Copié" : "📋 Copier l'email"}
+                  {copied ? "Copié" : "Copier l'email"}
                 </button>
               </div>
             )}
@@ -251,7 +238,7 @@ export default function ProjectDrawer({
           {/* 3. Résumé des échanges */}
           <section className="rounded-xl border border-border bg-paper p-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">🧾 Résumé des échanges</h3>
+              <h3 className="font-serif text-[15px] font-semibold text-bois-dark">Résumé des échanges</h3>
               {resume && <SourceBadge engine={resume.source.engine} real={resume.source.real} />}
             </div>
             {!resume && !loading.resume && (
@@ -290,11 +277,12 @@ export default function ProjectDrawer({
             <ol className="relative space-y-3 border-l border-border pl-4">
               {project.exchanges.map((e) => (
                 <li key={e.id} className="relative">
-                  <span className="absolute -left-[22px] flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[9px]">
-                    {EX_ICON[e.type]}
-                  </span>
+                  <span className="absolute -left-[21px] top-1.5 h-2 w-2 rounded-full bg-clay" />
                   <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-medium text-ink">{e.author}</span>
+                    <span className="text-[12px] font-medium text-ink">
+                      <span className="text-muted">{EX_LABEL[e.type]} · </span>
+                      {e.author}
+                    </span>
                     <span className="text-[10.5px] text-muted">{joursLabel(e.daysAgo)}</span>
                   </div>
                   <p className="text-[12px] leading-snug text-ink/80">{e.content}</p>

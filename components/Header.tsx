@@ -23,13 +23,13 @@ export default function Header() {
             href="/crm"
             className="rounded-full px-3.5 py-1.5 font-medium text-ink transition hover:bg-sand"
           >
-            🛠️ Prototype
+            Le prototype
           </Link>
           <Link
             href="/rendu"
-            className="rounded-full px-3.5 py-1.5 font-medium text-ink transition hover:bg-sand"
+            className="rounded-full bg-bois-dark px-3.5 py-1.5 font-medium text-paper transition hover:bg-bois"
           >
-            📂 Rendu
+            Le dossier
           </Link>
         </nav>
       </div>

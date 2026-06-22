@@ -43,9 +43,9 @@ export interface Project {
   contactRole: string;
   channel: Channel;
   description: string;
-  estValue: number; // € — panier projet
+  estValue: number; // euros, panier projet
   stage: Stage;
-  score: number; // 0-100 — chaleur / probabilité de signature
+  score: number; // 0-100, chaleur / probabilité de signature
   createdDaysAgo: number;
   lastActivityDaysAgo: number;
   devisSent: boolean;
@@ -67,23 +67,23 @@ export const STAGE_LABEL: Record<Stage, string> = Object.fromEntries(
   STAGES.map((s) => [s.key, s.label])
 ) as Record<Stage, string>;
 
-export const CHANNEL_META: Record<Channel, { label: string; icon: string }> = {
-  agenceur: { label: "Agenceur / Architecte", icon: "📐" },
-  "bouche-a-oreille": { label: "Bouche-à-oreille", icon: "💬" },
-  salon: { label: "Salon professionnel", icon: "🎪" },
-  recommandation: { label: "Recommandation client", icon: "🤝" },
-  "visite-atelier": { label: "Visite d'atelier", icon: "🪚" },
-  instagram: { label: "Instagram", icon: "📷" },
+export const CHANNEL_META: Record<Channel, { label: string }> = {
+  agenceur: { label: "Agenceur / Architecte" },
+  "bouche-a-oreille": { label: "Bouche-à-oreille" },
+  salon: { label: "Salon professionnel" },
+  recommandation: { label: "Recommandation client" },
+  "visite-atelier": { label: "Visite d'atelier" },
+  instagram: { label: "Instagram" },
 };
 
-export const TYPE_ICON: Record<ClientType, string> = {
-  café: "☕",
-  restaurant: "🍽️",
-  hôtel: "🏨",
-  bar: "🍸",
-  brasserie: "🍺",
-  "coffee-shop": "🥐",
-  agenceur: "📐",
+export const TYPE_LABEL: Record<ClientType, string> = {
+  café: "Café",
+  restaurant: "Restaurant",
+  hôtel: "Hôtel",
+  bar: "Bar",
+  brasserie: "Brasserie",
+  "coffee-shop": "Coffee shop",
+  agenceur: "Agenceur",
 };
 
 export function euro(n: number): string {

@@ -10,7 +10,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Mobilier Lacroix — Pilotage commercial & copilote IA",
+  title: "Mobilier Lacroix, Pilotage commercial & copilote IA",
   description:
     "Prototype SalesOps + IA pour Mobilier Lacroix : pipeline des projets, scoring des devis, copilote de relance et résumé d'échanges.",
 };

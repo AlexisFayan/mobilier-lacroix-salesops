@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { STAGES, TYPE_ICON, CHANNEL_META, euro, joursLabel } from "@/lib/types";
+import { STAGES, TYPE_LABEL, CHANNEL_META, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage } from "@/lib/types";
 import ScoreBadge from "./ScoreBadge";
 
@@ -42,11 +42,10 @@ function ProjectCard({
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            <span className="text-base">{TYPE_ICON[p.type]}</span>
-            <span className="truncate font-medium text-bois-dark">{p.client}</span>
+          <span className="truncate font-medium text-bois-dark">{p.client}</span>
+          <div className="mt-0.5 text-[11px] text-muted">
+            {TYPE_LABEL[p.type]} · {p.city}
           </div>
-          <div className="mt-0.5 text-[11px] text-muted">{p.city}</div>
         </div>
         {p.stage !== "perdu" && <ScoreBadge score={p.score} size={38} />}
       </div>
@@ -56,13 +55,13 @@ function ProjectCard({
       <div className="mt-2.5 flex items-center justify-between">
         <span className="font-serif text-sm font-semibold text-terracotta-dark">{euro(p.estValue)}</span>
         <span className="rounded-full bg-sand px-2 py-0.5 text-[10px] text-muted" title={CHANNEL_META[p.channel].label}>
-          {CHANNEL_META[p.channel].icon} {CHANNEL_META[p.channel].label.split(" ")[0]}
+          {CHANNEL_META[p.channel].label.split(" ")[0]}
         </span>
       </div>
 
       <div className="mt-2 flex items-center justify-between border-t border-border/70 pt-2 text-[10.5px]">
         <span className="text-muted">{joursLabel(p.lastActivityDaysAgo)}</span>
-        {relance && <span className="font-medium text-terracotta-dark">⚠️ à relancer</span>}
+        {relance && <span className="font-medium text-terracotta-dark">à relancer</span>}
       </div>
     </div>
   );
@@ -137,7 +136,7 @@ export default function PipelineBoard({
                 ))}
                 {cards.length === 0 && (
                   <div className="rounded-xl border border-dashed border-border py-6 text-center text-[11px] text-muted">
-                    {isOver ? "Déposer ici" : "—"}
+                    {isOver ? "Déposer ici" : "·"}
                   </div>
                 )}
               </div>

@@ -11,7 +11,7 @@ export default function Footer() {
           <span className="font-serif text-lg font-semibold text-bois-dark">Mobilier Lacroix</span>
         </div>
         <p className="max-w-md text-[12.5px] leading-relaxed text-muted">
-          Étude de cas <strong className="text-ink">SalesOps B2B augmenté par l'IA</strong> —
+          Étude de cas <strong className="text-ink">SalesOps B2B augmenté par l'IA</strong>.
           Epitech Digital School Lyon · Promo 2026.
         </p>
         <div className="flex gap-3 text-[12.5px]">

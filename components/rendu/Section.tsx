@@ -12,22 +12,68 @@ export const CRITERES = [
   { id: "c9", n: 9, t: "Posture & sources", pts: 5 },
 ];
 
+/** Les 4 temps de la démarche conseil (le fil conducteur du site). */
+export const PHASES = [
+  { key: "comprendre", n: "01", title: "Comprendre", desc: "L'entreprise, son marché et son client idéal.", crit: ["c1", "c2"] },
+  { key: "diagnostiquer", n: "02", title: "Diagnostiquer", desc: "Reconstruire le funnel et cibler ce qui bloque.", crit: ["c3"] },
+  { key: "recommander", n: "03", title: "Recommander", desc: "Le plan d'action, les indicateurs, l'IA et ses garde-fous.", crit: ["c4", "c5", "c6", "c7"] },
+  { key: "demontrer", n: "04", title: "Démontrer", desc: "Le prototype qui marche et la rigueur du rendu.", crit: ["c8", "c9"] },
+];
+
 export function RenduNav() {
   return (
     <nav className="thin-scroll sticky top-[57px] z-20 -mx-5 overflow-x-auto border-b border-border bg-cream/90 px-5 py-2 backdrop-blur-md">
-      <div className="flex min-w-max gap-1.5">
-        {CRITERES.map((c) => (
-          <a
-            key={c.id}
-            href={`#${c.id}`}
-            className="flex items-center gap-1.5 rounded-full border border-border bg-paper px-3 py-1 text-[11.5px] font-medium text-ink transition hover:border-clay/50 hover:bg-sand"
-          >
-            <span className="text-muted">{c.n}.</span> {c.t}
-            <span className="rounded-full bg-sand px-1.5 text-[9.5px] text-muted">{c.pts}</span>
-          </a>
+      <div className="flex min-w-max items-center gap-3">
+        {PHASES.map((ph, pi) => (
+          <div key={ph.key} className="flex items-center gap-1.5">
+            <a
+              href={`#${ph.key}`}
+              className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark hover:underline"
+            >
+              {ph.title}
+            </a>
+            {ph.crit.map((cid) => {
+              const c = CRITERES.find((x) => x.id === cid)!;
+              return (
+                <a
+                  key={cid}
+                  href={`#${cid}`}
+                  title={c.t}
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-border bg-paper text-[11px] font-medium text-ink transition hover:border-clay/60 hover:bg-sand"
+                >
+                  {c.n}
+                </a>
+              );
+            })}
+            {pi < PHASES.length - 1 && <span className="text-border">/</span>}
+          </div>
         ))}
       </div>
     </nav>
+  );
+}
+
+export function PhaseHeader({
+  n,
+  id,
+  title,
+  desc,
+}: {
+  n: string;
+  id: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div id={id} className="scroll-mt-32 pt-14">
+      <div className="flex items-center gap-3 border-b-2 border-bois-dark pb-3">
+        <span className="font-serif text-3xl font-semibold text-terracotta-dark">{n}</span>
+        <div>
+          <h2 className="font-serif text-2xl font-semibold text-bois-dark">{title}</h2>
+          <p className="text-[13px] text-muted">{desc}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -47,7 +93,7 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-32 border-t border-border py-12 first:border-t-0">
+    <section id={id} className="scroll-mt-32 pt-10">
       <div className="mb-6 flex items-start gap-4">
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bois-dark font-serif text-lg font-semibold text-paper">
           {n}
@@ -61,7 +107,7 @@ export function Section({
               {pts} pts
             </span>
           </div>
-          <h2 className="mt-1 font-serif text-2xl font-semibold text-bois-dark sm:text-3xl">{title}</h2>
+          <h3 className="mt-1 font-serif text-2xl font-semibold text-bois-dark sm:text-[1.7rem]">{title}</h3>
         </div>
       </div>
       {children}

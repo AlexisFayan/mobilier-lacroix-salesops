@@ -28,7 +28,7 @@ function configuredProviders(): Provider[] {
   return list;
 }
 
-/** Moteur affiché par défaut (avant un appel) — le premier configuré, sinon démo. */
+/** Moteur affiché par défaut (avant un appel), le premier configuré, sinon démo. */
 export function defaultEngine(): AiSource {
   const p = configuredProviders()[0];
   return p ? { engine: LABEL[p], real: true } : SIMULATED;
@@ -131,7 +131,7 @@ function projectContext(p: Project): string {
     .map((e) => `- (il y a ${e.daysAgo} j, ${e.type}, ${e.author}) ${e.content}`)
     .join("\n");
   return `Client : ${p.client} (${p.type}, ${p.city})
-Contact : ${p.contactName} — ${p.contactRole}
+Contact : ${p.contactName}, ${p.contactRole}
 Canal d'acquisition : ${CHANNEL_META[p.channel].label}
 Projet : ${p.description}
 Montant estimé : ${euro(p.estValue)}
@@ -204,7 +204,7 @@ function simulateScore(p: Project): ScoreResult {
 
   if (p.devisSent && p.stage === "devis" && p.lastActivityDaysAgo >= 7) {
     s -= 12;
-    factors.push({ label: `⚠️ Devis sans relance depuis ${p.lastActivityDaysAgo} j (fuite à colmater)`, impact: "-" });
+    factors.push({ label: `Devis sans relance depuis ${p.lastActivityDaysAgo} j (fuite à colmater)`, impact: "-" });
   }
 
   if (p.lastActivityDaysAgo >= 14 && p.stage !== "perdu" && p.stage !== "signe") {
@@ -217,8 +217,8 @@ function simulateScore(p: Project): ScoreResult {
   s = Math.max(0, Math.min(100, Math.round(s)));
 
   let reco: string;
-  if (p.stage === "signe") reco = "Affaire gagnée — capitaliser : demander un avis et activer le bouche-à-oreille.";
-  else if (p.stage === "perdu") reco = "Affaire perdue — analyser la cause (relance manquée ? prix ?) pour ne pas reproduire la fuite.";
+  if (p.stage === "signe") reco = "Affaire gagnée, capitaliser : demander un avis et activer le bouche-à-oreille.";
+  else if (p.stage === "perdu") reco = "Affaire perdue, analyser la cause (relance manquée ? prix ?) pour ne pas reproduire la fuite.";
   else if (p.devisSent && p.lastActivityDaysAgo >= 7) reco = "Priorité haute : relancer aujourd'hui, le devis refroidit.";
   else if (s >= 70) reco = "Lead chaud : sécuriser la prochaine étape sans attendre.";
   else if (s >= 40) reco = "À nourrir : un contact bien placé peut faire basculer le dossier.";
@@ -263,30 +263,30 @@ function detectObjection(p: Project): "prix" | "delai" | "garantie" | "silence" 
 function simulateRelance(p: Project): RelanceResult {
   const obj = detectObjection(p);
   const prenom = p.contactName.split(" ")[0];
-  let subject = `Votre projet sur mesure — ${p.client}`;
+  let subject = `Votre projet sur mesure, ${p.client}`;
   let corps = "";
   const ouverture = `Bonjour ${prenom},`;
-  const signature = `\n\nBien à vous,\nL'atelier Mobilier Lacroix\n— Le sur-mesure, façonné pour durer.`;
+  const signature = `\n\nBien à vous,\nL'atelier Mobilier Lacroix\nLe sur-mesure, façonné pour durer.`;
 
   switch (obj) {
     case "prix":
-      subject = `${p.client} — trouvons la bonne formule ensemble`;
-      corps = `${ouverture}\n\nMerci pour votre retour, et ravi que la qualité de nos finitions vous parle — c'est précisément ce qui fait durer un mobilier dix ou quinze ans plutôt que trois.\n\nPour rester dans votre enveloppe, deux pistes : un échelonnement du règlement (40 % à la commande, le solde à la livraison), ou un ajustement du périmètre en conservant les pièces signature. Dites-moi ce qui vous arrange, et nous construisons la solution avec vous.`;
+      subject = `${p.client}, trouvons la bonne formule ensemble`;
+      corps = `${ouverture}\n\nMerci pour votre retour, et ravi que la qualité de nos finitions vous parle, c'est précisément ce qui fait durer un mobilier dix ou quinze ans plutôt que trois.\n\nPour rester dans votre enveloppe, deux pistes : un échelonnement du règlement (40 % à la commande, le solde à la livraison), ou un ajustement du périmètre en conservant les pièces signature. Dites-moi ce qui vous arrange, et nous construisons la solution avec vous.`;
       break;
     case "delai":
-      subject = `${p.client} — votre délai, nous le tenons`;
-      corps = `${ouverture}\n\nMerci pour votre message. Bonne nouvelle : sur ce projet, nous pouvons garantir le délai annoncé en réservant dès maintenant un créneau d'atelier. Plus tôt la fabrication démarre, plus la date de livraison est sécurisée.\n\nJe vous propose de bloquer ce créneau cette semaine — un simple accord de principe suffit pour lancer la prise de mesures finale.`;
+      subject = `${p.client}, votre délai, nous le tenons`;
+      corps = `${ouverture}\n\nMerci pour votre message. Bonne nouvelle : sur ce projet, nous pouvons garantir le délai annoncé en réservant dès maintenant un créneau d'atelier. Plus tôt la fabrication démarre, plus la date de livraison est sécurisée.\n\nJe vous propose de bloquer ce créneau cette semaine, un simple accord de principe suffit pour lancer la prise de mesures finale.`;
       break;
     case "garantie":
-      subject = `${p.client} — la tenue de votre mobilier dans le temps`;
+      subject = `${p.client}, la tenue de votre mobilier dans le temps`;
       corps = `${ouverture}\n\nExcellente question, et c'est justement notre fierté. Pour l'extérieur, nous sélectionnons des essences adaptées et appliquons un traitement spécifique ; chaque réalisation est accompagnée d'une garantie et de conseils d'entretien pour traverser les saisons sans faiblir.\n\nJe peux vous montrer une réalisation comparable, encore impeccable après plusieurs étés. Souhaitez-vous que je vous l'envoie ?`;
       break;
     case "info":
-      corps = `${ouverture}\n\nMerci pour votre retour. Je reviens vers vous avec plaisir pour avancer sur votre projet (${p.description.toLowerCase()}).\n\nDites-moi le moment qui vous conviendrait pour en parler — je m'adapte à votre agenda.`;
+      corps = `${ouverture}\n\nMerci pour votre retour. Je reviens vers vous avec plaisir pour avancer sur votre projet (${p.description.toLowerCase()}).\n\nDites-moi le moment qui vous conviendrait pour en parler, je m'adapte à votre agenda.`;
       break;
     default:
-      subject = `${p.client} — je reviens vers vous`;
-      corps = `${ouverture}\n\nJe me permets de revenir vers vous au sujet du devis pour votre projet (${p.description.toLowerCase()}). Il reste tout à fait d'actualité de notre côté, et je serais ravi d'y donner suite.\n\nAvez-vous des questions sur les essences, les finitions ou le calendrier ? Je peux aussi vous accueillir à l'atelier pour voir et toucher la matière — c'est souvent ce qui fait la différence.`;
+      subject = `${p.client}, je reviens vers vous`;
+      corps = `${ouverture}\n\nJe me permets de revenir vers vous au sujet du devis pour votre projet (${p.description.toLowerCase()}). Il reste tout à fait d'actualité de notre côté, et je serais ravi d'y donner suite.\n\nAvez-vous des questions sur les essences, les finitions ou le calendrier ? Je peux aussi vous accueillir à l'atelier pour voir et toucher la matière, c'est souvent ce qui fait la différence.`;
   }
   return { subject, body: corps + signature, source: SIMULATED };
 }
@@ -320,10 +320,10 @@ export type ResumeResult = {
 function simulateResume(p: Project): ResumeResult {
   const points = p.exchanges.map((e) => {
     const qui = e.author === "Atelier" ? "Nous" : p.contactName;
-    return `${qui} — ${e.content}`;
+    return `${qui}, ${e.content}`;
   });
 
-  const synthese = `${p.client} (${p.type}, ${p.city}) — projet « ${p.description} » estimé à ${euro(
+  const synthese = `${p.client} (${p.type}, ${p.city}), projet « ${p.description} » estimé à ${euro(
     p.estValue
   )}. Entré via ${CHANNEL_META[p.channel].label.toLowerCase()}, le dossier est à l'étape « ${STAGE_LABEL[
     p.stage
