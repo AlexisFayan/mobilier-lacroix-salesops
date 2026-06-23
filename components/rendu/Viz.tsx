@@ -124,23 +124,26 @@ export function ImpactEffortMatrix() {
 const CATS: Competitor_cat[] = ["sur-mesure", "agenceur", "luxe", "serie"];
 type Competitor_cat = "sur-mesure" | "agenceur" | "luxe" | "serie";
 
+const CRENEAU = [
+  { t: "Marque blanche", d: "Sous-traitance pour agenceurs & architectes (seul Atelier Media l'assume frontalement)." },
+  { t: "Réfection de banquettes", d: "Un revenu récurrent que les autres ignorent." },
+  { t: "Proximité lyonnaise", d: "Cotes, délais et SAV que les acteurs nationaux n'offrent pas." },
+];
+
 export function CompetitorMap() {
   return (
     <div className="space-y-4">
-      {/* La carte 2D */}
-      <div className="rounded-2xl border border-border bg-paper p-5">
-        <div className="relative pl-6">
-          {/* axe Y */}
-          <div className="absolute -left-1 top-1/2 origin-center -translate-y-1/2 -rotate-90 whitespace-nowrap text-[9px] uppercase tracking-wide text-muted">
-            National → Local (Lyon/AURA)
+      {/* La carte 2D, compacte */}
+      <div className="rounded-2xl border border-border bg-paper p-4">
+        <div className="relative mx-auto max-w-md pl-5">
+          <div className="absolute -left-1 top-1/2 origin-center -translate-y-1/2 -rotate-90 whitespace-nowrap text-[8.5px] uppercase tracking-wide text-muted">
+            National → Local
           </div>
 
-          <div className="relative aspect-[5/4] w-full rounded-xl border border-border bg-cream">
-            {/* médianes */}
+          <div className="relative aspect-[16/10] w-full rounded-xl border border-border bg-cream">
             <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-border/70" />
             <div className="absolute top-1/2 left-0 w-full border-t border-dashed border-border/70" />
 
-            {/* concurrents */}
             {COMPETITORS.map((c) => (
               <div
                 key={c.name}
@@ -148,32 +151,30 @@ export function CompetitorMap() {
                 style={{ left: `${c.x}%`, bottom: `${c.y}%` }}
                 title={c.positioning}
               >
-                <span className="h-2.5 w-2.5 rounded-full ring-2 ring-cream" style={{ background: CAT_META[c.cat].color }} />
-                <span className="mt-0.5 whitespace-nowrap text-[8.5px] leading-none text-ink/70">{c.tag}</span>
+                <span className="h-2 w-2 rounded-full ring-2 ring-cream" style={{ background: CAT_META[c.cat].color }} />
+                <span className="mt-0.5 whitespace-nowrap text-[8px] leading-none text-ink/70">{c.tag}</span>
               </div>
             ))}
 
-            {/* Mobilier Lacroix */}
             <div
               className="absolute z-10 flex -translate-x-1/2 translate-y-1/2 flex-col items-center"
               style={{ left: `${LACROIX_MARKER.x}%`, bottom: `${LACROIX_MARKER.y}%` }}
             >
-              <span className="h-4 w-4 rounded-full bg-terracotta ring-4 ring-terracotta/25" />
-              <span className="mt-1 whitespace-nowrap rounded bg-terracotta px-1.5 py-0.5 text-[9px] font-semibold text-paper">
+              <span className="h-3 w-3 rounded-full bg-terracotta ring-4 ring-terracotta/25" />
+              <span className="mt-0.5 whitespace-nowrap rounded bg-terracotta px-1.5 py-0.5 text-[8.5px] font-semibold text-paper">
                 Mobilier Lacroix
               </span>
             </div>
           </div>
 
-          {/* axe X */}
-          <div className="mt-1.5 flex justify-between text-[9px] uppercase tracking-wide text-muted">
+          <div className="mt-1.5 flex justify-between text-[8.5px] uppercase tracking-wide text-muted">
             <span>Série / prix bas</span>
             <span>Sur-mesure / premium</span>
           </div>
         </div>
 
         {/* légende */}
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 border-t border-border pt-3 text-[10.5px]">
+        <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5 border-t border-border pt-3 text-[10.5px]">
           {CATS.map((cat) => (
             <span key={cat} className="inline-flex items-center gap-1.5 text-ink/75">
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: CAT_META[cat].color }} />
@@ -187,26 +188,31 @@ export function CompetitorMap() {
         </div>
       </div>
 
-      {/* Liste de référence + créneau */}
-      <div className="grid gap-3 lg:grid-cols-3">
-        <div className="rounded-2xl border border-terracotta/40 bg-terracotta/5 p-4 lg:row-span-2">
-          <h4 className="font-serif text-[15px] font-semibold text-terracotta-dark">Le créneau de Lacroix</h4>
-          <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink/85">
-            Dans le cluster « sur-mesure local », l'atelier se différencie sur trois angles peu occupés :
-          </p>
-          <ul className="mt-2 space-y-1.5 text-[12.5px] text-ink/85">
-            <li><strong>Marque blanche</strong> pour agenceurs &amp; architectes (seul Atelier Media l'assume).</li>
-            <li><strong>Réfection de banquettes</strong> : un revenu récurrent ignoré par les autres.</li>
-            <li><strong>Proximité lyonnaise</strong> : cotes, délais et SAV que les nationaux n'offrent pas.</li>
-          </ul>
+      {/* Le créneau, en bandeau pleine largeur */}
+      <div className="rounded-2xl border border-terracotta/40 bg-terracotta/5 p-5">
+        <h4 className="font-serif text-[15px] font-semibold text-terracotta-dark">Le créneau de Mobilier Lacroix</h4>
+        <p className="mt-1 text-[12.5px] text-ink/85">
+          Dans le cluster « sur-mesure local », trois angles peu occupés font la différence :
+        </p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          {CRENEAU.map((c) => (
+            <div key={c.t} className="rounded-xl border border-terracotta/20 bg-paper/70 p-3">
+              <div className="text-[12.5px] font-semibold text-bois-dark">{c.t}</div>
+              <p className="mt-0.5 text-[11.5px] leading-snug text-ink/75">{c.d}</p>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Liste de référence, 4 cartes à hauteurs égales */}
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {CATS.map((cat) => {
           const list = COMPETITORS.filter((c) => c.cat === cat);
           const meta = CAT_META[cat];
           return (
             <div key={cat} className="rounded-2xl border border-border bg-paper p-4">
               <div className="mb-2 flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: meta.color }} />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: meta.color }} />
                 <h4 className="text-[12px] font-semibold text-ink">{meta.label}</h4>
               </div>
               <ul className="space-y-1.5">
