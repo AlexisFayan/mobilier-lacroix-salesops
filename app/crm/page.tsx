@@ -8,11 +8,13 @@ import KpiBar from "@/components/crm/KpiBar";
 import PipelineBoard from "@/components/crm/PipelineBoard";
 import ProjectList from "@/components/crm/ProjectList";
 import ProjectDrawer from "@/components/crm/ProjectDrawer";
+import NewProjectForm from "@/components/crm/NewProjectForm";
 
 export default function CrmPage() {
   const [projects, setProjects] = useState<Project[]>(PROJECTS);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [view, setView] = useState<"kanban" | "liste">("kanban");
+  const [creating, setCreating] = useState(false);
   const selected = projects.find((p) => p.id === selectedId) || null;
 
   function handleStage(id: string, stage: Stage) {
@@ -30,6 +32,10 @@ export default function CrmPage() {
     );
   }
 
+  function handleCreate(p: Project) {
+    setProjects((prev) => [p, ...prev]);
+  }
+
   return (
     <>
       <Header />
@@ -38,27 +44,35 @@ export default function CrmPage() {
           <div>
             <h1 className="font-serif text-2xl font-semibold text-bois-dark">Pilotage commercial</h1>
             <p className="mt-0.5 text-sm text-muted">
-              Le carnet de commandes de l'atelier, augmenté par l'IA, pipeline, scoring des devis,
+              Le carnet de commandes de l'atelier, augmenté par l'IA : pipeline, scoring des devis,
               copilote de relance et résumé d'échanges.
             </p>
           </div>
-          <div className="flex items-center gap-1 rounded-full border border-border bg-paper p-1">
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => setView("kanban")}
-              className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
-                view === "kanban" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
-              }`}
+              onClick={() => setCreating(true)}
+              className="rounded-full bg-terracotta px-4 py-2 text-[12.5px] font-medium text-paper transition hover:bg-terracotta-dark"
             >
-              Pipeline
+              + Nouveau projet
             </button>
-            <button
-              onClick={() => setView("liste")}
-              className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
-                view === "liste" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
-              }`}
-            >
-              Liste
-            </button>
+            <div className="flex items-center gap-1 rounded-full border border-border bg-paper p-1">
+              <button
+                onClick={() => setView("kanban")}
+                className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
+                  view === "kanban" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
+                }`}
+              >
+                Pipeline
+              </button>
+              <button
+                onClick={() => setView("liste")}
+                className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
+                  view === "liste" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
+                }`}
+              >
+                Liste
+              </button>
+            </div>
           </div>
         </div>
 
@@ -68,9 +82,9 @@ export default function CrmPage() {
           <span>
             {view === "kanban"
               ? "Glissez une carte d'une colonne à l'autre pour faire avancer un dossier."
-              : "Cliquez un en-tête pour trier · cliquez une ligne pour ouvrir le copilote IA."}
+              : "Cliquez un en-tête pour trier, cliquez une ligne pour ouvrir le copilote IA."}
           </span>
-          <span className="hidden sm:inline">Cliquez une fiche → copilote IA →</span>
+          <span className="hidden sm:inline">Cliquez une fiche pour ouvrir le copilote IA</span>
         </div>
 
         {view === "kanban" ? (
@@ -83,6 +97,8 @@ export default function CrmPage() {
       {selected && (
         <ProjectDrawer project={selected} onClose={() => setSelectedId(null)} onStage={handleStage} />
       )}
+
+      {creating && <NewProjectForm onCreate={handleCreate} onClose={() => setCreating(false)} />}
     </>
   );
 }

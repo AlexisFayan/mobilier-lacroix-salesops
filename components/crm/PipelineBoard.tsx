@@ -41,16 +41,20 @@ function ProjectCard({
       }`}
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <span className="truncate font-medium text-bois-dark">{p.client}</span>
-          <div className="mt-0.5 text-[11px] text-muted">
+        <div className="min-w-0 flex-1">
+          <span className="line-clamp-2 break-words font-medium leading-tight text-bois-dark">{p.client}</span>
+          <div className="mt-0.5 break-words text-[11px] text-muted">
             {TYPE_LABEL[p.type]} · {p.city}
           </div>
         </div>
-        {p.stage !== "perdu" && <ScoreBadge score={p.score} size={38} />}
+        {p.stage !== "perdu" && (
+          <div className="shrink-0">
+            <ScoreBadge score={p.score} size={38} />
+          </div>
+        )}
       </div>
 
-      <p className="mt-2 line-clamp-2 text-[12.5px] leading-snug text-ink/80">{p.description}</p>
+      <p className="mt-2 line-clamp-2 break-words text-[12.5px] leading-snug text-ink/80">{p.description}</p>
 
       <div className="mt-2.5 flex items-center justify-between">
         <span className="font-serif text-sm font-semibold text-terracotta-dark">{euro(p.estValue)}</span>

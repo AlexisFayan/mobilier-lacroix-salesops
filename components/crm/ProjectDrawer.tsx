@@ -83,7 +83,7 @@ export default function ProjectDrawer({
         {/* En-tête */}
         <div className="flex items-start justify-between gap-3 border-b border-border bg-paper px-5 py-4">
           <div className="min-w-0">
-            <h2 className="truncate font-serif text-xl font-semibold text-bois-dark">{project.client}</h2>
+            <h2 className="break-words font-serif text-xl font-semibold text-bois-dark">{project.client}</h2>
             <p className="mt-0.5 text-[12.5px] text-muted">
               {project.city} · {project.contactName} ({project.contactRole})
             </p>
