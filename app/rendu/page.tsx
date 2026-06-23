@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
 import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -77,29 +77,48 @@ export default function RenduPage() {
         </Section>
 
         <Section id="c2" n={2} pts={10} eyebrow="Marché, concurrents & ICP" title="Un marché de niche, ancré en AURA">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <SubCard title="Client idéal (ICP)">
-              <p className="text-[13px] leading-relaxed text-ink/85">
-                Restaurateur, cafetier ou hôtelier <strong>indépendant de Lyon / AURA</strong>, en
-                <strong> création ou rénovation</strong>, budget <strong>5-15 k€</strong>, attaché au sur-mesure
-                local et durable plutôt qu'au prix. Cible miroir : <strong>agenceurs &amp; architectes</strong>
-                prescripteurs cherchant un fabricant fiable en marque blanche.
-              </p>
-              <ul className="mt-3 space-y-1.5 text-[12.5px] text-ink/80">
-                <li>Restaurants &amp; cafés indé. (Métropole de Lyon : ~5 280 restaurants<Src ids={["onlylyon-resto"]} />)</li>
-                <li>Hôtels 3-4 étoiles en montée en gamme (384 hôtels 4-5 étoiles en AURA<Src ids={["aura-hotel"]} />)</li>
-                <li>Agenceurs / architectes (sous-traitance marque blanche)</li>
-                <li>Clients existants : réfection de banquettes (récurrent)</li>
-              </ul>
-            </SubCard>
-            <SubCard title="Dimensionnement : TAM / SAM / SOM">
-              <TamSamSom />
-            </SubCard>
+          {/* ICP pleine largeur */}
+          <div className="rounded-2xl border border-border bg-sand/40 p-6">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+              <div className="lg:w-2/5">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">Client idéal (ICP)</div>
+                <p className="mt-2 font-serif text-[17px] leading-snug text-bois-dark">{ICP.oneLiner}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {ICP.attributs.map((a) => (
+                    <span key={a.k} className="rounded-full border border-border bg-paper px-3 py-1 text-[11.5px]">
+                      <span className="text-muted">{a.k} : </span>
+                      <strong className="text-bois-dark">{a.v}</strong>
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="lg:flex-1">
+                <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">Segments cibles</div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {ICP.segments.map((s) => (
+                    <div key={s.label} className="rounded-xl border border-border bg-paper p-3">
+                      <div className="text-[12.5px] font-semibold text-bois-dark">{s.label}</div>
+                      <p className="mt-0.5 text-[11.5px] leading-snug text-ink/75">
+                        {s.desc}
+                        <Src ids={s.src} />
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Cartographie concurrentielle</h3>
+          {/* TAM / SAM / SOM */}
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Dimensionnement du marché</h3>
+          <TamSamSom />
+
+          {/* Concurrents */}
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Carte de positionnement concurrentiel</h3>
+          <p className="mb-3 text-[12.5px] text-muted">Gamme (série → sur-mesure) selon l'ancrage (national → local). 14 acteurs réels recensés.</p>
           <CompetitorMap />
 
+          {/* Tendances */}
           <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Tendances porteuses</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
@@ -257,7 +276,7 @@ export default function RenduPage() {
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <p className="text-[13.5px] leading-relaxed text-ink/85">
-                  Un vrai outil qui tourne : pipeline des 16 projets, <strong>scoring IA des devis</strong>,
+                  Un vrai outil qui tourne : pipeline des projets, <strong>scoring IA des devis</strong>,
                   <strong> copilote de relance</strong> et <strong>résumé d'échanges</strong>. L'IA est visible
                   et démontrable : vrais appels à Mistral, avec repli pour ne jamais tomber en panne.
                 </p>
@@ -269,7 +288,7 @@ export default function RenduPage() {
                 </Link>
               </div>
               <ul className="grid grid-cols-2 gap-2 text-[12px]">
-                {["Pipeline", "Scoring IA", "Relance", "Résumé", "KPI en direct", "Alerte fuite"].map((f) => (
+                {["Pipeline", "Scoring IA", "Relance", "Résumé", "Création de fiche", "Alerte fuite"].map((f) => (
                   <li key={f} className="rounded-lg border border-border bg-paper px-3 py-2 text-ink/85">{f}</li>
                 ))}
               </ul>
@@ -278,27 +297,43 @@ export default function RenduPage() {
         </Section>
 
         <Section id="c9" n={9} pts={5} eyebrow="Posture conseil & rigueur" title="Méthode & sources">
-          <div className="rounded-2xl border border-border bg-paper p-5">
-            <h3 className="font-serif text-lg font-semibold text-bois-dark">Honnêteté intellectuelle</h3>
-            <p className="mt-1 text-[13px] text-ink/80">
-              Le <strong>TAM (675 M€)</strong> est un chiffre de filière vérifié. Le <strong>SAM</strong> et le
-              <strong> SOM</strong> sont des <strong>estimations d'expert</strong> présentées en fourchettes, avec
-              hypothèses explicites : un chiffre défendable vaut mieux qu'un chiffre énorme et faux. Les données
-              ont été recoupées sur sources primaires (INSEE, UMIH, filière) puis relues de façon critique.
-            </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-border bg-paper p-4">
+              <div className="font-serif text-base font-semibold text-bois-dark">Sourcer</div>
+              <p className="mt-1 text-[12.5px] text-ink/75">Chaque chiffre du marché renvoie à une source primaire (INSEE, UMIH, filière), citée et datée.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-paper p-4">
+              <div className="font-serif text-base font-semibold text-bois-dark">Estimer honnêtement</div>
+              <p className="mt-1 text-[12.5px] text-ink/75">TAM = chiffre dur. SAM et SOM = estimations en fourchettes, avec hypothèses explicites.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-paper p-4">
+              <div className="font-serif text-base font-semibold text-bois-dark">Vérifier</div>
+              <p className="mt-1 text-[12.5px] text-ink/75">Données recoupées et relues de façon critique : un chiffre défendable vaut mieux qu'un chiffre énorme et faux.</p>
+            </div>
           </div>
 
-          <h3 className="mb-3 mt-6 font-serif text-lg font-semibold text-bois-dark">Sources ({SOURCES.length})</h3>
-          <ol className="grid gap-1.5 sm:grid-cols-2">
-            {SOURCES.map((s, i) => (
-              <li key={s.id} className="flex gap-2 text-[11.5px] leading-snug">
-                <span className="font-semibold text-terracotta-dark">[{i + 1}]</span>
-                <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink/80 hover:text-terracotta-dark hover:underline">
-                  <strong className="text-ink">{s.org}</strong> : {s.title}
-                </a>
-              </li>
-            ))}
-          </ol>
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Sources ({SOURCES.length})</h3>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {SOURCE_THEMES.map((theme) => {
+              const list = SOURCES.filter((s) => s.theme === theme);
+              if (list.length === 0) return null;
+              return (
+                <div key={theme} className="rounded-2xl border border-border bg-paper p-4">
+                  <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">{theme}</div>
+                  <ul className="space-y-1.5">
+                    {list.map((s) => (
+                      <li key={s.id} className="flex gap-2 text-[11.5px] leading-snug">
+                        <span className="font-semibold text-muted">[{srcIndex(s.id)}]</span>
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink/80 hover:text-terracotta-dark hover:underline">
+                          <strong className="text-ink">{s.org}</strong> : {s.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </Section>
       </main>
       <Footer />
