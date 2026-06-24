@@ -26,6 +26,12 @@ export default function Header() {
             Le prototype
           </Link>
           <Link
+            href="/estimateur"
+            className="hidden rounded-full px-3.5 py-1.5 font-medium text-ink transition hover:bg-sand md:inline-block"
+          >
+            Estimateur
+          </Link>
+          <Link
             href="/charte"
             className="hidden rounded-full px-3.5 py-1.5 font-medium text-ink transition hover:bg-sand sm:inline-block"
           >

@@ -19,6 +19,10 @@ export default function Footer() {
             Prototype
           </Link>
           <span className="text-border">·</span>
+          <Link href="/estimateur" className="font-medium text-terracotta-dark hover:underline">
+            Estimateur
+          </Link>
+          <span className="text-border">·</span>
           <Link href="/charte" className="font-medium text-terracotta-dark hover:underline">
             Charte graphique
           </Link>

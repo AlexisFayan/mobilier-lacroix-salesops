@@ -208,6 +208,11 @@ export default function RenduPage() {
                 <div className="mt-2 border-t border-border pt-2 text-[11px]">
                   <span className="font-semibold text-olive">KPI :</span> <span className="text-ink/80">{m.kpi}</span>
                 </div>
+                {m.href && (
+                  <Link href={m.href} className="mt-2 inline-block text-[11.5px] font-medium text-terracotta-dark hover:underline">
+                    Essayer →
+                  </Link>
+                )}
               </div>
             ))}
           </div>

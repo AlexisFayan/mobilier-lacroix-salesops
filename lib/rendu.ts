@@ -205,10 +205,10 @@ export const PLAN_BALANCE = {
 };
 
 /** Aimants à prospects (lead magnets), à bas coût, cohérents avec la marque. */
-export const LEAD_MAGNETS = [
+export const LEAD_MAGNETS: { titre: string; aimant: string; cible: string; canal: string; kpi: string; href?: string }[] = [
   { titre: "Carnet de réalisations", aimant: "Le catalogue des projets en PDF, à recevoir contre un courriel.", cible: "Restaurateurs & hôteliers en projet", canal: "Site, Instagram", kpi: "Courriels captés / mois" },
   { titre: "Guide de l'aménagement CHR", aimant: "Matières, budget, délais : l'expertise qui rassure avant d'acheter.", cible: "Création ou rénovation", canal: "Site, SEO local", kpi: "Téléchargements → RDV" },
-  { titre: "Estimateur de budget", aimant: "Une fourchette de prix indicative en deux minutes, en ligne.", cible: "Demandes tièdes à qualifier", canal: "Site", kpi: "Estimations → devis" },
+  { titre: "Estimateur de budget", aimant: "Une fourchette de prix indicative en deux minutes, en ligne.", cible: "Demandes tièdes à qualifier", canal: "Site", kpi: "Estimations → devis", href: "/estimateur" },
   { titre: "Visite d'atelier", aimant: "Voir et toucher la matière : l'expérience qui fait signer.", cible: "Prospects chauds", canal: "Direct, recommandation", kpi: "Visites → signatures" },
   { titre: "Programme prescripteurs", aimant: "Marque blanche et commission pour agenceurs & architectes.", cible: "Agenceurs / architectes", canal: "Partenariats", kpi: "Projets apportés / partenaire" },
 ];
