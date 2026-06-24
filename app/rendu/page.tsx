@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Le dossier · Mobilier Lacroix",
+  description: "Les 9 critères du dossier noté, en 4 temps, avec sources vérifiées : marché, funnel, plan SalesOps, IA et garde-fous.",
 };
 
 export default function RenduPage() {

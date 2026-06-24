@@ -11,6 +11,9 @@
 
 ## Déroulé
 
+0. **L'aimant marketing (20 s)** — Ouvrir `/estimateur`. Remplir 2-3 postes, montrer la fourchette indicative, cliquer « Recevoir l'estimation » → message « crée une fiche qualifiée dans le CRM ».
+   → « Voilà comment on attire et on qualifie, à bas coût. Cette demande arrive maintenant côté commercial. »
+
 1. **Le pilotage (5 s)** — Ouvrir `/crm`. Pointer la barre KPI : « Devis à relancer » en alerte.
    → « Voilà la fuite qu'on a diagnostiquée, rendue visible et chiffrée. »
 

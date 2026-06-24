@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Charte graphique · Mobilier Lacroix",
+  description: "L'identité de marque : positionnement, archétypes le Créateur et l'Amant, logo, palette, typographie et ton de voix.",
 };
 
 /* ───────── Petits blocs réutilisables ───────── */
