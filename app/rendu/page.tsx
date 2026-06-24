@@ -195,7 +195,7 @@ export default function RenduPage() {
           </div>
 
           <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Les aimants à prospects (lead magnets)</h3>
-          <p className="mb-3 text-[12.5px] text-muted">Cinq aimants à bas coût qui re-remplissent le haut du tunnel chaque mois, enjeu clé du modèle ponctuel.</p>
+          <p className="mb-3 text-[12.5px] text-muted">Cinq aimants à bas coût qui re-remplissent le haut du tunnel chaque mois, enjeu clé du modèle ponctuel. L'objectif n'est pas plus de volume (l'atelier plafonne à 3-5 projets/mois) mais des demandes mieux qualifiées et un panier plus élevé (hôtels, prescripteurs).</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {LEAD_MAGNETS.map((m) => (
               <div key={m.titre} className="rounded-2xl border border-border bg-paper p-4">
@@ -283,7 +283,7 @@ export default function RenduPage() {
               </tbody>
             </table>
             <div className="border-t border-border bg-paper px-4 py-2 text-[10.5px] text-muted">
-              R = Réalise · A = Approuve · C = Consulté · I = Informé
+              R = Réalise · A = Garant (décideur) · C = Consulté · I = Informé
             </div>
           </div>
         </Section>
@@ -313,7 +313,7 @@ export default function RenduPage() {
           </div>
           <p className="mt-3 text-[12.5px] text-muted">
             Cible business (SOM) : <strong className="text-bois-dark">≈ 0,55 M€/an</strong>, atteinte surtout par un
-            <strong> meilleur taux de conversion</strong> (relances) plutôt que par plus de leads payants.
+            <strong> meilleur taux de conversion</strong> (relances) plutôt que par de l'acquisition payante.
           </p>
         </Section>
 
@@ -326,7 +326,7 @@ export default function RenduPage() {
                 <div className="mt-3 space-y-2 text-[12px]">
                   <p><span className="font-semibold text-rouille">Irritant :</span> <span className="text-ink/80">{u.irritant}</span></p>
                   <p><span className="font-semibold text-bois">Cas d'usage :</span> <span className="text-ink/80">{u.cas}</span></p>
-                  <p><span className="font-semibold text-clay">Workflow :</span> <span className="text-ink/80">{u.workflow}</span></p>
+                  <p><span className="font-semibold text-clay">Déroulé :</span> <span className="text-ink/80">{u.workflow}</span></p>
                   <p><span className="font-semibold text-muted">Données :</span> <span className="text-ink/80">{u.donnees}</span></p>
                   <p><span className="font-semibold text-muted">Outil :</span> <span className="text-ink/80">{u.outil}</span></p>
                   <p><span className="font-semibold text-olive">Indicateur :</span> <span className="text-ink/80">{u.indicateur}</span></p>
@@ -351,6 +351,7 @@ export default function RenduPage() {
                 <li><strong>Mistral AI</strong> : éditeur français, hébergement UE. L'API n'entraîne pas les modèles sur les données par défaut<Src ids={["mistral-privacy"]} />.</li>
                 <li><strong>Contrôle humain</strong> : l'IA propose, l'humain valide ; chaque relance est relue avant envoi.</li>
                 <li><strong>Minimisation</strong> : seules les infos utiles sont envoyées ; repli auto (Groq<Src ids={["groq-limits"]} />) puis simulé si besoin.</li>
+                <li><strong>Base légale &amp; conservation</strong> : intérêt légitime (prospection B2B), données conservées le temps du projet puis archivées, prospect informé.</li>
               </ul>
             </SubCard>
             <SubCard title="ROI">

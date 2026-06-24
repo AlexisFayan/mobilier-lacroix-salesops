@@ -75,7 +75,7 @@ export const SIZING = {
     label: "SAM",
     title: "Marché accessible",
     definition: "Mobilier CHR sur-mesure milieu/haut de gamme accessible en Auvergne-Rhône-Alpes.",
-    calc: "≈ 670-675 M€ (CHR & commerce, base prudente) × 14 % (part AURA) × ~35 % (sur-mesure accessible) ≈ 34 M€. Fourchette 28-40 M€.",
+    calc: "≈ 670-675 M€ (CHR & commerce, base prudente) × 14 % (part AURA, 16 679/122 000 ét.) × ~35 % (sur-mesure accessible, hypothèse d'expert) ≈ 34 M€. Fourchette 28-40 M€.",
     kind: "Estimation d'expert",
     sources: ["umih-hcr", "ameublement-contract"],
   },
@@ -135,7 +135,7 @@ export const CAT_META: Record<Competitor["cat"], { label: string; color: string 
 
 /** Funnel reconstruit (volumes mensuels typiques). */
 export const FUNNEL = [
-  { stage: "Demandes entrantes", value: "15-20", note: "leads / mois", pct: 100 },
+  { stage: "Demandes entrantes", value: "15-20", note: "demandes / mois", pct: 100 },
   { stage: "Qualifiées", value: "10-13", note: "besoin + budget", pct: 65 },
   { stage: "Visite atelier / devis", value: "7-9", note: "chiffrage", pct: 45 },
   { stage: "Négociation / relance", value: "5-7", note: "fuite : devis non relancés", pct: 32 },
@@ -192,7 +192,7 @@ export const AI_USECASES = [
 export const PLAN_BALANCE = {
   marketing: {
     titre: "Marketing · attirer & capter",
-    items: ["Book de réalisations", "Guide expert (SEO local)", "Estimateur de budget", "Instagram & bouche-à-oreille", "Programme prescripteurs"],
+    items: ["Carnet de réalisations", "Guide expert (SEO local)", "Estimateur de budget", "Instagram & bouche-à-oreille", "Programme prescripteurs"],
   },
   ia: {
     titre: "IA · faire le pont",
@@ -206,7 +206,7 @@ export const PLAN_BALANCE = {
 
 /** Aimants à prospects (lead magnets), à bas coût, cohérents avec la marque. */
 export const LEAD_MAGNETS = [
-  { titre: "Book de réalisations", aimant: "Le catalogue des projets en PDF, à recevoir contre un email.", cible: "Restaurateurs & hôteliers en projet", canal: "Site, Instagram", kpi: "Emails captés / mois" },
+  { titre: "Carnet de réalisations", aimant: "Le catalogue des projets en PDF, à recevoir contre un courriel.", cible: "Restaurateurs & hôteliers en projet", canal: "Site, Instagram", kpi: "Courriels captés / mois" },
   { titre: "Guide de l'aménagement CHR", aimant: "Matières, budget, délais : l'expertise qui rassure avant d'acheter.", cible: "Création ou rénovation", canal: "Site, SEO local", kpi: "Téléchargements → RDV" },
   { titre: "Estimateur de budget", aimant: "Une fourchette de prix indicative en deux minutes, en ligne.", cible: "Demandes tièdes à qualifier", canal: "Site", kpi: "Estimations → devis" },
   { titre: "Visite d'atelier", aimant: "Voir et toucher la matière : l'expérience qui fait signer.", cible: "Prospects chauds", canal: "Direct, recommandation", kpi: "Visites → signatures" },
@@ -215,18 +215,19 @@ export const LEAD_MAGNETS = [
 
 /** KPIs cibles. */
 export const KPIS = [
-  { kpi: "Demandes entrantes", actuel: "15-20 / mois", cible: "+ via aimants", note: "book, guide, estimateur" },
+  { kpi: "Demandes entrantes", actuel: "15-20 / mois", cible: "+ via aimants", note: "carnet, guide, estimateur" },
   { kpi: "Taux de conversion", actuel: "~25 %", cible: "30-35 %", note: "demandes → signés" },
   { kpi: "Relance des devis", actuel: "≈ 0 % (manuel)", cible: "100 %", note: "systématique via le CRM" },
   { kpi: "Délai de 1re relance", actuel: "jamais / tardif", cible: "< 72 h", note: "après envoi du devis" },
   { kpi: "Panier moyen", actuel: "5-15 k€", cible: "via hôtels/agenceurs", note: "montée en gamme" },
+  { kpi: "CAC", actuel: "≈ 60-80 €/projet", cible: "stable", note: "budget com ÷ projets signés" },
   { kpi: "Cycle de vente", actuel: "non mesuré", cible: "suivi", note: "demande → signature" },
 ];
 
 /** ROI de l'IA. */
 export const ROI = {
   hypotheses: [
-    "Hypothèse : temps gagné ≈ 8 h/mois (relances + résumés + priorisation)",
+    "Hypothèse : ≈ 8 h/mois gagnées (≈ 3 relances/sem × 10 min + 5 résumés d'échanges + priorisation)",
     "Hypothèse : coût horaire chargé ≈ 35 €/h (atelier 15 pers.)",
     "Coût de l'outil IA = 0 € (offre gratuite Mistral / Groq)",
   ],

@@ -296,7 +296,7 @@ export async function generateRelance(p: Project): Promise<RelanceResult> {
   const sim = simulateRelance(p);
   if (configuredProviders().length === 0) return sim;
 
-  const system = `${BRAND_VOICE}\nRédige un email de relance commerciale court (80-130 mots), personnalisé, qui fait avancer la vente sans pression. Si le client a soulevé une objection (prix, délai, garantie), traite-la avec élégance. Réponds UNIQUEMENT en JSON : {"subject": "...", "body": "..."}. Le body inclut une ouverture et une signature « L'atelier Mobilier Lacroix ».`;
+  const system = `${BRAND_VOICE}\nRédige un courriel de relance commerciale court (80-130 mots), personnalisé, qui fait avancer la vente sans pression. Si le client a soulevé une objection (prix, délai, garantie), traite-la avec élégance. Réponds UNIQUEMENT en JSON : {"subject": "...", "body": "..."}. Le body inclut une ouverture et une signature « L'atelier Mobilier Lacroix ».`;
   const res = await callLLM(system, projectContext(p));
   if (!res) return sim;
   const j = extractJSON(res.text);

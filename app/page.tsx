@@ -226,14 +226,14 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Feature n="1" title="Pipeline des projets" desc="Le funnel reconstruit, de la demande à la signature, avec les KPIs en direct." />
             <Feature n="2" title="Scoring des devis" desc="L'IA estime la probabilité de signature et fait remonter les devis à relancer." />
-            <Feature n="3" title="Copilote de relance" desc="Des emails « dans le ton » de la marque, adaptés à l'objection, prêts en un clic." />
+            <Feature n="3" title="Copilote de relance" desc="Des courriels « dans le ton » de la marque, adaptés à l'objection, prêts en un clic." />
             <Feature n="4" title="Résumé d'échanges" desc="Chaque dossier synthétisé en une fiche projet claire et exploitable." />
           </div>
 
           <div className="mt-8 rounded-3xl border border-border bg-bois-dark p-8 text-paper">
             <div className="text-center">
               <span className="inline-block rounded-full border border-paper/25 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-paper/70">
-                Une IA utile, pas gadget
+                Une IA utile, jamais gadget
               </span>
               <h3 className="mt-3 font-serif text-2xl font-semibold">Vraie IA, gratuite et responsable</h3>
             </div>

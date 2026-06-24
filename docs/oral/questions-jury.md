@@ -53,3 +53,26 @@ L'outil rend la relance impossible à oublier (alerte « à relancer » + copilo
 
 **Q. Quels KPI piloteriez-vous en premier ?**
 Taux de relance des devis (≈ 0 % → 100 %) et délai de 1re relance (< 72 h) : ce sont les deux qui colmatent la fuite n°1.
+
+## Itération 2 — parades aux questions pièges
+
+**Q. Pourquoi rattacher l'Amant à « l'appartenance » ?**
+Chez Mark & Pearson, les 12 archétypes se rangent en 4 motivations ; l'Amant appartient au groupe
+**Appartenance / Connexion** (avec le Bouffon et Monsieur Tout-le-Monde). On choisit l'Amant et pas
+Monsieur Tout-le-Monde car ce dernier (accessible, sans façon) entrerait en conflit avec notre raffinement.
+
+**Q. Votre score est-il du ML ou des règles ? Et si l'IA réelle diverge de la carte ?**
+C'est un **barème de règles transparent** (étape, canal, panier, signaux d'échange), pas une boîte noire ML.
+En démo on reste en mode simulé, où carte et copilote affichent le **même** score. Avec une vraie clé,
+le LLM peut affiner : la carte montre la dernière analyse mémorisée, le copilote la plus récente. L'humain tranche.
+
+**Q. CAC ?** ≈ 250 €/mois de budget com ÷ 3-5 signés = **60-80 €/projet signé** (désormais dans les KPI).
+Acquisition surtout organique ; les aimants visent la **qualité** des demandes, pas le volume.
+
+**Q. Base légale RGPD pour envoyer les échanges à Mistral ?**
+**Intérêt légitime** (prospection B2B), données conservées le temps du projet puis archivées, prospect informé.
+API La Plateforme : pas d'entraînement par défaut, UE, DPA.
+
+**Q. Plus de leads alors que l'atelier plafonne à 3-5 projets/mois ?**
+Justement : les aimants servent à **mieux qualifier** et **monter en panier** (hôtels, prescripteurs),
+pas à gonfler le volume. Le SOM reste borné par la capacité ; le levier est la conversion, pas le nombre de leads.

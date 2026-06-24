@@ -9,7 +9,7 @@ import ScoreBadge from "./ScoreBadge";
 
 const EX_LABEL: Record<ExchangeType, string> = {
   appel: "Appel",
-  email: "Email",
+  email: "Courriel",
   visite: "Visite",
   devis: "Devis",
   note: "Note",
