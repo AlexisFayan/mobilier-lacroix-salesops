@@ -6,7 +6,7 @@
 
 | | Valeur | Nature | À dire |
 |---|---|---|---|
-| **TAM** | **≈ 675 M€/an** | Chiffre dur | Marché *contract* mobilier+agencement CHR+commerce France (L'Ameublement français/CODIFAB×MKG, 28/01/2026). Dont ~420 M€ hôtellerie + ~250 M€ resto. |
+| **TAM** | **≈ 675 M€/an** | Chiffre dur | Marché *contract* mobilier+agencement CHR+commerce France (L'Ameublement français/CODIFAB×MKG, janvier 2026). Dont ~420 M€ hôtellerie + ~250 M€ resto. |
 | **SAM** | **≈ 34 M€/an** (28–40) | Estimation | 675 × **14 %** (part AURA, UMIH) × **~35 %** (sur-mesure accessible). Sensibilité : 25 %→23 M€ ; 40 %→37 M€. |
 | **SOM** | **≈ 0,55 M€/an** (0,45–0,60) | Estimation | Borné par la **capacité** (3-5 projets/mois × 10 k€), pas par le marché. Croissance = **conversion** (relances), pas budget média. |
 
