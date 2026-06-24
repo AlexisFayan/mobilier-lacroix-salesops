@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
 import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, srcIndex } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -40,31 +40,33 @@ export default function RenduPage() {
         {/* =================== 01 COMPRENDRE =================== */}
         <PhaseHeader n={PHASES[0].n} id={PHASES[0].key} title={PHASES[0].title} desc={PHASES[0].desc} />
 
-        <Section id="c1" n={1} pts={10} eyebrow="Identité de marque" title="Le « pourquoi » & l'archétype Créateur">
+        <Section id="c1" n={1} pts={10} eyebrow="Identité de marque" title="Le « pourquoi » & les archétypes">
           <div className="grid gap-4 lg:grid-cols-3">
             <div className="rounded-2xl border border-terracotta/30 bg-terracotta/5 p-5">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">Pourquoi · la mission</div>
-              <p className="mt-1.5 font-serif text-lg text-bois-dark">Donner une âme aux lieux où les gens se réunissent.</p>
+              <p className="mt-1.5 font-serif text-lg text-bois-dark">Offrir à chaque lieu de rencontre un morceau d'histoire française.</p>
               <p className="mt-1 text-[12px] text-muted">Jamais le produit : le changement qu'on apporte.</p>
             </div>
             <div className="rounded-2xl border border-border bg-paper p-5">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-bois">Comment · le moyen</div>
-              <p className="mt-1.5 text-[14px] text-ink/90">L'artisanat du sur-mesure, le savoir-faire d'atelier, l'accompagnement de bout en bout.</p>
+              <p className="mt-1.5 text-[14px] text-ink/90">Un savoir-faire artisanal français, à Lyon : la matière, le raffinement et l'accompagnement qui font qu'on se sent chez soi.</p>
             </div>
             <div className="rounded-2xl border border-border bg-paper p-5">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Quoi · le produit</div>
-              <p className="mt-1.5 text-[14px] text-ink/90">Du mobilier sur mesure pour le CHR, conçu pour durer et porter l'identité du lieu.</p>
+              <p className="mt-1.5 text-[14px] text-ink/90">Du mobilier sur mesure pour le CHR, conçu pour durer et porter l'histoire du lieu.</p>
             </div>
           </div>
           <div className="mt-4 rounded-2xl border border-border bg-sand/40 p-5">
-            <h3 className="font-serif text-lg font-semibold text-bois-dark">Archétype : le Créateur</h3>
-            <p className="mt-1 text-[13px] text-ink/80">Donner forme à une vision, créer de l'unique et du durable (Mark &amp; Pearson, 2001).</p>
+            <h3 className="font-serif text-lg font-semibold text-bois-dark">Archétypes : le Créateur + l'Amant</h3>
+            <p className="mt-1 text-[13px] text-ink/80">
+              Principal, <strong className="text-bois-dark">le Créateur</strong> : donner forme à une vision, créer de l'unique et du durable. Secondaire, <strong className="text-bois-dark">l'Amant</strong> (famille de l'appartenance) : le raffinement, l'émotion et le sentiment d'être chez soi (Mark &amp; Pearson, 2001).
+            </p>
             <div className="mt-3 grid gap-3 sm:grid-cols-4">
               {[
-                ["Ton", "chaleureux, fier du métier, sans pression"],
-                ["Vocabulaire", "la matière : chêne, noyer, frêne, velours"],
-                ["Visuels", "atelier, copeaux, finitions, mains"],
-                ["Promesse", "« façonné pour durer »"],
+                ["Ton", "chaleureux et raffiné, fier du savoir-faire français"],
+                ["Vocabulaire", "la matière et l'émotion : chêne, noyer, velours, patine"],
+                ["Visuels", "atelier lyonnais, mains, finitions, lumière chaude"],
+                ["Promesse", "« un morceau d'histoire, façonné pour durer »"],
               ].map(([k, v]) => (
                 <div key={k} className="rounded-xl border border-border bg-paper p-3">
                   <div className="text-[10.5px] font-semibold uppercase tracking-wide text-terracotta-dark">{k}</div>
@@ -122,10 +124,10 @@ export default function RenduPage() {
           <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Tendances porteuses</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
-              <strong>Premiumisation hôtelière</strong> : 28 % du parc en 4-5 étoiles (vs ~10 % en 2010)<Src ids={["coach-omnium"]} />, donc une demande de mobilier sur-mesure de qualité.
+              <strong>Premiumisation hôtelière</strong> : 28 % du parc classé en 4-5 étoiles<Src ids={["umih-hcr"]} />, part haut de gamme en forte hausse (19 % en 2024 contre 5 % en 2010)<Src ids={["coach-omnium"]} />, donc une demande de mobilier sur-mesure de qualité.
             </div>
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
-              <strong>Sur-mesure, made in France &amp; éco-conception</strong> : ~1 meuble sur 4 d'occasion<Src ids={["fevad-circulaire"]} />, un argument réfection/réemploi.
+              <strong>Sur-mesure, fabrication française &amp; éco-conception</strong> : la seconde main monte en puissance dans l'ameublement<Src ids={["fevad-circulaire"]} />, un argument réfection et réemploi.
             </div>
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
               <strong>Roulement du parc CHR</strong> : défaillances resto +21 %<Src ids={["altares-umih"]} /> mais créations AURA +15,7 %<Src ids={["insee-aura-creations"]} />, un flux continu de projets.
@@ -162,7 +164,55 @@ export default function RenduPage() {
         {/* =================== 03 RECOMMANDER =================== */}
         <PhaseHeader n={PHASES[2].n} id={PHASES[2].key} title={PHASES[2].title} desc={PHASES[2].desc} />
 
-        <Section id="c4" n={4} pts={15} eyebrow="Plan d'action" title="Process, outils, gouvernance">
+        <Section id="c4" n={4} pts={15} eyebrow="Plan d'action" title="Attirer, convertir, piloter">
+          <p className="mb-5 max-w-3xl text-[13.5px] leading-relaxed text-ink/80">
+            Un plan complet ne fait pas que conclure. Il faut d'abord <strong>attirer et capter</strong>
+            (marketing de contenu à bas coût, cohérent avec un budget d'environ 250 €/mois), puis
+            <strong> qualifier et convertir</strong> (commercial). L'IA fait le pont entre les deux.
+          </p>
+
+          <div className="grid items-stretch gap-2 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+            <div className="rounded-2xl border border-gold/40 bg-gold/5 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-[#8a6d1d]">{PLAN_BALANCE.marketing.titre}</div>
+              <ul className="mt-2 space-y-1 text-[12px] text-ink/85">
+                {PLAN_BALANCE.marketing.items.map((i) => <li key={i}>{i}</li>)}
+              </ul>
+            </div>
+            <div className="hidden items-center font-serif text-xl text-clay sm:flex" aria-hidden>→</div>
+            <div className="rounded-2xl border border-terracotta/40 bg-terracotta/5 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">{PLAN_BALANCE.ia.titre}</div>
+              <ul className="mt-2 space-y-1 text-[12px] text-ink/85">
+                {PLAN_BALANCE.ia.items.map((i) => <li key={i}>{i}</li>)}
+              </ul>
+            </div>
+            <div className="hidden items-center font-serif text-xl text-clay sm:flex" aria-hidden>→</div>
+            <div className="rounded-2xl border border-olive/40 bg-olive/5 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-olive">{PLAN_BALANCE.commercial.titre}</div>
+              <ul className="mt-2 space-y-1 text-[12px] text-ink/85">
+                {PLAN_BALANCE.commercial.items.map((i) => <li key={i}>{i}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Les aimants à prospects (lead magnets)</h3>
+          <p className="mb-3 text-[12.5px] text-muted">Cinq aimants à bas coût qui re-remplissent le haut du tunnel chaque mois, enjeu clé du modèle ponctuel.</p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {LEAD_MAGNETS.map((m) => (
+              <div key={m.titre} className="rounded-2xl border border-border bg-paper p-4">
+                <div className="font-serif text-[15px] font-semibold text-bois-dark">{m.titre}</div>
+                <p className="mt-1 text-[12px] leading-snug text-ink/80">{m.aimant}</p>
+                <div className="mt-2 flex flex-wrap gap-1.5 text-[10.5px]">
+                  <span className="rounded-full bg-sand px-2 py-0.5 text-bois-dark">{m.cible}</span>
+                  <span className="rounded-full border border-border px-2 py-0.5 text-muted">{m.canal}</span>
+                </div>
+                <div className="mt-2 border-t border-border pt-2 text-[11px]">
+                  <span className="font-semibold text-olive">KPI :</span> <span className="text-ink/80">{m.kpi}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Process, outils, gouvernance</h3>
           <div className="grid gap-4 lg:grid-cols-3">
             <SubCard title="Process">
               <ul className="space-y-2 text-[12.5px] text-ink/85">
@@ -185,9 +235,56 @@ export default function RenduPage() {
                 <li>Point quotidien 5 min (pipeline du jour)</li>
                 <li>Revue hebdo des relances &amp; devis</li>
                 <li>Bilan mensuel chiffré (KPI)</li>
-                <li>RACI : qui Fait / Approuve / Consulté / Informé</li>
+                <li>RACI par tâche (détaillé ci-dessous)</li>
               </ul>
             </SubCard>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-2xl border border-border">
+            <div className="bg-sand px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-bois-dark">
+              RACI, qui fait quoi
+            </div>
+            <table className="w-full text-left text-[12.5px]">
+              <thead className="bg-cream/60 text-bois-dark">
+                <tr>
+                  <th className="px-4 py-2 font-semibold">Tâche</th>
+                  <th className="px-3 py-2 text-center font-semibold">Gérant</th>
+                  <th className="px-3 py-2 text-center font-semibold">Commercial</th>
+                  <th className="px-3 py-2 text-center font-semibold">Atelier</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Qualification des demandes", "A", "R", "I"],
+                  ["Relance des devis (sous 72 h)", "A", "R", "I"],
+                  ["Mise à jour du CRM", "C", "R", "C"],
+                  ["Chiffrage et devis", "A", "C", "R"],
+                  ["Bilan mensuel (KPI)", "R", "C", "I"],
+                ].map((row, i) => (
+                  <tr key={row[0]} className={i % 2 ? "bg-paper" : "bg-cream/40"}>
+                    <td className="px-4 py-2 font-medium text-ink">{row[0]}</td>
+                    {row.slice(1).map((v, j) => (
+                      <td key={j} className="px-3 py-2 text-center">
+                        <span
+                          className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold ${
+                            v === "R"
+                              ? "bg-terracotta text-paper"
+                              : v === "A"
+                              ? "bg-bois-dark text-paper"
+                              : "text-muted"
+                          }`}
+                        >
+                          {v}
+                        </span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="border-t border-border bg-paper px-4 py-2 text-[10.5px] text-muted">
+              R = Réalise · A = Approuve · C = Consulté · I = Informé
+            </div>
           </div>
         </Section>
 
@@ -229,6 +326,9 @@ export default function RenduPage() {
                 <div className="mt-3 space-y-2 text-[12px]">
                   <p><span className="font-semibold text-rouille">Irritant :</span> <span className="text-ink/80">{u.irritant}</span></p>
                   <p><span className="font-semibold text-bois">Cas d'usage :</span> <span className="text-ink/80">{u.cas}</span></p>
+                  <p><span className="font-semibold text-clay">Workflow :</span> <span className="text-ink/80">{u.workflow}</span></p>
+                  <p><span className="font-semibold text-muted">Données :</span> <span className="text-ink/80">{u.donnees}</span></p>
+                  <p><span className="font-semibold text-muted">Outil :</span> <span className="text-ink/80">{u.outil}</span></p>
                   <p><span className="font-semibold text-olive">Indicateur :</span> <span className="text-ink/80">{u.indicateur}</span></p>
                 </div>
               </div>

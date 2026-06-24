@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PROJECTS } from "@/lib/data";
 import type { Project, Stage } from "@/lib/types";
 import Header from "@/components/Header";
@@ -16,6 +16,21 @@ export default function CrmPage() {
   const [view, setView] = useState<"kanban" | "liste">("kanban");
   const [creating, setCreating] = useState(false);
   const selected = projects.find((p) => p.id === selectedId) || null;
+
+  // Persistance locale (démo) : l'état du pipeline survit aux rechargements.
+  useEffect(() => {
+    const saved = localStorage.getItem("crm-projects-v2");
+    if (saved) {
+      try {
+        setProjects(JSON.parse(saved));
+      } catch {
+        /* données corrompues : on garde le jeu par défaut */
+      }
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("crm-projects-v2", JSON.stringify(projects));
+  }, [projects]);
 
   function handleStage(id: string, stage: Stage) {
     setProjects((prev) =>

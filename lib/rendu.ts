@@ -16,21 +16,21 @@ export const SOURCE_THEMES = [
 
 /** Sources numérotées (l'ordre = le numéro affiché). */
 export const SOURCES: Source[] = [
-  { id: "ameublement-contract", theme: "Marché & filière du mobilier", org: "L'Ameublement français / CODIFAB × MKG", title: "Étude marché Contract & Agencement (675 M€, 28/01/2026)", url: "https://www.ameublement.com/marches/contract-agencement" },
+  { id: "ameublement-contract", theme: "Marché & filière du mobilier", org: "L'Ameublement français / CODIFAB × MKG", title: "Étude marché Contract & Agencement CHR & commerce (≈ 670-675 M€, janvier 2026)", url: "https://www.ameublement.com/marches/contract-agencement" },
   { id: "courrier-meuble", theme: "Marché & filière du mobilier", org: "Le Courrier du Meuble", title: "Le contract, levier structurant (2 700-40 000 €/chambre)", url: "https://www.courrierdumeuble.fr/blog/etude-ameublement-francais-codifab-x-mkg-consulting-le-marche-du-contract-levier-structurant-pour-la-filiere-du-meuble-en-france" },
   { id: "ipea-meuble", theme: "Marché & filière du mobilier", org: "IPEA / L'Ameublement français", title: "Filière Meuble 2025, marché du meuble 13,6 Md€", url: "https://www.ameublement.com/uploads/attachments/confrence-ameublement-26---dossier-de-presse-v30012026.pdf" },
-  { id: "archidvisor", theme: "Marché & filière du mobilier", org: "Archidvisor", title: "Agencement de restaurant, 750 à 2 250 €/m²", url: "https://www.archidvisor.com/guides/agencement-restaurant" },
+  { id: "archidvisor", theme: "Marché & filière du mobilier", org: "Archidvisor", title: "Agencement de restaurant (rénovation 500-1 500 €/m², neuf 2 000-3 500 €/m²)", url: "https://www.archidvisor.com/guides/agencement-restaurant" },
   { id: "umih-hcr", theme: "Marché CHR & restauration", org: "UMIH / AKTO / DARES", title: "Monographie HCR 2024, 122 000 ét. ; AURA 16 679", url: "https://www.umih.fr/assets/files/site/ressources/observatoires-et-etudes/2024_AnalyseBranche_HCR_akkto.pdf" },
   { id: "insee-561", theme: "Marché CHR & restauration", org: "INSEE", title: "Fiche secteur 561, Restauration (171 356 entreprises)", url: "https://www.insee.fr/fr/statistiques/7763790" },
   { id: "altares-umih", theme: "Marché CHR & restauration", org: "Altares / UMIH", title: "Défaillances T2 2025, restauration trad. +21 %", url: "https://www.umih.fr/medias/news/16-600-defaillances-dentreprises-au-2e-trimestre-2025-la-restauration-traditionnelle-en-premiere-ligne.html" },
-  { id: "insee-hotels-2024", theme: "Hôtellerie & tourisme", org: "INSEE", title: "Tourisme 2024, 16 722 hôtels ; 656 965 chambres", url: "https://www.insee.fr/fr/statistiques/7767766" },
+  { id: "insee-hotels-2024", theme: "Hôtellerie & tourisme", org: "INSEE", title: "Parc hôtelier 2024 : 15 155 hôtels ; 617 000 chambres", url: "https://www.insee.fr/fr/statistiques/2015412" },
   { id: "aura-hotel", theme: "Hôtellerie & tourisme", org: "Auvergne-Rhône-Alpes Tourisme", title: "Mémento, 2 471 hôtels AURA ; 384 hôtels 4-5*", url: "https://pro.auvergnerhonealpes-tourisme.com/memento/hotellerie/" },
-  { id: "coach-omnium", theme: "Hôtellerie & tourisme", org: "Coach Omnium", title: "Panorama hôtellerie, 28 % du parc en 4-5*", url: "https://coachomnium.com/bonus/89-panorama-de-lhotellerie-en-france/" },
+  { id: "coach-omnium", theme: "Hôtellerie & tourisme", org: "Coach Omnium", title: "Panorama hôtellerie : 19 % de l'offre classée haut de gamme/luxe (vs 5 % en 2010)", url: "https://coachomnium.com/bonus/89-panorama-de-lhotellerie-en-france/" },
   { id: "insee-aura-creations", theme: "Région AURA & Lyon", org: "INSEE", title: "Bilan 2024 AURA, créations héberg.-restauration +15,7 %", url: "https://www.insee.fr/fr/statistiques/8354533?sommaire=8354850" },
-  { id: "onlylyon-resto", theme: "Région AURA & Lyon", org: "ONLYLYON / Métropole de Lyon", title: "Chiffres clés Métropole 2024 (~5 280 restaurants)", url: "https://business.onlylyon.com/fileadmin/user_upload/documents/20240423-mdl-chiffres-cles-metropole-de-lyon-2024-plaquette-fr.pdf" },
-  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, ~212 hôtels, 2e parc français", url: "https://www.onlylyon.com/secteur-tourisme" },
-  { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & circulaire 2025 (~1 meuble/4 d'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/" },
-  { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API (no-training par défaut)", url: "https://docs.mistral.ai/" },
+  { id: "onlylyon-resto", theme: "Région AURA & Lyon", org: "ONLYLYON / Métropole de Lyon", title: "Chiffres clés Métropole de Lyon (≈ 5 280 restaurants, INSEE-REE 2021)", url: "https://business.onlylyon.com/fileadmin/user_upload/documents/20240423-mdl-chiffres-cles-metropole-de-lyon-2024-plaquette-fr.pdf" },
+  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme" },
+  { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & seconde main 2025 (essor de l'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/" },
+  { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API La Plateforme (pas d'entraînement sur les données par défaut)", url: "https://docs.mistral.ai/admin/security-access/privacy" },
   { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites du free tier (quotas publics)", url: "https://console.groq.com/docs/rate-limits" },
 ];
 
@@ -75,7 +75,7 @@ export const SIZING = {
     label: "SAM",
     title: "Marché accessible",
     definition: "Mobilier CHR sur-mesure milieu/haut de gamme accessible en Auvergne-Rhône-Alpes.",
-    calc: "675 M€ × 14 % (part AURA) × ~35 % (sur-mesure accessible) ≈ 34 M€. Fourchette 28-40 M€.",
+    calc: "≈ 670-675 M€ (CHR & commerce, base prudente) × 14 % (part AURA) × ~35 % (sur-mesure accessible) ≈ 34 M€. Fourchette 28-40 M€.",
     kind: "Estimation d'expert",
     sources: ["umih-hcr", "ameublement-contract"],
   },
@@ -153,13 +153,69 @@ export const IRRITANTS = [
 
 /** Cas d'usage IA (ancrés dans le funnel). */
 export const AI_USECASES = [
-  { etape: "Piloter", titre: "Scoring des devis", irritant: "Devis chauds oubliés, priorisation à l'instinct.", cas: "L'IA note la probabilité de signature et fait remonter les devis à relancer.", indicateur: "Taux de relance des devis · taux de conversion" },
-  { etape: "Conclure", titre: "Copilote de relance", irritant: "Relances chronophages, donc jamais faites.", cas: "Génère un email « dans le ton » de la marque, adapté à l'objection.", indicateur: "Délai de relance · nb de relances envoyées" },
-  { etape: "Qualifier", titre: "Résumé d'échanges", irritant: "Historique dispersé, contexte perdu d'un échange à l'autre.", cas: "Synthétise appels/mails/visites en une fiche projet exploitable.", indicateur: "Temps de mise à jour des dossiers" },
+  {
+    etape: "Piloter",
+    titre: "Scoring des devis",
+    irritant: "Devis chauds oubliés, priorisation à l'instinct.",
+    cas: "L'IA note la probabilité de signature et fait remonter les devis à relancer.",
+    workflow: "Étape, canal, panier et historique du dossier → modèle → note 0-100 + facteurs explicités.",
+    donnees: "Étape du funnel, canal, montant, ancienneté, derniers échanges.",
+    outil: "Mistral (UE) → repli Groq → simulé.",
+    indicateur: "Taux de relance des devis · taux de conversion",
+  },
+  {
+    etape: "Conclure",
+    titre: "Copilote de relance",
+    irritant: "Relances chronophages, donc jamais faites.",
+    cas: "Génère un courriel « dans le ton » de la marque, adapté à l'objection.",
+    workflow: "Contexte projet + objection détectée → prompt voix Créateur → objet et corps éditables.",
+    donnees: "Dernier échange, objection, nom du contact, descriptif du projet.",
+    outil: "Mistral (UE) → repli Groq → simulé.",
+    indicateur: "Délai de relance · nb de relances envoyées",
+  },
+  {
+    etape: "Qualifier",
+    titre: "Résumé d'échanges",
+    irritant: "Historique dispersé, contexte perdu d'un échange à l'autre.",
+    cas: "Synthétise appels, courriels et visites en une fiche projet exploitable.",
+    workflow: "Historique horodaté complet → synthèse structurée (points, signaux budget, prochaine étape).",
+    donnees: "L'ensemble des échanges horodatés du dossier.",
+    outil: "Mistral (UE) → repli Groq → simulé.",
+    indicateur: "Temps de mise à jour des dossiers",
+  },
+];
+
+/**
+ * Équilibre marketing (attirer & capter) ↔ commercial (qualifier & convertir),
+ * l'IA faisant le pont. Le plan ne couvre pas que le bas du tunnel.
+ */
+export const PLAN_BALANCE = {
+  marketing: {
+    titre: "Marketing · attirer & capter",
+    items: ["Book de réalisations", "Guide expert (SEO local)", "Estimateur de budget", "Instagram & bouche-à-oreille", "Programme prescripteurs"],
+  },
+  ia: {
+    titre: "IA · faire le pont",
+    items: ["Tri des demandes entrantes", "Scoring de la probabilité de signature"],
+  },
+  commercial: {
+    titre: "Commercial · convertir & fidéliser",
+    items: ["Qualification & visite d'atelier", "Relance sous 72 h", "Signature & acompte", "Réfection / clients existants"],
+  },
+};
+
+/** Aimants à prospects (lead magnets), à bas coût, cohérents avec la marque. */
+export const LEAD_MAGNETS = [
+  { titre: "Book de réalisations", aimant: "Le catalogue des projets en PDF, à recevoir contre un email.", cible: "Restaurateurs & hôteliers en projet", canal: "Site, Instagram", kpi: "Emails captés / mois" },
+  { titre: "Guide de l'aménagement CHR", aimant: "Matières, budget, délais : l'expertise qui rassure avant d'acheter.", cible: "Création ou rénovation", canal: "Site, SEO local", kpi: "Téléchargements → RDV" },
+  { titre: "Estimateur de budget", aimant: "Une fourchette de prix indicative en deux minutes, en ligne.", cible: "Demandes tièdes à qualifier", canal: "Site", kpi: "Estimations → devis" },
+  { titre: "Visite d'atelier", aimant: "Voir et toucher la matière : l'expérience qui fait signer.", cible: "Prospects chauds", canal: "Direct, recommandation", kpi: "Visites → signatures" },
+  { titre: "Programme prescripteurs", aimant: "Marque blanche et commission pour agenceurs & architectes.", cible: "Agenceurs / architectes", canal: "Partenariats", kpi: "Projets apportés / partenaire" },
 ];
 
 /** KPIs cibles. */
 export const KPIS = [
+  { kpi: "Demandes entrantes", actuel: "15-20 / mois", cible: "+ via aimants", note: "book, guide, estimateur" },
   { kpi: "Taux de conversion", actuel: "~25 %", cible: "30-35 %", note: "demandes → signés" },
   { kpi: "Relance des devis", actuel: "≈ 0 % (manuel)", cible: "100 %", note: "systématique via le CRM" },
   { kpi: "Délai de 1re relance", actuel: "jamais / tardif", cible: "< 72 h", note: "après envoi du devis" },
@@ -170,9 +226,9 @@ export const KPIS = [
 /** ROI de l'IA. */
 export const ROI = {
   hypotheses: [
-    "Temps gagné ≈ 8 h / mois (relances + résumés + priorisation)",
-    "Coût horaire chargé ≈ 35 €/h",
-    "Coût de l'outil IA = 0 € (free tier Mistral / Groq)",
+    "Hypothèse : temps gagné ≈ 8 h/mois (relances + résumés + priorisation)",
+    "Hypothèse : coût horaire chargé ≈ 35 €/h (atelier 15 pers.)",
+    "Coût de l'outil IA = 0 € (offre gratuite Mistral / Groq)",
   ],
   gainMensuel: "≈ 280 €/mois de temps libéré",
   gainConversion: "+1 devis signé récupéré (devis non relancé) ≈ 10 000 €",

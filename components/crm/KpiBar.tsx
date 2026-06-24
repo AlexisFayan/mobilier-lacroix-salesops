@@ -1,4 +1,4 @@
-import { euro } from "@/lib/types";
+import { DEVIS_RELANCE_DAYS, euro } from "@/lib/types";
 import type { Project } from "@/lib/types";
 
 function Tile({
@@ -40,17 +40,16 @@ function Tile({
 export default function KpiBar({ projects }: { projects: Project[] }) {
   const mois = projects.filter((p) => p.createdDaysAgo <= 30);
   const signe = projects.filter((p) => p.stage === "signe");
-  const perdu = projects.filter((p) => p.stage === "perdu");
   const actifs = projects.filter((p) => p.stage !== "signe" && p.stage !== "perdu");
   const caSigne = signe.reduce((s, p) => s + p.estValue, 0);
   const panier = signe.length ? Math.round(caSigne / signe.length) : 0;
   const tauxSign = mois.length ? Math.round((signe.length / mois.length) * 100) : 0;
   const pondere = Math.round(actifs.reduce((s, p) => s + (p.estValue * p.score) / 100, 0));
-  const aRelancer = projects.filter((p) => p.stage === "devis" && p.lastActivityDaysAgo >= 6).length;
+  const aRelancer = projects.filter((p) => p.stage === "devis" && p.lastActivityDaysAgo >= DEVIS_RELANCE_DAYS).length;
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-      <Tile label="Demandes / mois" value={String(mois.length)} sub="leads entrants" />
+      <Tile label="Demandes / mois" value={String(mois.length)} sub="demandes entrantes" />
       <Tile label="Taux de signature" value={`${tauxSign}%`} sub={`${signe.length} signés ce mois`} />
       <Tile label="Panier moyen" value={euro(panier)} sub="sur affaires signées" />
       <Tile label="CA signé (mois)" value={euro(caSigne)} accent sub={`${signe.length} projets`} />

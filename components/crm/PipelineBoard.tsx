@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { STAGES, TYPE_LABEL, CHANNEL_META, euro, joursLabel } from "@/lib/types";
+import { STAGES, TYPE_LABEL, CHANNEL_META, DEVIS_RELANCE_DAYS, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage } from "@/lib/types";
 import ScoreBadge from "./ScoreBadge";
 
 function needsRelance(p: Project): boolean {
-  return p.stage === "devis" && p.lastActivityDaysAgo >= 6;
+  return p.stage === "devis" && p.lastActivityDaysAgo >= DEVIS_RELANCE_DAYS;
 }
 
 function ProjectCard({

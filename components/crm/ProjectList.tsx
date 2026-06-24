@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { STAGES, STAGE_LABEL, TYPE_LABEL, euro, joursLabel } from "@/lib/types";
+import { STAGES, STAGE_LABEL, TYPE_LABEL, DEVIS_RELANCE_DAYS, euro, joursLabel } from "@/lib/types";
 import type { Project, Stage } from "@/lib/types";
 
 type SortKey = "client" | "stage" | "estValue" | "score" | "lastActivityDaysAgo";
@@ -66,7 +66,7 @@ export default function ProjectList({
         </thead>
         <tbody>
           {sorted.map((p, i) => {
-            const relance = p.stage === "devis" && p.lastActivityDaysAgo >= 6;
+            const relance = p.stage === "devis" && p.lastActivityDaysAgo >= DEVIS_RELANCE_DAYS;
             return (
               <tr
                 key={p.id}

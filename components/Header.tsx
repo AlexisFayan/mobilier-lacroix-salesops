@@ -26,6 +26,12 @@ export default function Header() {
             Le prototype
           </Link>
           <Link
+            href="/charte"
+            className="hidden rounded-full px-3.5 py-1.5 font-medium text-ink transition hover:bg-sand sm:inline-block"
+          >
+            La charte
+          </Link>
+          <Link
             href="/rendu"
             className="rounded-full bg-bois-dark px-3.5 py-1.5 font-medium text-paper transition hover:bg-bois"
           >

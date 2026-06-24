@@ -27,15 +27,6 @@ function Step({ n, phase, title }: { n: string; phase: string; title: string }) 
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="text-center">
-      <div className="font-serif text-3xl font-semibold text-terracotta-dark sm:text-4xl">{value}</div>
-      <div className="mt-1 text-[12px] uppercase tracking-wide text-muted">{label}</div>
-    </div>
-  );
-}
-
 function Feature({ n, title, desc }: { n: string; title: string; desc: string }) {
   return (
     <div className="group rounded-2xl border border-border bg-paper p-5 transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
@@ -48,11 +39,11 @@ function Feature({ n, title, desc }: { n: string; title: string; desc: string })
   );
 }
 
-function Photo({ src, alt, caption, className }: { src: string; alt: string; caption?: string; className?: string }) {
+function Photo({ src, alt, caption, className, priority }: { src: string; alt: string; caption?: string; className?: string; priority?: boolean }) {
   return (
     <figure className={`group relative overflow-hidden rounded-2xl border border-border shadow-sm ${className ?? ""}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+      <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bois-dark/55 via-bois-dark/5 to-transparent" />
       {caption && (
         <figcaption className="absolute bottom-3 left-4 right-4 text-[12.5px] font-medium text-paper drop-shadow-sm">{caption}</figcaption>
@@ -94,7 +85,7 @@ export default function Home() {
           <div className="mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:pt-20">
             <Eyebrow>Étude de cas · SalesOps + IA · Epitech Lyon</Eyebrow>
             <h1 className="mx-auto mt-6 max-w-3xl font-serif text-[2.6rem] font-semibold leading-[1.08] text-bois-dark sm:text-6xl">
-              Donner une âme aux lieux où les gens se réunissent.
+              Offrir à chaque lieu de rencontre un morceau d'histoire française.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-[15.5px] leading-relaxed text-ink/80">
               Mobilier Lacroix, atelier de mobilier sur mesure pour cafés, restaurants et hôtels, vend
@@ -117,6 +108,7 @@ export default function Home() {
               alt="L'atelier Mobilier Lacroix"
               caption="L'atelier : le sur-mesure façonné à la main, à Lyon."
               className="h-[240px] sm:h-[360px]"
+              priority
             />
           </div>
         </section>
@@ -150,18 +142,18 @@ export default function Home() {
             <div className="flex-1 space-y-4">
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">Pourquoi</div>
-                <p className="mt-0.5 text-[15px] text-ink/90">Faire que chaque café, restaurant ou hôtel raconte sa propre histoire.</p>
+                <p className="mt-0.5 text-[15px] text-ink/90">Offrir à chaque lieu de rencontre un morceau d'histoire française.</p>
               </div>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-bois">Comment</div>
-                <p className="mt-0.5 text-[15px] text-ink/90">L'artisanat du sur-mesure, le savoir-faire d'atelier, l'accompagnement de bout en bout.</p>
+                <p className="mt-0.5 text-[15px] text-ink/90">Un savoir-faire artisanal français, façonné à Lyon : la matière, le raffinement et l'accompagnement qui font qu'on se sent chez soi.</p>
               </div>
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Quoi</div>
-                <p className="mt-0.5 text-[15px] text-ink/90">Du mobilier sur mesure, conçu pour durer et porter l'identité du lieu.</p>
+                <p className="mt-0.5 text-[15px] text-ink/90">Du mobilier sur mesure, conçu pour durer et porter l'histoire du lieu.</p>
               </div>
               <p className="border-t border-border pt-4 text-[13px] text-muted">
-                Archétype de marque : <strong className="text-bois-dark">le Créateur</strong>. Cette voix guide aussi le ton du copilote IA.
+                Archétypes : <strong className="text-bois-dark">le Créateur</strong> (donner forme, faire durable) et, en secondaire, <strong className="text-bois-dark">l'Amant</strong> (appartenance, raffinement, émotion). Cette voix guide aussi le ton du copilote IA.
               </p>
             </div>
           </div>
@@ -228,7 +220,8 @@ export default function Home() {
           <Step n="3" phase="Recommander" title="Le copilote SalesOps de l'atelier" />
           <p className="mb-8 max-w-2xl text-[14.5px] leading-relaxed text-ink/80">
             Un pilotage simple du carnet de commandes, où l'IA fait gagner du temps à chaque étape, sans
-            jamais remplacer le bon sens commercial.
+            jamais remplacer le bon sens commercial. Le plan équilibre le marketing (attirer et capter, à
+            bas coût) et le commercial (qualifier et convertir).
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Feature n="1" title="Pipeline des projets" desc="Le funnel reconstruit, de la demande à la signature, avec les KPIs en direct." />
@@ -277,7 +270,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <Photo src="/images/restaurant.jpg" alt="Salle de restaurant en bois" caption="Restaurants & brasseries" className="h-48" />
-                <Photo src="/images/hotel.jpg" alt="Lobby d'hôtel" caption="Hôtels" className="h-48" />
+                <Photo src="/images/hotel.jpg" alt="Hall d'hôtel" caption="Hôtels" className="h-48" />
               </div>
             </div>
           </div>
@@ -286,8 +279,8 @@ export default function Home() {
         {/* ───────── POUR LE JURY ───────── */}
         <section className="mx-auto max-w-4xl px-5 py-16 text-center">
           <Eyebrow>Pour le jury</Eyebrow>
-          <h2 className="mt-3 font-serif text-2xl font-semibold text-bois-dark">Deux destinations, c'est tout</h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+          <h2 className="mt-3 font-serif text-2xl font-semibold text-bois-dark">Trois destinations, c'est tout</h2>
+          <div className="mt-7 grid gap-4 sm:grid-cols-3">
             <Link href="/rendu" className="rounded-2xl border border-border bg-paper p-6 text-left transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
               <div className="font-serif text-lg font-semibold text-bois-dark">Le dossier noté</div>
               <p className="mt-1 text-[13px] text-ink/75">Les 9 critères (/100), regroupés en 4 temps, avec sources vérifiées.</p>
@@ -297,6 +290,11 @@ export default function Home() {
               <div className="font-serif text-lg font-semibold text-bois-dark">Le prototype</div>
               <p className="mt-1 text-[13px] text-ink/75">L'outil SalesOps + IA, à tester et démontrer en direct.</p>
               <span className="mt-3 inline-block text-[13px] font-medium text-terracotta-dark">Tester le prototype →</span>
+            </Link>
+            <Link href="/charte" className="rounded-2xl border border-border bg-paper p-6 text-left transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
+              <div className="font-serif text-lg font-semibold text-bois-dark">La charte graphique</div>
+              <p className="mt-1 text-[13px] text-ink/75">L'identité de marque : archétypes, palette, typographie, ton de voix.</p>
+              <span className="mt-3 inline-block text-[13px] font-medium text-terracotta-dark">Voir la charte →</span>
             </Link>
           </div>
         </section>

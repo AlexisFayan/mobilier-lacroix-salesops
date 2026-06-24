@@ -86,6 +86,9 @@ export const TYPE_LABEL: Record<ClientType, string> = {
   agenceur: "Agenceur",
 };
 
+/** Seuil (en jours sans activité) au-delà duquel un devis envoyé est signalé « à relancer ». */
+export const DEVIS_RELANCE_DAYS = 6;
+
 export function euro(n: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",

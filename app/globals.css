@@ -16,6 +16,7 @@
   --color-olive: #5e7150;
   --color-gold: #c39a45;
   --color-rouille: #a23d23;
+  --color-bordeaux: #722f37; /* accent raffinement (archétype l'Amant) */
 
   --font-serif: var(--font-display), "Iowan Old Style", "Palatino Linotype",
     "Book Antiqua", Palatino, "Hoefler Text", "Times New Roman", Georgia, serif;

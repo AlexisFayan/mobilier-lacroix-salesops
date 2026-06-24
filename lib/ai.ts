@@ -1,5 +1,5 @@
 import type { Project } from "./types";
-import { CHANNEL_META, STAGE_LABEL, euro } from "./types";
+import { CHANNEL_META, STAGE_LABEL, DEVIS_RELANCE_DAYS, euro } from "./types";
 
 /**
  * Couche IA hybride.
@@ -124,7 +124,7 @@ function extractJSON(text: string): any | null {
 }
 
 // Voix de marque (archétype Créateur) injectée dans tous les prompts.
-const BRAND_VOICE = `Tu écris pour Mobilier Lacroix, atelier de fabrication de mobilier sur mesure pour cafés, restaurants et hôtels (archétype de marque : le Créateur). Ton : chaleureux, artisanal, fier du savoir-faire, jamais agressif commercialement. On valorise la matière (chêne, noyer, frêne, velours), le sur-mesure et l'accompagnement. Vouvoiement professionnel et cordial, pas d'anglicismes.`;
+const BRAND_VOICE = `Tu écris pour Mobilier Lacroix, atelier français de mobilier sur mesure pour cafés, restaurants et hôtels, basé à Lyon (archétypes : le Créateur en principal, l'Amant en secondaire, famille de l'appartenance). Raison d'être : offrir à chaque lieu de rencontre un morceau d'histoire française. Ton : chaleureux, raffiné, fier du savoir-faire français, jamais agressif commercialement. On valorise la matière (chêne, noyer, frêne, velours), le raffinement, l'émotion et l'accompagnement, pour que chacun se sente chez soi. Vouvoiement professionnel et cordial, pas d'anglicismes.`;
 
 function projectContext(p: Project): string {
   const hist = p.exchanges
@@ -202,7 +202,7 @@ function simulateScore(p: Project): ScoreResult {
     factors.push({ label: "Le client a écrit récemment (signal d'intérêt fort)", impact: "+" });
   }
 
-  if (p.devisSent && p.stage === "devis" && p.lastActivityDaysAgo >= 7) {
+  if (p.devisSent && p.stage === "devis" && p.lastActivityDaysAgo >= DEVIS_RELANCE_DAYS) {
     s -= 12;
     factors.push({ label: `Devis sans relance depuis ${p.lastActivityDaysAgo} j (fuite à colmater)`, impact: "-" });
   }
@@ -212,14 +212,15 @@ function simulateScore(p: Project): ScoreResult {
     factors.push({ label: `Dossier dormant (${p.lastActivityDaysAgo} j sans contact)`, impact: "-" });
   }
 
+  // 100 est réservé aux affaires signées : un dossier non résolu plafonne à 95.
   if (p.stage === "signe") s = 100;
-  if (p.stage === "perdu") s = 0;
-  s = Math.max(0, Math.min(100, Math.round(s)));
+  else if (p.stage === "perdu") s = 0;
+  else s = Math.max(0, Math.min(95, Math.round(s)));
 
   let reco: string;
   if (p.stage === "signe") reco = "Affaire gagnée, capitaliser : demander un avis et activer le bouche-à-oreille.";
   else if (p.stage === "perdu") reco = "Affaire perdue, analyser la cause (relance manquée ? prix ?) pour ne pas reproduire la fuite.";
-  else if (p.devisSent && p.lastActivityDaysAgo >= 7) reco = "Priorité haute : relancer aujourd'hui, le devis refroidit.";
+  else if (p.devisSent && p.lastActivityDaysAgo >= DEVIS_RELANCE_DAYS) reco = "Priorité haute : relancer aujourd'hui, le devis refroidit.";
   else if (s >= 70) reco = "Lead chaud : sécuriser la prochaine étape sans attendre.";
   else if (s >= 40) reco = "À nourrir : un contact bien placé peut faire basculer le dossier.";
   else reco = "À qualifier avant d'investir du temps de chiffrage.";

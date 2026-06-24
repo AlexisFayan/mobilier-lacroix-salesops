@@ -80,7 +80,7 @@ export function ImpactEffortMatrix() {
       <div className="relative mx-auto aspect-square w-full max-w-md rounded-xl border border-border bg-paper">
         <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-border" />
         <div className="absolute top-1/2 left-0 w-full border-t border-dashed border-border" />
-        <span className="absolute left-2 top-2 text-[9.5px] font-medium uppercase tracking-wide text-olive">Quick wins</span>
+        <span className="absolute left-2 top-2 text-[9.5px] font-medium uppercase tracking-wide text-olive">Gains rapides</span>
         <span className="absolute right-2 top-2 text-[9.5px] uppercase tracking-wide text-muted">Gros chantiers</span>
         <span className="absolute bottom-2 left-2 text-[9.5px] uppercase tracking-wide text-muted">À faire si temps</span>
         <span className="absolute bottom-2 right-2 text-[9.5px] uppercase tracking-wide text-muted">À éviter</span>
