@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<title>Mobilier Lacroix — Briefing express</title>
+<style>
+  :root{
+    --cream:#faf6ef; --paper:#fffdf8; --sand:#f1e8d8; --border:#e7dcc8;
+    --ink:#2a2320; --muted:#837567; --bois:#6f4e37; --bois-dark:#463122;
+    --terracotta:#c0653e; --terracotta-dark:#9f4e2d; --clay:#bc7d57;
+    --olive:#5e7150; --gold:#c39a45; --rouille:#a23d23;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--cream); font-size:11.5px; line-height:1.5;}
+  .page{width:210mm; margin:0 auto; background:var(--cream); padding:15mm 15mm;}
+  h1{font-family:"Fraunces",serif; font-size:27px; color:var(--bois-dark); font-weight:600;}
+  .lead{color:var(--muted); font-size:12.5px; margin-top:3px;}
+  h2{font-family:"Fraunces",serif; font-size:17px; color:var(--bois-dark); font-weight:600; margin:0;}
+  .sec{margin-top:14px; break-inside:avoid;}
+  .sec-h{display:flex; align-items:center; gap:10px; margin-bottom:7px;}
+  .badge{flex:none; width:26px; height:26px; border-radius:8px; background:var(--bois-dark); color:var(--paper); font-family:"Fraunces",serif; font-weight:600; font-size:13px; display:flex; align-items:center; justify-content:center;}
+  .box{border:1px solid var(--border); background:var(--paper); border-radius:12px; padding:11px 15px; break-inside:avoid;}
+  .box.dark{background:var(--bois-dark); color:var(--paper); border:none;}
+  .box.sand{background:var(--sand); border:none;}
+  .box.warn{background:rgba(192,101,62,.06); border-color:rgba(192,101,62,.4);}
+  .lbl{font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; font-weight:700; color:var(--terracotta-dark);}
+  .dark .lbl{color:var(--clay);}
+  ul{margin:4px 0 0 16px;} li{margin:2px 0;}
+  b,strong{color:var(--bois-dark);} .dark b{color:var(--paper);}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:6px 22px;}
+  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;}
+  .stat{background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:9px 12px;}
+  .stat .v{font-family:"Fraunces",serif; font-size:19px; font-weight:600; color:var(--terracotta-dark);}
+  .stat .l{font-size:10px; color:var(--muted);}
+  .q{font-family:"Fraunces",serif; font-weight:600; color:var(--bois-dark); font-size:12.5px;}
+  .a{margin:1px 0 9px; color:var(--ink);}
+  .qa-list .a:last-child{margin-bottom:0;}
+  .foot{margin-top:14px; font-size:9.5px; color:var(--muted); text-align:center;}
+  code{background:var(--sand); border-radius:4px; padding:0 3px; font-size:10.5px;}
+  @media print{ @page{ size:A4 portrait; margin:0; } body{background:#fff;} .page{margin:0;} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Briefing express · tout comprendre pour présenter</h1>
+  <div class="lead">Mobilier Lacroix · SalesOps B2B augmenté par l'IA. À lire en 10 minutes, même sans avoir touché au projet : de quoi raconter et répondre au jury sereinement.</div>
+
+  <!-- 1 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">1</span><h2>Le projet en bref</h2></div>
+    <div class="box">
+      <p><b>Le client (fictif mais réaliste) :</b> <b>Mobilier Lacroix</b>, un atelier lyonnais de 15 personnes qui fabrique du <b>mobilier sur-mesure pour le CHR</b> (cafés, hôtels, restaurants) et sous-traite pour des agenceurs et architectes. Belle maison artisanale, mais qui <b>vend « à l'instinct »</b> : pas de CRM, devis sous Excel, suivi de tête.</p>
+      <p style="margin-top:5px;"><b>Notre rôle :</b> une équipe de conseil senior. On remet de l'ordre dans <b>la façon de vendre</b> (SalesOps) et on y greffe une <b>IA utile</b>, gratuite et responsable.</p>
+      <p style="margin-top:5px;"><b>Le « pourquoi » de la marque (à connaître par cœur) :</b> <i>« Offrir à chaque lieu de rencontre un morceau d'histoire française. »</i> On ne parle jamais du meuble comme raison d'être : on donne une <b>âme aux lieux</b> où les gens se réunissent. Archétypes : le <b>Créateur</b> (savoir-faire, Lyon, raffinement) et l'<b>Amant</b> (émotion, se sentir chez soi).</p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">2</span><h2>Ce qu'on devait faire (la consigne)</h2></div>
+    <div class="box">
+      <ul>
+        <li>Étude de cas <b>SalesOps B2B augmenté par l'IA</b> (Epitech Digital School Lyon, promo 2026).</li>
+        <li>Le rendu prend la forme d'un <b>site web</b> : (1) un <b>prototype CRM + copilote IA</b> qui tourne pour de vrai, (2) un onglet <b>« Rendu »</b> qui présente visuellement le dossier.</li>
+        <li>Noté <b>/100 sur 9 critères</b> (l'IA pèse 28 pts ; le plan d'action 15 ; le funnel 13) + un <b>oral /20</b>.</li>
+        <li>Fil conducteur en <b>4 temps</b> : <b>Comprendre → Diagnostiquer → Recommander → Démontrer</b>.</li>
+        <li>Exigences du prof : simple, peu de texte, très visuel, <b>bien sourcé et vérifié</b>, design soigné.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">3</span><h2>Ce qu'on a fait</h2></div>
+    <div class="grid2">
+      <div class="box"><span class="lbl">Comprendre</span><ul>
+        <li>Carte d'identité de l'atelier (qui, combien, comment il vend).</li>
+        <li>Marché &amp; concurrents : <b>14 concurrents réels</b> recoupés via Pappers, ancrage <b>AURA</b> (2e région touristique).</li>
+        <li>Dimensionnement <b>TAM / SAM / SOM</b> en fourchettes assumées, avec sources datées.</li>
+      </ul></div>
+      <div class="box"><span class="lbl">Diagnostiquer</span><ul>
+        <li>Le <b>tunnel de vente reconstruit</b> (il n'était pas mesuré) : ~25 % de conversion.</li>
+        <li>La <b>fuite n°1</b> identifiée : près d'<b>1 devis sur 2 jamais relancé</b>.</li>
+        <li>Cause unique : <b>aucun système</b>, tout repose sur la mémoire.</li>
+      </ul></div>
+      <div class="box"><span class="lbl">Recommander</span><ul>
+        <li>Un plan <b>Attirer · Convertir · Piloter</b>, à bas coût (~250 €/mois, pas de pub).</li>
+        <li>5 aimants à prospects, un CRM léger, un tableau de bord.</li>
+        <li>3 cas d'usage IA <b>ancrés au funnel</b> (jamais un gadget).</li>
+      </ul></div>
+      <div class="box"><span class="lbl">Démontrer</span><ul>
+        <li>Un <b>vrai prototype</b> (site Next.js déployé sur Vercel) jouable en direct.</li>
+        <li>De <b>vrais appels IA</b> (Mistral) avec badge honnête IA / Démo.</li>
+        <li>Des <b>automatisations n8n</b> réelles et une <b>base Supabase</b> (voir encadré).</li>
+      </ul></div>
+    </div>
+    <div class="box dark" style="margin-top:8px;">
+      <span class="lbl">Le concret « qui tourne » (notre force, à montrer)</span>
+      <ul>
+        <li><b>Prototype CRM</b> : pipeline, scoring IA des devis, copilote de relance « dans le ton », résumé d'échanges. En ligne sur <b>mobilier-lacroix.vercel.app</b>.</li>
+        <li><b>IA</b> : Mistral (France / UE, RGPD) en principal, repli automatique Groq, puis moteur simulé en dernier filet. L'humain valide toujours.</li>
+        <li><b>n8n</b> (automatisation, hébergeable en UE) : 2 flux <b>réellement exécutés</b> sur n8n Cloud. (a) Formulaire de devis du site → webhook → écrit dans Supabase + courriel de bienvenue. (b) Devis sans réponse 72 h → scoring Mistral → brouillon de relance → <b>validation humaine</b>.</li>
+        <li><b>Supabase</b> (base de données, UE) : le prototype <b>lit et écrit vraiment</b> en base (pipeline persistant et partagé, plus une démo figée).</li>
+        <li><b>Rigueur</b> : <b>19 sources datées et cliquables</b>, chiffres réels distingués des données de démo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">4</span><h2>Les chiffres à retenir</h2></div>
+    <div class="grid3">
+      <div class="stat"><div class="v">15-20</div><div class="l">demandes / mois (3-5 signées)</div></div>
+      <div class="stat"><div class="v">5-15 k€</div><div class="l">panier par projet</div></div>
+      <div class="stat"><div class="v">~25 %</div><div class="l">conversion actuelle</div></div>
+      <div class="stat"><div class="v">1 / 2</div><div class="l">devis jamais relancé (la fuite)</div></div>
+      <div class="stat"><div class="v">675 M€</div><div class="l">TAM (chiffre dur, sourcé)</div></div>
+      <div class="stat"><div class="v">~34 M€</div><div class="l">SAM (fourchette 28-40, expert)</div></div>
+      <div class="stat"><div class="v">~0,55 M€</div><div class="l">SOM atteignable 12-24 mois</div></div>
+      <div class="stat"><div class="v">30-35 %</div><div class="l">conversion cible (vs 25 %)</div></div>
+      <div class="stat"><div class="v">0 €</div><div class="l">coût des outils (offres gratuites)</div></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">5</span><h2>Le vocabulaire express</h2></div>
+    <div class="box sand"><div class="grid2">
+      <ul>
+        <li><b>SalesOps</b> : organiser et outiller la vente (process, CRM, pilotage).</li>
+        <li><b>Tunnel / funnel</b> : le parcours de la demande à la signature, étage par étage.</li>
+        <li><b>CRM</b> : l'outil qui suit chaque demande (ici, notre prototype).</li>
+        <li><b>TAM / SAM / SOM</b> : marché total / accessible / atteignable.</li>
+      </ul>
+      <ul>
+        <li><b>Mistral</b> : l'IA française (UE, RGPD) qui score et rédige.</li>
+        <li><b>n8n</b> : l'outil d'automatisation (les « si... alors... » entre apps), UE.</li>
+        <li><b>Supabase</b> : la base de données du prototype (UE).</li>
+        <li><b>Garde-fou humain</b> : rien ne part automatiquement, un humain relit et valide.</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">6</span><h2>Les questions du jury · réponses prêtes</h2></div>
+    <div class="box qa-list">
+      <div class="q">« Votre n8n et Supabase, c'est vraiment branché ou une maquette ? »</div>
+      <div class="a">Branché et exécuté pour de vrai : n8n Cloud tourne, Supabase stocke, le CRM lit et écrit. On le montre en direct, et l'exécution n8n est consultable.</div>
+
+      <div class="q">« Est-ce vraiment de l'IA ? »</div>
+      <div class="a">Oui, de vrais appels à Mistral (France / UE). Un badge l'indique en direct (IA · Mistral). Si l'IA est indisponible, un moteur de démonstration prend le relais, signalé honnêtement : le commercial n'est jamais bloqué.</div>
+
+      <div class="q">« Et le RGPD, vous envoyez des données clients à une IA ? »</div>
+      <div class="a">Base légale : intérêt légitime (prospection B2B). On utilise l'API « La Plateforme » de Mistral (pas d'entraînement sur les données par défaut, traitement en UE), n8n et Supabase sont aussi en UE. On ne dit pas « 100 % serveurs France » : on défend RGPD natif, UE par défaut, et validation humaine.</div>
+
+      <div class="q">« Pourquoi un copilote dans le CRM ET n8n, ils font la même relance ? »</div>
+      <div class="a">Le copilote du CRM, c'est le prototype immédiat, pour la démo et l'usage. n8n, c'est l'industrialisation : la relance se déclenche toute seule, sans qu'un humain ouvre une fiche. Même garde-fou humain dans les deux.</div>
+
+      <div class="q">« Votre SAM empile des hypothèses, le chiffre veut-il dire quelque chose ? »</div>
+      <div class="a">C'est pourquoi on le donne en fourchette (28-40 M€) avec une sensibilité. Notre décision ne dépend pas du SAM mais du SOM, borné par la capacité de l'atelier (15 personnes).</div>
+
+      <div class="q">« Votre ROI suppose un devis sauvé à plusieurs milliers d'euros, et sinon ? »</div>
+      <div class="a">Le coût des outils est nul : même sans aucun devis sauvé, le gain de temps est déjà positif. Et un seul devis sauvé sur l'année rentabilise l'année entière.</div>
+
+      <div class="q">« Vos pourcentages de funnel viennent d'où ? »</div>
+      <div class="a">Ce sont des ordres de grandeur sectoriels appliqués aux volumes déclarés par l'atelier (15-20 demandes, 3-5 signées). Le seul chiffre dur est la conversion globale, ~25 %, que l'outil affiche aussi.</div>
+
+      <div class="q">« C'est fictif ? Vos 675 M€ aussi ? »</div>
+      <div class="a" style="margin-bottom:0;">Non : les données du CRM sont fictives mais réalistes (pour la démo) ; les chiffres de marché sont réels, sourcés et datés. Le pied de page du site le précise.</div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="sec">
+    <div class="sec-h"><span class="badge">7</span><h2>Trois pièges à éviter</h2></div>
+    <div class="box warn">
+      <ul>
+        <li>Ne <b>jamais citer le produit</b> dans le « pourquoi » : la raison d'être, c'est offrir une âme aux lieux de rencontre, pas vendre des meubles.</li>
+        <li>Ne <b>pas lire les slides</b> : elles illustrent, on raconte. Et ne pas dépasser 15 min.</li>
+        <li>Ne <b>pas survendre l'IA</b> : c'est un assistant ancré sur un irritant précis, avec un humain qui valide. « L'IA assiste l'artisan, elle ne le remplace pas. »</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">Mobilier Lacroix · Epitech Digital School Lyon · Promo 2026 · fiche interne. Dossier complet : mobilier-lacroix.vercel.app/rendu</div>
+
+</div>
+</body>
+</html>
