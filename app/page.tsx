@@ -279,8 +279,8 @@ export default function Home() {
         {/* ───────── POUR LE JURY ───────── */}
         <section className="mx-auto max-w-4xl px-5 py-16 text-center">
           <Eyebrow>Pour le jury</Eyebrow>
-          <h2 className="mt-3 font-serif text-2xl font-semibold text-bois-dark">Trois destinations, c'est tout</h2>
-          <div className="mt-7 grid gap-4 sm:grid-cols-3">
+          <h2 className="mt-3 font-serif text-2xl font-semibold text-bois-dark">Quatre destinations, c'est tout</h2>
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/rendu" className="rounded-2xl border border-border bg-paper p-6 text-left transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
               <div className="font-serif text-lg font-semibold text-bois-dark">Le dossier noté</div>
               <p className="mt-1 text-[13px] text-ink/75">Les 9 critères (/100), regroupés en 4 temps, avec sources vérifiées.</p>
@@ -290,6 +290,11 @@ export default function Home() {
               <div className="font-serif text-lg font-semibold text-bois-dark">Le prototype</div>
               <p className="mt-1 text-[13px] text-ink/75">L'outil SalesOps + IA, à tester et démontrer en direct.</p>
               <span className="mt-3 inline-block text-[13px] font-medium text-terracotta-dark">Tester le prototype →</span>
+            </Link>
+            <Link href="/estimateur" className="rounded-2xl border border-border bg-paper p-6 text-left transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
+              <div className="font-serif text-lg font-semibold text-bois-dark">L'estimateur</div>
+              <p className="mt-1 text-[13px] text-ink/75">L'aimant marketing : une estimation de budget qui crée une demande qualifiée.</p>
+              <span className="mt-3 inline-block text-[13px] font-medium text-terracotta-dark">Essayer l'estimateur →</span>
             </Link>
             <Link href="/charte" className="rounded-2xl border border-border bg-paper p-6 text-left transition hover:-translate-y-1 hover:border-clay/50 hover:shadow-lg">
               <div className="font-serif text-lg font-semibold text-bois-dark">La charte graphique</div>

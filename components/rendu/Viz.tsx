@@ -55,13 +55,16 @@ export function SalesFunnel() {
         return (
           <div key={i} className="mx-auto" style={{ width: `${100 - i * 15}%` }}>
             <div
-              className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-paper ${
+              className={`flex items-center justify-between gap-3 rounded-lg px-4 py-2.5 text-paper ${
                 leak ? "bg-rouille" : "bg-bois-dark"
               }`}
-              style={{ opacity: 1 - i * 0.1 }}
+              style={{ opacity: 1 - i * 0.08 }}
             >
               <span className="text-[12.5px] font-medium">{f.stage}</span>
-              <span className="font-serif text-base font-semibold">{f.value}</span>
+              <span className="flex items-baseline gap-2">
+                <span className="font-serif text-base font-semibold">{f.value}</span>
+                <span className="rounded bg-paper/20 px-1.5 py-0.5 text-[10px] font-medium">{f.pct}%</span>
+              </span>
             </div>
             <div className={`mt-0.5 text-center text-[10.5px] ${leak ? "font-medium text-rouille" : "text-muted"}`}>
               {f.note}

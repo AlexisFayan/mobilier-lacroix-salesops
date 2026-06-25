@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
 import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, FICHE, AUTOMATION, srcIndex } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, FICHE, AUTOMATION, BENCHMARK_IA, PERSONAS, INCERTITUDES, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -127,6 +127,21 @@ export default function RenduPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Personas */}
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Deux clients types</h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {PERSONAS.map((p) => (
+              <div key={p.nom} className="rounded-2xl border border-border bg-paper p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="font-serif text-base font-semibold text-bois-dark">{p.nom}</div>
+                  <span className="shrink-0 rounded-full bg-sand px-2 py-0.5 text-[10px] text-bois-dark">{p.budget}</span>
+                </div>
+                <div className="text-[11.5px] text-muted">{p.role}</div>
+                <p className="mt-2 text-[12px] leading-snug text-ink/80">{p.trait}</p>
+              </div>
+            ))}
           </div>
 
           {/* TAM / SAM / SOM */}
@@ -309,6 +324,7 @@ export default function RenduPage() {
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">{s.poste}</div>
                 <div className="mt-1 text-[12.5px] font-medium text-bois-dark">{s.choix}</div>
                 <div className="mt-0.5 text-[11px] text-muted">{s.pourquoi}</div>
+                <div className="mt-1 text-[10.5px] text-muted/80">Limite : {s.limite}</div>
               </div>
             ))}
           </div>
@@ -448,6 +464,36 @@ export default function RenduPage() {
               </div>
             </SubCard>
           </div>
+
+          {/* Benchmark des fournisseurs d'IA */}
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Pourquoi Mistral ? (benchmark des IA gratuites)</h3>
+          <p className="mb-3 text-[12.5px] text-muted">5 fournisseurs comparés sur le gratuit, l'hébergement et l'usage des données.</p>
+          <div className="overflow-x-auto rounded-2xl border border-border">
+            <table className="w-full min-w-[540px] text-left text-[12px]">
+              <thead className="bg-sand text-bois-dark">
+                <tr>
+                  <th className="px-3 py-2 font-semibold">Fournisseur</th>
+                  <th className="px-3 py-2 font-semibold">Gratuit</th>
+                  <th className="px-3 py-2 font-semibold">Hébergement</th>
+                  <th className="px-3 py-2 font-semibold">Entraîne sur vos données ?</th>
+                  <th className="px-3 py-2 font-semibold">Note</th>
+                  <th className="px-3 py-2 font-semibold">Rôle</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BENCHMARK_IA.map((b, i) => (
+                  <tr key={b.f} className={b.retenu === "Principal" ? "bg-terracotta/5" : i % 2 ? "bg-paper" : "bg-cream/50"}>
+                    <td className="px-3 py-2 font-medium text-bois-dark">{b.f}</td>
+                    <td className="px-3 py-2 text-ink/80">{b.gratuit}</td>
+                    <td className="px-3 py-2 text-ink/80">{b.zone}</td>
+                    <td className="px-3 py-2 text-ink/80">{b.training}</td>
+                    <td className="px-3 py-2 font-semibold text-bois-dark">{b.note}</td>
+                    <td className={`px-3 py-2 font-medium ${b.retenu === "Principal" ? "text-terracotta-dark" : b.retenu === "Repli" ? "text-olive" : "text-muted"}`}>{b.retenu}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Section>
 
         {/* =================== 04 DÉMONTRER =================== */}
@@ -498,7 +544,17 @@ export default function RenduPage() {
             <strong>Recoupement multi-sources</strong> : données légales des sociétés via Pappers / Societe.com<Src ids={["pappers-city"]} />, demande et saisonnalité via Google Trends<Src ids={["google-trends"]} />, empreinte digitale des concurrents via Similarweb<Src ids={["similarweb"]} />, en complément des sources primaires (INSEE, UMIH, filière).
           </p>
 
-          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Sources ({SOURCES.length})</h3>
+          <div className="mt-4 rounded-xl border border-gold/40 bg-gold/5 p-4">
+            <h4 className="font-serif text-[15px] font-semibold text-[#8a6d1d]">Ce que nous assumons (fourchettes &amp; limites)</h4>
+            <ul className="mt-2 space-y-1 text-[12px] text-ink/80">
+              {INCERTITUDES.map((x) => (
+                <li key={x} className="flex gap-2"><span className="text-[#8a6d1d]">•</span><span>{x}</span></li>
+              ))}
+            </ul>
+          </div>
+
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Sources ({SOURCES.length})</h3>
+          <p className="mb-3 text-[11.5px] text-muted">Liens et dates cliquables, consultés en juin 2026.</p>
           <div className="grid gap-4 sm:grid-cols-2">
             {SOURCE_THEMES.map((theme) => {
               const list = SOURCES.filter((s) => s.theme === theme);
@@ -508,11 +564,12 @@ export default function RenduPage() {
                   <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">{theme}</div>
                   <ul className="space-y-1.5">
                     {list.map((s) => (
-                      <li key={s.id} className="flex gap-2 text-[11.5px] leading-snug">
+                      <li key={s.id} className="flex flex-wrap gap-x-1.5 text-[11.5px] leading-snug">
                         <span className="font-semibold text-muted">[{srcIndex(s.id)}]</span>
                         <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink/80 hover:text-terracotta-dark hover:underline">
                           <strong className="text-ink">{s.org}</strong> : {s.title}
                         </a>
+                        <span className="text-muted">· {s.date}</span>
                       </li>
                     ))}
                   </ul>

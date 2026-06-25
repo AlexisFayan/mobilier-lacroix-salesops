@@ -3,7 +3,7 @@
  * Chaque chiffre sensible référence une source de SOURCES (citation vérifiable).
  */
 
-export type Source = { id: string; org: string; title: string; url: string; theme: string };
+export type Source = { id: string; org: string; title: string; url: string; theme: string; date: string };
 
 export const SOURCE_THEMES = [
   "Marché & filière du mobilier",
@@ -16,25 +16,25 @@ export const SOURCE_THEMES = [
 
 /** Sources numérotées (l'ordre = le numéro affiché). */
 export const SOURCES: Source[] = [
-  { id: "ameublement-contract", theme: "Marché & filière du mobilier", org: "L'Ameublement français / CODIFAB × MKG", title: "Étude marché Contract & Agencement CHR & commerce (≈ 670-675 M€, janvier 2026)", url: "https://www.ameublement.com/marches/contract-agencement" },
-  { id: "courrier-meuble", theme: "Marché & filière du mobilier", org: "Le Courrier du Meuble", title: "Le contract, levier structurant (2 700-40 000 €/chambre)", url: "https://www.courrierdumeuble.fr/blog/etude-ameublement-francais-codifab-x-mkg-consulting-le-marche-du-contract-levier-structurant-pour-la-filiere-du-meuble-en-france" },
-  { id: "ipea-meuble", theme: "Marché & filière du mobilier", org: "IPEA / L'Ameublement français", title: "Filière Meuble 2025, marché du meuble 13,6 Md€", url: "https://www.ameublement.com/uploads/attachments/confrence-ameublement-26---dossier-de-presse-v30012026.pdf" },
-  { id: "archidvisor", theme: "Marché & filière du mobilier", org: "Archidvisor", title: "Agencement de restaurant (rénovation 500-1 500 €/m², neuf 2 000-3 500 €/m²)", url: "https://www.archidvisor.com/guides/agencement-restaurant" },
-  { id: "umih-hcr", theme: "Marché CHR & restauration", org: "UMIH / AKTO / DARES", title: "Monographie HCR 2024, 122 000 ét. ; AURA 16 679", url: "https://www.umih.fr/assets/files/site/ressources/observatoires-et-etudes/2024_AnalyseBranche_HCR_akkto.pdf" },
-  { id: "insee-561", theme: "Marché CHR & restauration", org: "INSEE", title: "Fiche secteur 561, Restauration (171 356 entreprises)", url: "https://www.insee.fr/fr/statistiques/7763790" },
-  { id: "altares-umih", theme: "Marché CHR & restauration", org: "Altares / UMIH", title: "Défaillances T2 2025, restauration trad. +21 %", url: "https://www.umih.fr/medias/news/16-600-defaillances-dentreprises-au-2e-trimestre-2025-la-restauration-traditionnelle-en-premiere-ligne.html" },
-  { id: "insee-hotels-2024", theme: "Hôtellerie & tourisme", org: "INSEE", title: "Parc hôtelier 2024 : 15 155 hôtels ; 617 000 chambres", url: "https://www.insee.fr/fr/statistiques/2015412" },
-  { id: "aura-hotel", theme: "Hôtellerie & tourisme", org: "Auvergne-Rhône-Alpes Tourisme", title: "Mémento, 2 471 hôtels AURA ; 384 hôtels 4-5*", url: "https://pro.auvergnerhonealpes-tourisme.com/memento/hotellerie/" },
-  { id: "coach-omnium", theme: "Hôtellerie & tourisme", org: "Coach Omnium", title: "Panorama hôtellerie : 19 % de l'offre classée haut de gamme/luxe (vs 5 % en 2010)", url: "https://coachomnium.com/bonus/89-panorama-de-lhotellerie-en-france/" },
-  { id: "insee-aura-creations", theme: "Région AURA & Lyon", org: "INSEE", title: "Bilan 2024 AURA, créations héberg.-restauration +15,7 %", url: "https://www.insee.fr/fr/statistiques/8354533?sommaire=8354850" },
-  { id: "onlylyon-resto", theme: "Région AURA & Lyon", org: "ONLYLYON / Métropole de Lyon", title: "Chiffres clés Métropole de Lyon (≈ 5 280 restaurants, INSEE-REE 2021)", url: "https://business.onlylyon.com/fileadmin/user_upload/documents/20240423-mdl-chiffres-cles-metropole-de-lyon-2024-plaquette-fr.pdf" },
-  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme" },
-  { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & seconde main 2025 (essor de l'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/" },
-  { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API La Plateforme (pas d'entraînement sur les données par défaut)", url: "https://docs.mistral.ai/admin/security-access/privacy" },
-  { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites de l'offre gratuite (quotas publics)", url: "https://console.groq.com/docs/rate-limits" },
-  { id: "pappers-city", theme: "Marché & filière du mobilier", org: "Pappers / Societe.com", title: "CM City Mobilier (820831402), Oullins : effectif < 10, comptes confidentiels (2021)", url: "https://www.pappers.fr/entreprise/cm-city-mobilier-820831402" },
-  { id: "google-trends", theme: "Tendances & conjoncture", org: "Google Trends", title: "Intérêt de recherche « mobilier restaurant » (France), demande et saisonnalité", url: "https://trends.google.fr/trends/explore?geo=FR&q=mobilier%20restaurant" },
-  { id: "similarweb", theme: "Tendances & conjoncture", org: "Similarweb", title: "Empreinte digitale des concurrents (méthode de veille)", url: "https://www.similarweb.com/" },
+  { id: "ameublement-contract", theme: "Marché & filière du mobilier", org: "L'Ameublement français / CODIFAB × MKG", title: "Étude marché Contract & Agencement CHR & commerce (≈ 670-675 M€, janvier 2026)", url: "https://www.ameublement.com/marches/contract-agencement", date: "janv. 2026" },
+  { id: "courrier-meuble", theme: "Marché & filière du mobilier", org: "Le Courrier du Meuble", title: "Le contract, levier structurant (2 700-40 000 €/chambre)", url: "https://www.courrierdumeuble.fr/blog/etude-ameublement-francais-codifab-x-mkg-consulting-le-marche-du-contract-levier-structurant-pour-la-filiere-du-meuble-en-france", date: "2026" },
+  { id: "ipea-meuble", theme: "Marché & filière du mobilier", org: "IPEA / L'Ameublement français", title: "Filière Meuble 2025, marché du meuble 13,6 Md€", url: "https://www.ameublement.com/uploads/attachments/confrence-ameublement-26---dossier-de-presse-v30012026.pdf", date: "févr. 2026" },
+  { id: "archidvisor", theme: "Marché & filière du mobilier", org: "Archidvisor", title: "Agencement de restaurant (rénovation 500-1 500 €/m², neuf 2 000-3 500 €/m²)", url: "https://www.archidvisor.com/guides/agencement-restaurant", date: "2025" },
+  { id: "umih-hcr", theme: "Marché CHR & restauration", org: "UMIH / AKTO / DARES", title: "Monographie HCR 2024, 122 000 ét. ; AURA 16 679", url: "https://www.umih.fr/assets/files/site/ressources/observatoires-et-etudes/2024_AnalyseBranche_HCR_akkto.pdf", date: "2024" },
+  { id: "insee-561", theme: "Marché CHR & restauration", org: "INSEE", title: "Fiche secteur 561, Restauration (171 356 entreprises)", url: "https://www.insee.fr/fr/statistiques/7763790", date: "2021" },
+  { id: "altares-umih", theme: "Marché CHR & restauration", org: "Altares / UMIH", title: "Défaillances T2 2025, restauration trad. +21 %", url: "https://www.umih.fr/medias/news/16-600-defaillances-dentreprises-au-2e-trimestre-2025-la-restauration-traditionnelle-en-premiere-ligne.html", date: "2025" },
+  { id: "insee-hotels-2024", theme: "Hôtellerie & tourisme", org: "INSEE", title: "Parc hôtelier 2024 : 15 155 hôtels ; 617 000 chambres", url: "https://www.insee.fr/fr/statistiques/2015412", date: "2024" },
+  { id: "aura-hotel", theme: "Hôtellerie & tourisme", org: "Auvergne-Rhône-Alpes Tourisme", title: "Mémento, 2 471 hôtels AURA ; 384 hôtels 4-5*", url: "https://pro.auvergnerhonealpes-tourisme.com/memento/hotellerie/", date: "2024" },
+  { id: "coach-omnium", theme: "Hôtellerie & tourisme", org: "Coach Omnium", title: "Panorama hôtellerie : 19 % de l'offre classée haut de gamme/luxe (vs 5 % en 2010)", url: "https://coachomnium.com/bonus/89-panorama-de-lhotellerie-en-france/", date: "2025" },
+  { id: "insee-aura-creations", theme: "Région AURA & Lyon", org: "INSEE", title: "Bilan 2024 AURA, créations héberg.-restauration +15,7 %", url: "https://www.insee.fr/fr/statistiques/8354533?sommaire=8354850", date: "2024" },
+  { id: "onlylyon-resto", theme: "Région AURA & Lyon", org: "ONLYLYON / Métropole de Lyon", title: "Chiffres clés Métropole de Lyon (≈ 5 280 restaurants, INSEE-REE 2021)", url: "https://business.onlylyon.com/fileadmin/user_upload/documents/20240423-mdl-chiffres-cles-metropole-de-lyon-2024-plaquette-fr.pdf", date: "2021" },
+  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme", date: "2024" },
+  { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & seconde main 2025 (essor de l'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/", date: "2025" },
+  { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API La Plateforme (pas d'entraînement sur les données par défaut)", url: "https://docs.mistral.ai/admin/security-access/privacy", date: "2026" },
+  { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites de l'offre gratuite (quotas publics)", url: "https://console.groq.com/docs/rate-limits", date: "2026" },
+  { id: "pappers-city", theme: "Marché & filière du mobilier", org: "Pappers / Societe.com", title: "CM City Mobilier (820831402), Oullins : effectif < 10, comptes confidentiels (2021)", url: "https://www.pappers.fr/entreprise/cm-city-mobilier-820831402", date: "2021" },
+  { id: "google-trends", theme: "Tendances & conjoncture", org: "Google Trends", title: "Intérêt de recherche « mobilier restaurant » (France), demande et saisonnalité", url: "https://trends.google.fr/trends/explore?geo=FR&q=mobilier%20restaurant", date: "2026" },
+  { id: "similarweb", theme: "Tendances & conjoncture", org: "Similarweb", title: "Empreinte digitale des concurrents (méthode de veille)", url: "https://www.similarweb.com/", date: "2026" },
 ];
 
 export function srcIndex(id: string): number {
@@ -218,10 +218,10 @@ export const LEAD_MAGNETS: { titre: string; aimant: string; cible: string; canal
 
 /** Stack outils retenu (gratuit, FR/UE, RGPD), benchmark surfacé sur la page notée. */
 export const STACK = [
-  { poste: "CRM & pipeline", choix: "Le prototype (sinon HubSpot Free / Brevo FR)", pourquoi: "gratuit, simple, hébergé UE" },
-  { poste: "Automatisation", choix: "Make / n8n", pourquoi: "rappels de relance automatiques" },
-  { poste: "Tableau de bord", choix: "Looker Studio", pourquoi: "gratuit, KPI en direct" },
-  { poste: "IA", choix: "Mistral (FR/UE) → Groq → simulé", pourquoi: "RGPD natif, pas d'entraînement, repli" },
+  { poste: "CRM & pipeline", choix: "Le prototype (sinon HubSpot Free / Brevo FR)", pourquoi: "gratuit, simple, hébergé UE", limite: "HubSpot Free plafonne vite ; le prototype reste sur-mesure" },
+  { poste: "Automatisation", choix: "n8n (sinon Make)", pourquoi: "rappels de relance automatiques", limite: "n8n auto-hébergé UE, préféré à Make/Zapier (US)" },
+  { poste: "Tableau de bord", choix: "Looker Studio", pourquoi: "gratuit, KPI en direct", limite: "connecteurs limités, prise en main" },
+  { poste: "IA", choix: "Mistral (FR/UE) → Groq → simulé", pourquoi: "RGPD natif, pas d'entraînement, repli", limite: "quotas gratuits limités, d'où le repli automatique" },
 ];
 
 /** KPIs cibles. */
@@ -284,3 +284,26 @@ export const AUTOMATION: {
     { n: "6", role: "Looker", t: "Suivi KPI", d: "L'événement alimente le tableau de bord (taux et délai de relance)." },
   ],
 };
+
+/** Benchmark des fournisseurs d'IA (justifie le choix de Mistral). Détail dans docs/benchmark-ia.md. */
+export const BENCHMARK_IA = [
+  { f: "Mistral AI", gratuit: "Oui (sans CB)", zone: "FR / UE", training: "Non", note: "5/5", retenu: "Principal" },
+  { f: "Groq · Llama 3.3", gratuit: "Oui (sans CB)", zone: "US", training: "Non", note: "4,5/5", retenu: "Repli" },
+  { f: "Google Gemini", gratuit: "Oui", zone: "US", training: "Oui (offre gratuite)", note: "4/5", retenu: "Écarté" },
+  { f: "Cohere", gratuit: "Essai", zone: "US", training: "Oui (opt-out)", note: "3/5", retenu: "Écarté" },
+  { f: "OpenRouter (:free)", gratuit: "Oui", zone: "US", training: "Souvent oui", note: "3/5", retenu: "Écarté" },
+];
+
+/** Personas qui incarnent l'ICP. */
+export const PERSONAS = [
+  { nom: "Claire, 38 ans", role: "Restauratrice indépendante, Lyon 6e", budget: "≈ 12 k€", trait: "Rénove son bistrot et veut des banquettes uniques qui durent. Décide sur la matière et le sur-mesure, pas sur le prix le plus bas." },
+  { nom: "Marc, 45 ans", role: "Architecte d'intérieur CHR (prescripteur)", budget: "2 à 3 projets / an", trait: "Cherche un atelier fiable pour fabriquer ses plans en marque blanche. Veut des délais tenus et une exécution soignée." },
+];
+
+/** Limites assumées (transparence = posture conseil senior). */
+export const INCERTITUDES = [
+  "La part « sur-mesure accessible » (~35 %) est une estimation d'expert non publiée : SAM et SOM sont donnés en fourchettes.",
+  "Périmètres de comptage distincts : établissements employeurs (122 000 HCR) et unités légales INSEE (~171 000 restaurants) ne s'additionnent pas.",
+  "Le cycle de rénovation CHR (5 à 10 ans) est une référence sectorielle, pas une statistique officielle.",
+  "2 sources à reconfirmer avant l'oral : créations d'entreprises AURA et nombre de restaurants à Lyon.",
+];
