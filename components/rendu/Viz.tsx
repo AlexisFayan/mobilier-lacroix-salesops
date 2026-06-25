@@ -1,6 +1,160 @@
 import { SIZING, FUNNEL, IRRITANTS, COMPETITORS, CAT_META, LACROIX_MARKER } from "@/lib/rendu";
 import { Src } from "./Src";
 
+/* ───────── Aperçu du workflow n8n (canvas reconstitué, fidèle à l'éditeur) ───────── */
+const WF = {
+  paper: "#fffdf8",
+  border: "#e7dcc8",
+  ink: "#463122",
+  muted: "#837567",
+  olive: "#5e7150",
+  clay: "#bc7d57",
+  bois: "#6f4e37",
+  terracotta: "#c0653e",
+  gold: "#c39a45",
+  link: "#bc7d57",
+};
+
+function WfIcon({ kind, ox, oy }: { kind: string; ox: number; oy: number }) {
+  const w = "#fffdf8";
+  if (kind === "trigger") return <path d={`M${ox + 8} ${oy + 6} L${ox + 18} ${oy + 12} L${ox + 8} ${oy + 18} Z`} fill={w} />;
+  if (kind === "set")
+    return (
+      <g fill={w}>
+        <rect x={ox + 6} y={oy + 7} width={12} height={2.6} rx={1} />
+        <rect x={ox + 6} y={oy + 11} width={12} height={2.6} rx={1} />
+        <rect x={ox + 6} y={oy + 15} width={8} height={2.6} rx={1} />
+      </g>
+    );
+  if (kind === "ia")
+    return (
+      <text x={ox + 12} y={oy + 16} textAnchor="middle" fontSize="9.5" fontWeight={700} fill={w}>
+        IA
+      </text>
+    );
+  if (kind === "check") return <path d={`M${ox + 6} ${oy + 12} l3 3 l7 -8`} stroke={w} strokeWidth={2.2} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+  if (kind === "kpi")
+    return (
+      <g fill={w}>
+        <rect x={ox + 6} y={oy + 12} width={3} height={6} rx={1} />
+        <rect x={ox + 11} y={oy + 9} width={3} height={9} rx={1} />
+        <rect x={ox + 16} y={oy + 6} width={3} height={12} rx={1} />
+      </g>
+    );
+  return <rect x={ox + 7} y={oy + 11} width={10} height={2.4} rx={1} fill={w} />;
+}
+
+function WfNode({
+  x, y, w, accent, title, sub, icon, dim,
+}: { x: number; y: number; w: number; accent: string; title: string; sub: string; icon: string; dim?: boolean }) {
+  const h = 56;
+  return (
+    <g opacity={dim ? 0.85 : 1}>
+      <rect x={x} y={y} width={w} height={h} rx={12} fill={WF.paper} stroke={dim ? WF.border : accent} strokeWidth={dim ? 1 : 1.4} />
+      <path d={`M${x} ${y + 12} a12 12 0 0 1 12 -12 h0 v${h} h0 a12 12 0 0 1 -12 -12 Z`} fill={accent} />
+      <rect x={x + 16} y={y + h / 2 - 12} width={24} height={24} rx={7} fill={accent} />
+      <WfIcon kind={icon} ox={x + 16} oy={y + h / 2 - 12} />
+      <text x={x + 48} y={y + 23} fontSize="11.5" fontWeight={600} fill={WF.ink}>{title}</text>
+      <text x={x + 48} y={y + 38} fontSize="9.5" fill={WF.muted}>{sub}</text>
+    </g>
+  );
+}
+
+export function N8nWorkflow() {
+  const trueY = 86, ifY = 210, ifH = 66, falseY = 312;
+  const trueC = trueY + 28, mainC = ifY + ifH / 2, falseC = falseY + 28;
+  const ifRight = 356 + 158;
+  const tNodes = [
+    { x: 540, title: "Scoring IA", sub: "Mistral (UE)", icon: "ia", accent: WF.bois },
+    { x: 712, title: "Brouillon", sub: "Mistral (UE)", icon: "ia", accent: WF.bois },
+    { x: 884, title: "Validation", sub: "humain · garde-fou", icon: "check", accent: WF.terracotta },
+    { x: 1056, title: "Suivi KPI", sub: "tableau de bord", icon: "kpi", accent: WF.gold },
+  ];
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-paper">
+      {/* barre d'éditeur (lecture « capture d'écran ») */}
+      <div className="flex items-center justify-between border-b border-border bg-sand/60 px-4 py-2">
+        <div className="flex items-center gap-2.5">
+          <span className="flex gap-1" aria-hidden>
+            <span className="h-2.5 w-2.5 rounded-full bg-terracotta/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-gold/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-olive/70" />
+          </span>
+          <span className="text-[12px] font-medium text-bois-dark">Relance devis · Mobilier Lacroix</span>
+          <span className="rounded-full bg-olive/15 px-2 py-0.5 text-[9px] font-semibold text-olive">n8n Cloud</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="hidden rounded-full border border-border bg-paper px-2 py-0.5 text-[9.5px] text-muted sm:inline">Inactif · déclenché à la main</span>
+          <span className="rounded-md bg-terracotta px-2.5 py-1 text-[10px] font-semibold text-paper">Exécuter</span>
+        </div>
+      </div>
+
+      <div className="bg-cream p-2">
+        <svg viewBox="0 0 1240 392" className="h-auto w-full" role="img" aria-label="Schéma du scénario n8n de relance des devis : déclencheur, condition 72 h, scoring et brouillon par Mistral, validation humaine, suivi KPI.">
+          <defs>
+            <pattern id="wf-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.4" cy="1.4" r="1.4" fill="#e7dcc8" />
+            </pattern>
+            <marker id="wf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 Z" fill={WF.link} />
+            </marker>
+            <marker id="wf-arrow-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 Z" fill={WF.muted} />
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="1240" height="392" fill="url(#wf-dots)" opacity="0.55" />
+
+          {/* notes adhésives (en arrière-plan, comme dans n8n) */}
+          <g>
+            <rect x="528" y="40" width="340" height="138" rx="10" fill={WF.gold} opacity="0.12" />
+            <rect x="528" y="40" width="340" height="138" rx="10" fill="none" stroke={WF.gold} strokeOpacity="0.5" strokeDasharray="4 3" />
+            <text x="544" y="58" fontSize="11" fontWeight={700} fill="#8a6d1d">Étapes IA · Mistral (UE)</text>
+            <text x="544" y="73" fontSize="9.5" fill={WF.muted}>Score, puis courriel dans la voix de la marque.</text>
+          </g>
+          <g>
+            <rect x="876" y="40" width="176" height="138" rx="10" fill={WF.terracotta} opacity="0.1" />
+            <rect x="876" y="40" width="176" height="138" rx="10" fill="none" stroke={WF.terracotta} strokeOpacity="0.5" strokeDasharray="4 3" />
+            <text x="892" y="58" fontSize="11" fontWeight={700} fill="#9f4e2d">Garde-fou humain</text>
+            <text x="892" y="73" fontSize="9.5" fill={WF.muted}>Le commercial relit et envoie.</text>
+          </g>
+
+          {/* connexions */}
+          <g fill="none" stroke={WF.link} strokeWidth="1.6">
+            <line x1={174} y1={mainC} x2={190} y2={mainC} markerEnd="url(#wf-arrow)" />
+            <line x1={340} y1={mainC} x2={356} y2={mainC} markerEnd="url(#wf-arrow)" />
+            <path d={`M${ifRight} ${ifY + 22} C ${ifRight + 16} ${ifY + 22}, ${528} ${trueC}, ${540} ${trueC}`} markerEnd="url(#wf-arrow)" />
+            <line x1={696} y1={trueC} x2={712} y2={trueC} markerEnd="url(#wf-arrow)" />
+            <line x1={868} y1={trueC} x2={884} y2={trueC} markerEnd="url(#wf-arrow)" />
+            <line x1={1040} y1={trueC} x2={1056} y2={trueC} markerEnd="url(#wf-arrow)" />
+          </g>
+          <path d={`M${ifRight} ${ifY + 44} C ${ifRight + 16} ${ifY + 44}, ${528} ${falseC}, ${540} ${falseC}`} fill="none" stroke={WF.muted} strokeWidth="1.4" strokeDasharray="5 4" markerEnd="url(#wf-arrow-d)" />
+          <text x={524} y={trueC - 8} textAnchor="end" fontSize="9" fontWeight={600} fill={WF.olive}>oui</text>
+          <text x={524} y={falseC - 8} textAnchor="end" fontSize="9" fontWeight={600} fill={WF.muted}>non</text>
+
+          {/* nœud condition (IF) */}
+          <g>
+            <rect x={356} y={ifY} width={158} height={ifH} rx={12} fill={WF.paper} stroke={WF.clay} strokeWidth={1.4} />
+            <path d={`M${356} ${ifY + 12} a12 12 0 0 1 12 -12 h0 v${ifH} h0 a12 12 0 0 1 -12 -12 Z`} fill={WF.clay} />
+            <path d={`M${368} ${ifY + 22} l8 8 l-8 8 l-8 -8 Z`} fill="none" stroke="#fffdf8" strokeWidth={2} strokeLinejoin="round" />
+            <text x={388} y={ifY + 28} fontSize="11.5" fontWeight={600} fill={WF.ink}>Sans réponse</text>
+            <text x={388} y={ifY + 43} fontSize="11.5" fontWeight={600} fill={WF.ink}>{"> 72 h ?"}</text>
+            <circle cx={ifRight} cy={ifY + 22} r={2.6} fill={WF.olive} />
+            <circle cx={ifRight} cy={ifY + 44} r={2.6} fill={WF.muted} />
+          </g>
+
+          {/* nœuds principaux */}
+          <WfNode x={24} y={ifY + 5} w={150} accent={WF.olive} title="Déclencheur" sub="devis envoyé" icon="trigger" />
+          <WfNode x={190} y={ifY + 5} w={150} accent={WF.clay} title="Devis (exemple)" sub="Edit Fields" icon="set" />
+          {tNodes.map((n) => (
+            <WfNode key={n.title} x={n.x} y={trueY} w={156} accent={n.accent} title={n.title} sub={n.sub} icon={n.icon} />
+          ))}
+          <WfNode x={540} y={falseY} w={190} accent={WF.muted} title="Aucune relance" sub="déjà répondu" icon="none" dim />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 /* ───────── TAM / SAM / SOM (bandeau horizontal) ───────── */
 export function TamSamSom() {
   const items = [

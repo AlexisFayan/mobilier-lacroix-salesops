@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
-import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
+import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap, N8nWorkflow } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
 import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, FICHE, AUTOMATION, BENCHMARK_IA, PERSONAS, INCERTITUDES, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
@@ -334,6 +334,14 @@ export default function RenduPage() {
           <p className="mb-3 text-[12.5px] text-muted">
             {AUTOMATION.pourquoi} Outil : {AUTOMATION.outil}.
           </p>
+
+          {/* Le workflow réel, construit et exécuté en ligne */}
+          <N8nWorkflow />
+          <p className="mb-4 mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] text-muted">
+            <span className="rounded-full bg-olive/15 px-2 py-0.5 text-[10px] font-semibold text-olive">Construit et exécuté en réel</span>
+            En ligne sur notre instance n8n Cloud : Mistral (UE) renvoie un courriel prêt à relire, dans la voix de la marque. La relance est relue par un commercial avant l'envoi.
+          </p>
+
           <div className="rounded-2xl border border-border bg-paper p-5">
             <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
               {AUTOMATION.etapes.map((e) => (
