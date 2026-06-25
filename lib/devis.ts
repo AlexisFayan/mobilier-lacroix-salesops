@@ -43,13 +43,29 @@ export async function deleteDevisLead(id: string): Promise<boolean> {
 
 const CLIENT_TYPES: ClientType[] = ["café", "restaurant", "hôtel", "bar", "brasserie", "coffee-shop", "agenceur"];
 
+/**
+ * Extrait un montant en euros d'un budget saisi librement.
+ * Gère « 8 000 », « 8000-12000 », « 10k€ », « environ 10 000 € »… (prend la 1re valeur).
+ */
+export function parseBudget(raw: string | number | null | undefined): number {
+  if (typeof raw === "number") return Math.round(raw);
+  const s = String(raw || "")
+    .toLowerCase()
+    .replace(/ /g, " ")
+    .replace(/\s/g, "");
+  const m = s.match(/(\d+(?:[.,]\d+)?)(k)?/);
+  if (!m) return 0;
+  let n = parseFloat(m[1].replace(",", "."));
+  if (m[2] === "k") n *= 1000;
+  return Math.round(n);
+}
+
 /** Convertit une demande entrante en projet du pipeline (étape « nouveau »). */
 export function projectFromLead(l: DevisLead): Project {
   const type = (CLIENT_TYPES as string[]).includes(l.type_etablissement)
     ? (l.type_etablissement as ClientType)
     : "restaurant";
-  const m = String(l.budget || "").match(/\d{3,}/);
-  const estValue = m ? parseInt(m[0], 10) : 0;
+  const estValue = parseBudget(l.budget);
   return {
     id: l.id,
     client: l.etablissement || l.nom || "Demande sans nom",

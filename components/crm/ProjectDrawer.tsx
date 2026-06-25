@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { STAGES, STAGE_LABEL, CHANNEL_META, euro, joursLabel } from "@/lib/types";
-import type { Project, Stage, ExchangeType } from "@/lib/types";
+import { STAGES, STAGE_LABEL, CHANNEL_META, TYPE_LABEL, euro, joursLabel } from "@/lib/types";
+import type { Project, Stage, ClientType, Channel, ExchangeType } from "@/lib/types";
 import type { ScoreResult, RelanceResult, ResumeResult } from "@/lib/ai";
 import { aiScore, aiRelance, aiResume } from "@/lib/aiClient";
 import ScoreBadge from "./ScoreBadge";
@@ -14,6 +14,8 @@ const EX_LABEL: Record<ExchangeType, string> = {
   devis: "Devis",
   note: "Note",
 };
+
+const INPUT = "mt-1 w-full rounded-lg border border-border bg-cream/40 px-3 py-2 text-[13px] text-ink";
 
 function SourceBadge({ engine, real }: { engine: string; real: boolean }) {
   return (
@@ -38,23 +40,37 @@ export default function ProjectDrawer({
   project,
   onClose,
   onStage,
+  onUpdate,
 }: {
   project: Project;
   onClose: () => void;
   onStage: (id: string, stage: Stage) => void;
+  onUpdate: (p: Project) => void;
 }) {
   const [score, setScore] = useState<ScoreResult | null>(null);
   const [relance, setRelance] = useState<RelanceResult | null>(null);
   const [resume, setResume] = useState<ResumeResult | null>(null);
   const [loading, setLoading] = useState<{ [k: string]: boolean }>({});
   const [copied, setCopied] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState<Project>(project);
 
   useEffect(() => {
     setScore(null);
     setRelance(null);
     setResume(null);
     setCopied(false);
+    setEditing(false);
   }, [project.id]);
+
+  function startEdit() {
+    setDraft(project);
+    setEditing(true);
+  }
+  function saveEdit() {
+    onUpdate(draft);
+    setEditing(false);
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -89,27 +105,116 @@ export default function ProjectDrawer({
             </p>
             <p className="mt-1 text-[11px] text-muted">{CHANNEL_META[project.channel].label}</p>
           </div>
-          <button
-            onClick={onClose}
-            className="rounded-full px-2 py-1 text-lg leading-none text-muted transition hover:bg-sand hover:text-ink"
-            aria-label="Fermer"
-          >
-            ×
-          </button>
+          <div className="flex shrink-0 items-center gap-1.5">
+            <button
+              onClick={editing ? () => setEditing(false) : startEdit}
+              className="rounded-full border border-border bg-paper px-2.5 py-1 text-[11px] font-medium text-bois-dark transition hover:bg-sand"
+            >
+              {editing ? "Annuler" : "Modifier"}
+            </button>
+            <button
+              onClick={onClose}
+              className="rounded-full px-2 py-1 text-lg leading-none text-muted transition hover:bg-sand hover:text-ink"
+              aria-label="Fermer"
+            >
+              ×
+            </button>
+          </div>
         </div>
 
         <div className="thin-scroll flex-1 space-y-5 overflow-y-auto px-5 py-5">
-          {/* Montant + étape */}
-          <div className="flex items-center justify-between rounded-xl border border-border bg-paper px-4 py-3">
-            <div>
-              <div className="text-[11px] uppercase tracking-wide text-muted">Montant estimé</div>
-              <div className="font-serif text-2xl font-semibold text-terracotta-dark">{euro(project.estValue)}</div>
+          {/* Montant + étape, ou formulaire d'édition */}
+          {editing ? (
+            <div className="space-y-3 rounded-xl border border-clay/50 bg-paper p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-clay">Modifier la fiche</div>
+              <label className="block">
+                <span className="text-[11px] text-muted">Client / établissement</span>
+                <input value={draft.client} onChange={(e) => setDraft({ ...draft, client: e.target.value })} className={INPUT} />
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                <label className="block">
+                  <span className="text-[11px] text-muted">Type</span>
+                  <select value={draft.type} onChange={(e) => setDraft({ ...draft, type: e.target.value as ClientType })} className={INPUT}>
+                    {Object.entries(TYPE_LABEL).map(([k, v]) => (
+                      <option key={k} value={k}>{v}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="text-[11px] text-muted">Canal</span>
+                  <select value={draft.channel} onChange={(e) => setDraft({ ...draft, channel: e.target.value as Channel })} className={INPUT}>
+                    {Object.entries(CHANNEL_META).map(([k, v]) => (
+                      <option key={k} value={k}>{v.label}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <label className="block">
+                  <span className="text-[11px] text-muted">Ville</span>
+                  <input value={draft.city} onChange={(e) => setDraft({ ...draft, city: e.target.value })} className={INPUT} />
+                </label>
+                <label className="block">
+                  <span className="text-[11px] text-muted">Montant estimé (€)</span>
+                  <input type="number" value={draft.estValue} onChange={(e) => setDraft({ ...draft, estValue: parseInt(e.target.value) || 0 })} className={INPUT} />
+                </label>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <label className="block">
+                  <span className="text-[11px] text-muted">Contact</span>
+                  <input value={draft.contactName} onChange={(e) => setDraft({ ...draft, contactName: e.target.value })} className={INPUT} />
+                </label>
+                <label className="block">
+                  <span className="text-[11px] text-muted">Rôle</span>
+                  <input value={draft.contactRole} onChange={(e) => setDraft({ ...draft, contactRole: e.target.value })} className={INPUT} />
+                </label>
+              </div>
+              <div className="grid grid-cols-2 items-end gap-2">
+                <label className="block">
+                  <span className="text-[11px] text-muted">Score IA (0-100)</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={100}
+                    value={draft.score}
+                    onChange={(e) => setDraft({ ...draft, score: Math.max(0, Math.min(100, parseInt(e.target.value) || 0)) })}
+                    className={INPUT}
+                  />
+                </label>
+                <label className="flex items-center gap-2 pb-2 text-[12.5px] text-ink">
+                  <input type="checkbox" checked={draft.devisSent} onChange={(e) => setDraft({ ...draft, devisSent: e.target.checked })} />
+                  Devis envoyé
+                </label>
+              </div>
+              <label className="block">
+                <span className="text-[11px] text-muted">Description</span>
+                <textarea value={draft.description} onChange={(e) => setDraft({ ...draft, description: e.target.value })} rows={3} className={INPUT} />
+              </label>
+              <label className="block">
+                <span className="text-[11px] text-muted">Prochaine action</span>
+                <input value={draft.nextAction} onChange={(e) => setDraft({ ...draft, nextAction: e.target.value })} className={INPUT} />
+              </label>
+              <div className="flex gap-2 pt-1">
+                <button onClick={saveEdit} className="rounded-lg bg-olive px-4 py-2 text-[13px] font-medium text-paper transition hover:bg-olive/85">
+                  Enregistrer
+                </button>
+                <button onClick={() => setEditing(false)} className="rounded-lg border border-border px-4 py-2 text-[13px] font-medium text-ink transition hover:bg-sand">
+                  Annuler
+                </button>
+              </div>
             </div>
-            <div className="text-right">
-              <div className="text-[11px] uppercase tracking-wide text-muted">Étape</div>
-              <div className="font-medium text-ink">{STAGE_LABEL[project.stage]}</div>
+          ) : (
+            <div className="flex items-center justify-between rounded-xl border border-border bg-paper px-4 py-3">
+              <div>
+                <div className="text-[11px] uppercase tracking-wide text-muted">Montant estimé</div>
+                <div className="font-serif text-2xl font-semibold text-terracotta-dark">{euro(project.estValue)}</div>
+              </div>
+              <div className="text-right">
+                <div className="text-[11px] uppercase tracking-wide text-muted">Étape</div>
+                <div className="font-medium text-ink">{STAGE_LABEL[project.stage]}</div>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Contrôles d'étape */}
           <div>

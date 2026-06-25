@@ -60,6 +60,11 @@ export default function CrmPage() {
     void upsertProject(p);
   }
 
+  function handleUpdate(updated: Project) {
+    setProjects((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+    void upsertProject(updated);
+  }
+
   return (
     <>
       <Header />
@@ -141,7 +146,7 @@ export default function CrmPage() {
       </main>
 
       {selected && (
-        <ProjectDrawer project={selected} onClose={() => setSelectedId(null)} onStage={handleStage} />
+        <ProjectDrawer project={selected} onClose={() => setSelectedId(null)} onStage={handleStage} onUpdate={handleUpdate} />
       )}
 
       {creating && <NewProjectForm onCreate={handleCreate} onClose={() => setCreating(false)} />}
