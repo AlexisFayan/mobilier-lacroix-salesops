@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
 import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, srcIndex } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -118,7 +118,7 @@ export default function RenduPage() {
 
           {/* Concurrents */}
           <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Carte de positionnement concurrentiel</h3>
-          <p className="mb-3 text-[12.5px] text-muted">Gamme (série → sur-mesure) selon l'ancrage (national → local). 14 acteurs réels recensés.</p>
+          <p className="mb-3 text-[12.5px] text-muted">Gamme (série → sur-mesure) selon l'ancrage (national → local). 14 acteurs réels recensés, profils recoupés via Pappers / Societe.com (ex. City Mobilier, Oullins : effectif &lt; 10, comptes confidentiels)<Src ids={["pappers-city"]} />.</p>
           <CompetitorMap />
 
           {/* Tendances */}
@@ -196,7 +196,7 @@ export default function RenduPage() {
           </div>
 
           <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Les aimants à prospects (lead magnets)</h3>
-          <p className="mb-3 text-[12.5px] text-muted">Cinq aimants à bas coût qui re-remplissent le haut du tunnel chaque mois, enjeu clé du modèle ponctuel. L'objectif n'est pas plus de volume (l'atelier plafonne à 3-5 projets/mois) mais des demandes mieux qualifiées et un panier plus élevé (hôtels, prescripteurs).</p>
+          <p className="mb-3 text-[12.5px] text-muted">Cinq aimants à bas coût pour re-remplir le haut du tunnel chaque mois, en visant la qualité des demandes et le panier (hôtels, prescripteurs) plutôt que le volume, borné par la capacité de l'atelier.</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {LEAD_MAGNETS.map((m) => (
               <div key={m.titre} className="rounded-2xl border border-border bg-paper p-4">
@@ -218,22 +218,14 @@ export default function RenduPage() {
             ))}
           </div>
 
-          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Process, outils, gouvernance</h3>
-          <div className="grid gap-4 lg:grid-cols-3">
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Process &amp; gouvernance</h3>
+          <div className="grid gap-4 lg:grid-cols-2">
             <SubCard title="Process">
               <ul className="space-y-2 text-[12.5px] text-ink/85">
                 <li>Pipeline standardisé (7 étapes claires)</li>
                 <li>Qualification systématique des demandes entrantes</li>
                 <li><strong>Relance des devis sous 72 h</strong> (fin de la fuite)</li>
                 <li>Suivi dédié des prescripteurs (agenceurs)</li>
-              </ul>
-            </SubCard>
-            <SubCard title="Outils">
-              <ul className="space-y-2 text-[12.5px] text-ink/85">
-                <li><strong>CRM = le prototype</strong> (pipeline + IA)</li>
-                <li>Automatisation des rappels de relance</li>
-                <li>Tableau de bord KPI (Looker Studio)</li>
-                <li>100 % gratuit &amp; conforme RGPD (UE)</li>
               </ul>
             </SubCard>
             <SubCard title="Gouvernance">
@@ -291,6 +283,17 @@ export default function RenduPage() {
             <div className="border-t border-border bg-paper px-4 py-2 text-[10.5px] text-muted">
               R = Réalise · A = Garant (décideur) · C = Consulté · I = Informé
             </div>
+          </div>
+
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Stack outils (gratuit, RGPD / UE)</h3>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {STACK.map((s) => (
+              <div key={s.poste} className="rounded-2xl border border-border bg-paper p-4">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-terracotta-dark">{s.poste}</div>
+                <div className="mt-1 text-[12.5px] font-medium text-bois-dark">{s.choix}</div>
+                <div className="mt-0.5 text-[11px] text-muted">{s.pourquoi}</div>
+              </div>
+            ))}
           </div>
         </Section>
 
@@ -442,6 +445,10 @@ export default function RenduPage() {
               <p className="mt-1 text-[12.5px] text-ink/75">Données recoupées et relues de façon critique : un chiffre défendable vaut mieux qu'un chiffre énorme et faux.</p>
             </div>
           </div>
+
+          <p className="mt-4 rounded-xl border border-border bg-sand/40 p-4 text-[12.5px] text-ink/80">
+            <strong>Recoupement multi-sources</strong> : données légales des sociétés via Pappers / Societe.com<Src ids={["pappers-city"]} />, demande et saisonnalité via Google Trends<Src ids={["google-trends"]} />, empreinte digitale des concurrents via Similarweb<Src ids={["similarweb"]} />, en complément des sources primaires (INSEE, UMIH, filière).
+          </p>
 
           <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Sources ({SOURCES.length})</h3>
           <div className="grid gap-4 sm:grid-cols-2">

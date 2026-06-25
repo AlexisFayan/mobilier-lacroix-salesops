@@ -31,7 +31,10 @@ export const SOURCES: Source[] = [
   { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme" },
   { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & seconde main 2025 (essor de l'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/" },
   { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API La Plateforme (pas d'entraînement sur les données par défaut)", url: "https://docs.mistral.ai/admin/security-access/privacy" },
-  { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites du free tier (quotas publics)", url: "https://console.groq.com/docs/rate-limits" },
+  { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites de l'offre gratuite (quotas publics)", url: "https://console.groq.com/docs/rate-limits" },
+  { id: "pappers-city", theme: "Marché & filière du mobilier", org: "Pappers / Societe.com", title: "CM City Mobilier (820831402), Oullins : effectif < 10, comptes confidentiels (2021)", url: "https://www.pappers.fr/entreprise/cm-city-mobilier-820831402" },
+  { id: "google-trends", theme: "Tendances & conjoncture", org: "Google Trends", title: "Intérêt de recherche « mobilier restaurant » (France), demande et saisonnalité", url: "https://trends.google.fr/trends/explore?geo=FR&q=mobilier%20restaurant" },
+  { id: "similarweb", theme: "Tendances & conjoncture", org: "Similarweb", title: "Empreinte digitale des concurrents (méthode de veille)", url: "https://www.similarweb.com/" },
 ];
 
 export function srcIndex(id: string): number {
@@ -211,6 +214,14 @@ export const LEAD_MAGNETS: { titre: string; aimant: string; cible: string; canal
   { titre: "Estimateur de budget", aimant: "Une fourchette de prix indicative en deux minutes, en ligne.", cible: "Demandes tièdes à qualifier", canal: "Site", kpi: "Estimations → devis", href: "/estimateur" },
   { titre: "Visite d'atelier", aimant: "Voir et toucher la matière : l'expérience qui fait signer.", cible: "Prospects chauds", canal: "Direct, recommandation", kpi: "Visites → signatures" },
   { titre: "Programme prescripteurs", aimant: "Marque blanche et commission pour agenceurs & architectes.", cible: "Agenceurs / architectes", canal: "Partenariats", kpi: "Projets apportés / partenaire" },
+];
+
+/** Stack outils retenu (gratuit, FR/UE, RGPD), benchmark surfacé sur la page notée. */
+export const STACK = [
+  { poste: "CRM & pipeline", choix: "Le prototype (sinon HubSpot Free / Brevo FR)", pourquoi: "gratuit, simple, hébergé UE" },
+  { poste: "Automatisation", choix: "Make / n8n", pourquoi: "rappels de relance automatiques" },
+  { poste: "Tableau de bord", choix: "Looker Studio", pourquoi: "gratuit, KPI en direct" },
+  { poste: "IA", choix: "Mistral (FR/UE) → Groq → simulé", pourquoi: "RGPD natif, pas d'entraînement, repli" },
 ];
 
 /** KPIs cibles. */
