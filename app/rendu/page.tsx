@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
 import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, srcIndex } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, FICHE, AUTOMATION, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -40,6 +40,23 @@ export default function RenduPage() {
 
         {/* =================== 01 COMPRENDRE =================== */}
         <PhaseHeader n={PHASES[0].n} id={PHASES[0].key} title={PHASES[0].title} desc={PHASES[0].desc} />
+
+        {/* Carte d'identité de l'entreprise */}
+        <div className="mt-2 rounded-2xl border border-border bg-paper p-5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="font-serif text-lg font-semibold text-bois-dark">Carte d'identité : {FICHE.nom}</h3>
+            <span className="rounded-full bg-sand px-2.5 py-0.5 text-[11px] font-medium text-bois-dark">Fiche d'entreprise</span>
+          </div>
+          <p className="mt-1 text-[13px] text-ink/80">{FICHE.activite}</p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {FICHE.faits.map((f) => (
+              <div key={f.k} className="rounded-xl border border-border bg-cream/60 p-2.5">
+                <div className="text-[10px] uppercase tracking-wide text-muted">{f.k}</div>
+                <div className="mt-0.5 text-[12.5px] font-medium text-bois-dark">{f.v}</div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <Section id="c1" n={1} pts={10} eyebrow="Identité de marque" title="Le « pourquoi » & les archétypes">
           <div className="grid gap-4 lg:grid-cols-3">
@@ -294,6 +311,37 @@ export default function RenduPage() {
                 <div className="mt-0.5 text-[11px] text-muted">{s.pourquoi}</div>
               </div>
             ))}
+          </div>
+
+          {/* Automatisation de la relance (n8n) */}
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Automatiser la relance (n8n)</h3>
+          <p className="mb-3 text-[12.5px] text-muted">
+            {AUTOMATION.pourquoi} Outil : {AUTOMATION.outil}.
+          </p>
+          <div className="rounded-2xl border border-border bg-paper p-5">
+            <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+              {AUTOMATION.etapes.map((e) => (
+                <div
+                  key={e.n}
+                  className={`rounded-xl border p-3 ${
+                    e.garde ? "border-terracotta/50 bg-terracotta/5" : "border-border bg-cream/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-1.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-bois-dark text-[10px] font-semibold text-paper">
+                      {e.n}
+                    </span>
+                    <span className="rounded bg-sand px-1.5 py-0.5 text-[9px] font-medium text-muted">{e.role}</span>
+                  </div>
+                  <div className="mt-1.5 text-[12.5px] font-semibold text-bois-dark">{e.t}</div>
+                  <p className="mt-0.5 text-[11.5px] leading-snug text-ink/75">{e.d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 rounded-lg border border-terracotta/30 bg-terracotta/5 px-3 py-2 text-[12px] text-ink/85">
+              <strong className="text-terracotta-dark">Garde-fou humain : </strong>
+              {AUTOMATION.garde}
+            </div>
           </div>
         </Section>
 

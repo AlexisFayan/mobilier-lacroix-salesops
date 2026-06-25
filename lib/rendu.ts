@@ -246,3 +246,41 @@ export const ROI = {
   gainConversion: "+1 devis signé récupéré (devis non relancé) ≈ 10 000 €",
   conclusion: "Coût outil nul + un seul devis « sauvé » par la relance = ROI immédiat.",
 };
+
+/** Carte d'identité de l'entreprise (livrable 1, cadre B2B). */
+export const FICHE = {
+  nom: "Mobilier Lacroix",
+  activite:
+    "Fabrication artisanale de mobilier sur mesure pour le CHR (cafés, restaurants, hôtels), basée en région lyonnaise.",
+  faits: [
+    { k: "Équipe", v: "15 personnes" },
+    { k: "Zone", v: "Lyon / AURA" },
+    { k: "Modèle", v: "Ponctuel (projet × panier)" },
+    { k: "Demandes", v: "15-20 / mois" },
+    { k: "Signés", v: "3-5 / mois" },
+    { k: "Panier", v: "5 000 - 15 000 €" },
+    { k: "Budget com.", v: "≈ 250 €/mois" },
+    { k: "Outils", v: "Devis Excel, SketchUp, téléphone (pas de CRM)" },
+  ],
+};
+
+/** Schéma d'automatisation (n8n) qui industrialise la relance des devis. */
+export const AUTOMATION: {
+  outil: string;
+  pourquoi: string;
+  garde: string;
+  etapes: { n: string; role: string; t: string; d: string; garde?: boolean }[];
+} = {
+  outil: "n8n (libre, auto-hébergeable en UE)",
+  pourquoi:
+    "Industrialiser la relance des devis (la fuite n°1) pour qu'aucun ne soit oublié. Étape d'après le prototype.",
+  garde: "L'IA propose, l'humain valide : aucune relance ne part sans la relecture du commercial.",
+  etapes: [
+    { n: "1", role: "CRM", t: "Déclencheur", d: "Un devis passe au statut « envoyé » dans le pipeline." },
+    { n: "2", role: "n8n", t: "Attente 72 h", d: "Sans réponse ni nouvelle activité sous 72 h." },
+    { n: "3", role: "IA", t: "Scoring", d: "Mistral (UE) note la probabilité de signature et priorise." },
+    { n: "4", role: "IA", t: "Brouillon", d: "Mistral rédige le courriel « dans le ton » de la marque." },
+    { n: "5", role: "Humain", t: "Validation", d: "Une tâche est créée pour le commercial : il relit et envoie.", garde: true },
+    { n: "6", role: "Looker", t: "Suivi KPI", d: "L'événement alimente le tableau de bord (taux et délai de relance)." },
+  ],
+};

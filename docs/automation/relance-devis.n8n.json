@@ -1,0 +1,140 @@
+{
+  "name": "Relance devis — Mobilier Lacroix (IA + garde-fou humain)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "11111111-1111-4111-8111-111111111111",
+      "name": "Déclencheur (devis envoyé)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-40, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "a1", "name": "client", "value": "Restaurant La Mâchonnerie", "type": "string" },
+            { "id": "a2", "name": "montant", "value": 8500, "type": "number" },
+            { "id": "a3", "name": "heuresDepuisEnvoi", "value": 73, "type": "number" },
+            { "id": "a4", "name": "contact", "value": "Paul Génin", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "22222222-2222-4222-8222-222222222222",
+      "name": "Devis (exemple)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [180, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.heuresDepuisEnvoi }}",
+              "rightValue": 72,
+              "operator": { "type": "number", "operation": "gte" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "33333333-3333-4333-8333-333333333333",
+      "name": "Sans réponse > 72 h ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [400, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer REMPLACER_PAR_VOTRE_CLE_MISTRAL" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-small-latest\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Tu notes de 0 a 100 la probabilite de signature d'un devis B2B (mobilier sur mesure CHR). Reponds uniquement par un nombre.\"},\n    {\"role\": \"user\", \"content\": \"Client {{ $json.client }}, montant {{ $json.montant }} euros, sans reponse depuis {{ $json.heuresDepuisEnvoi }} h.\"}\n  ]\n}",
+        "options": {}
+      },
+      "id": "44444444-4444-4444-8444-444444444444",
+      "name": "Scoring IA (Mistral)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [640, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer REMPLACER_PAR_VOTRE_CLE_MISTRAL" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-large-latest\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Tu ecris pour Mobilier Lacroix, atelier de mobilier sur mesure (archetypes le Createur et l'Amant). Ton chaleureux et raffine, vouvoiement, pas d'anglicismes. Redige un courriel de relance court et personnalise.\"},\n    {\"role\": \"user\", \"content\": \"Relance le devis de {{ $json.client }} ({{ $json.contact }}), montant {{ $json.montant }} euros, sans reponse depuis {{ $json.heuresDepuisEnvoi }} h.\"}\n  ]\n}",
+        "options": {}
+      },
+      "id": "55555555-5555-4555-8555-555555555555",
+      "name": "Brouillon de relance (Mistral)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 200]
+    },
+    {
+      "parameters": {},
+      "id": "66666666-6666-4666-8666-666666666666",
+      "name": "Validation humaine (tache commercial)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1120, 200],
+      "notes": "GARDE-FOU RGPD : la relance N'EST PAS envoyee automatiquement. En production : node Gmail/Outlook/Slack qui cree une tache ou notifie le commercial, qui relit et envoie. L'IA propose, l'humain valide."
+    },
+    {
+      "parameters": {},
+      "id": "77777777-7777-4777-8777-777777777777",
+      "name": "Suivi KPI (tableau de bord)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1360, 200],
+      "notes": "Log de l'evenement -> Looker Studio : taux de relance, delai de 1re relance < 72 h."
+    },
+    {
+      "parameters": {},
+      "id": "88888888-8888-4888-8888-888888888888",
+      "name": "Aucune relance (deja repondu)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [640, 420]
+    }
+  ],
+  "connections": {
+    "Déclencheur (devis envoyé)": { "main": [[{ "node": "Devis (exemple)", "type": "main", "index": 0 }]] },
+    "Devis (exemple)": { "main": [[{ "node": "Sans réponse > 72 h ?", "type": "main", "index": 0 }]] },
+    "Sans réponse > 72 h ?": {
+      "main": [
+        [{ "node": "Scoring IA (Mistral)", "type": "main", "index": 0 }],
+        [{ "node": "Aucune relance (deja repondu)", "type": "main", "index": 0 }]
+      ]
+    },
+    "Scoring IA (Mistral)": { "main": [[{ "node": "Brouillon de relance (Mistral)", "type": "main", "index": 0 }]] },
+    "Brouillon de relance (Mistral)": { "main": [[{ "node": "Validation humaine (tache commercial)", "type": "main", "index": 0 }]] },
+    "Validation humaine (tache commercial)": { "main": [[{ "node": "Suivi KPI (tableau de bord)", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "meta": {}
+}
