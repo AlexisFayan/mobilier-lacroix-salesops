@@ -144,7 +144,7 @@ export function N8nWorkflow() {
 
           {/* nœuds principaux */}
           <WfNode x={24} y={ifY + 5} w={150} accent={WF.olive} title="Déclencheur" sub="devis envoyé" icon="trigger" />
-          <WfNode x={190} y={ifY + 5} w={150} accent={WF.clay} title="Devis (exemple)" sub="Edit Fields" icon="set" />
+          <WfNode x={190} y={ifY + 5} w={150} accent={WF.clay} title="Devis (exemple)" sub="données d'exemple" icon="set" />
           {tNodes.map((n) => (
             <WfNode key={n.title} x={n.x} y={trueY} w={156} accent={n.accent} title={n.title} sub={n.sub} icon={n.icon} />
           ))}
