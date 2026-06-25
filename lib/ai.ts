@@ -308,6 +308,60 @@ export async function generateRelance(p: Project): Promise<RelanceResult> {
   };
 }
 
+// ── Première réponse à une demande de devis entrante (formulaire de la landing) ──
+
+export type DevisLeadInput = {
+  nom?: string;
+  etablissement?: string;
+  type_etablissement?: string;
+  type_projet?: string;
+  description?: string;
+  budget?: string;
+  delai?: string;
+  ville?: string;
+};
+
+function devisContext(l: DevisLeadInput): string {
+  return [
+    `Etablissement : ${l.etablissement || "non precise"} (${l.type_etablissement || "CHR"})`,
+    `Contact : ${l.nom || "non precise"}`,
+    l.type_projet ? `Type de projet : ${l.type_projet}` : "",
+    l.ville ? `Ville : ${l.ville}` : "",
+    l.budget ? `Budget evoque : ${l.budget}` : "",
+    l.delai ? `Delai souhaite : ${l.delai}` : "",
+    `Besoin exprime : ${l.description || "non precise"}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+function simulateDevisReply(l: DevisLeadInput): RelanceResult {
+  const prenom = (l.nom || "").split(" ")[0];
+  const ouverture = prenom ? `Bonjour ${prenom},` : "Bonjour,";
+  const subject = l.etablissement
+    ? `Votre projet sur mesure, ${l.etablissement}`
+    : "Votre projet sur mesure";
+  const besoin = l.description ? `votre projet (${l.description.toLowerCase()})` : "votre projet";
+  const body = `${ouverture}\n\nMerci pour votre demande, et ravi de l'intérêt que vous portez à notre atelier. ${besoin.charAt(0).toUpperCase() + besoin.slice(1)} est exactement le type de réalisation que nous aimons accompagner : des essences nobles et des finitions pensées pour durer.\n\nJe vous propose un court échange pour cerner vos attentes, ou une visite de l'atelier pour voir et toucher la matière, c'est souvent ce qui éclaire un projet. Quel moment vous conviendrait cette semaine ?\n\nBien à vous,\nL'atelier Mobilier Lacroix\nLe sur-mesure, façonné pour durer.`;
+  return { subject, body, source: SIMULATED };
+}
+
+export async function generateDevisReply(l: DevisLeadInput): Promise<RelanceResult> {
+  const sim = simulateDevisReply(l);
+  if (configuredProviders().length === 0) return sim;
+
+  const system = `${BRAND_VOICE}\nRédige un courriel de PREMIÈRE réponse à une demande de devis entrante (le prospect vient de remplir le formulaire du site). Chaleureux et raffiné, vouvoiement, remercie, montre que tu comprends le besoin, propose un échange ou une visite de l'atelier, NE CHIFFRE PAS encore. 80-130 mots. Réponds UNIQUEMENT en JSON : {"subject": "...", "body": "..."}. Le body inclut une ouverture et une signature « L'atelier Mobilier Lacroix ».`;
+  const res = await callLLM(system, devisContext(l));
+  if (!res) return sim;
+  const j = extractJSON(res.text);
+  if (!j || typeof j.body !== "string") return sim;
+  return {
+    subject: typeof j.subject === "string" ? j.subject : sim.subject,
+    body: j.body,
+    source: { engine: res.engine, real: true },
+  };
+}
+
 // ───────────────────────── 3. Résumé d'échanges → fiche projet ─────────────────────────
 
 export type ResumeResult = {

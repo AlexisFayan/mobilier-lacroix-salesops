@@ -10,11 +10,12 @@ import PipelineBoard from "@/components/crm/PipelineBoard";
 import ProjectList from "@/components/crm/ProjectList";
 import ProjectDrawer from "@/components/crm/ProjectDrawer";
 import NewProjectForm from "@/components/crm/NewProjectForm";
+import DevisInbox from "@/components/crm/DevisInbox";
 
 export default function CrmPage() {
   const [projects, setProjects] = useState<Project[]>(PROJECTS);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [view, setView] = useState<"kanban" | "liste">("kanban");
+  const [view, setView] = useState<"kanban" | "liste" | "demandes">("kanban");
   const [creating, setCreating] = useState(false);
   const [synced, setSynced] = useState(false);
   const selected = projects.find((p) => p.id === selectedId) || null;
@@ -105,26 +106,38 @@ export default function CrmPage() {
               >
                 Liste
               </button>
+              <button
+                onClick={() => setView("demandes")}
+                className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition ${
+                  view === "demandes" ? "bg-bois-dark text-paper" : "text-ink hover:bg-sand"
+                }`}
+              >
+                Demandes
+              </button>
             </div>
           </div>
         </div>
 
-        <KpiBar projects={projects} />
+        {view !== "demandes" && <KpiBar projects={projects} />}
 
         <div className="mt-4 mb-3 flex items-center justify-between text-[11.5px] text-muted">
           <span>
             {view === "kanban"
               ? "Glissez une carte d'une colonne à l'autre pour faire avancer un dossier."
-              : "Cliquez un en-tête pour trier, cliquez une ligne pour ouvrir le copilote IA."}
+              : view === "liste"
+              ? "Cliquez un en-tête pour trier, cliquez une ligne pour ouvrir le copilote IA."
+              : "Générez une réponse dans le ton, envoyez-la au prospect ou supprimez la demande."}
           </span>
-          <span className="hidden sm:inline">Cliquez une fiche pour ouvrir le copilote IA</span>
+          {view !== "demandes" && (
+            <span className="hidden sm:inline">Cliquez une fiche pour ouvrir le copilote IA</span>
+          )}
         </div>
 
-        {view === "kanban" ? (
+        {view === "kanban" && (
           <PipelineBoard projects={projects} onSelect={setSelectedId} onMove={handleStage} />
-        ) : (
-          <ProjectList projects={projects} onSelect={setSelectedId} />
         )}
+        {view === "liste" && <ProjectList projects={projects} onSelect={setSelectedId} />}
+        {view === "demandes" && <DevisInbox />}
       </main>
 
       {selected && (
