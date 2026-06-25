@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PROJECTS } from "@/lib/data";
+import { fetchProjects, upsertProject } from "@/lib/projects";
 import type { Project, Stage } from "@/lib/types";
 import Header from "@/components/Header";
 import KpiBar from "@/components/crm/KpiBar";
@@ -15,26 +16,29 @@ export default function CrmPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [view, setView] = useState<"kanban" | "liste">("kanban");
   const [creating, setCreating] = useState(false);
+  const [synced, setSynced] = useState(false);
   const selected = projects.find((p) => p.id === selectedId) || null;
 
-  // Persistance locale (démo) : l'état du pipeline survit aux rechargements.
+  // Persistance Supabase : on lit la base au chargement (et on l'amorce avec le jeu
+  // de démo si elle est vide). En cas d'échec, on garde les données de démo affichées :
+  // la démo ne casse jamais. Voir lib/projects.ts.
   useEffect(() => {
-    const saved = localStorage.getItem("crm-projects-v2");
-    if (saved) {
-      try {
-        setProjects(JSON.parse(saved));
-      } catch {
-        /* données corrompues : on garde le jeu par défaut */
+    let alive = true;
+    fetchProjects().then((rows) => {
+      if (!alive) return;
+      if (rows) {
+        setProjects(rows);
+        setSynced(true);
       }
-    }
+    });
+    return () => {
+      alive = false;
+    };
   }, []);
-  useEffect(() => {
-    localStorage.setItem("crm-projects-v2", JSON.stringify(projects));
-  }, [projects]);
 
   function handleStage(id: string, stage: Stage) {
-    setProjects((prev) =>
-      prev.map((p) =>
+    setProjects((prev) => {
+      const next = prev.map((p) =>
         p.id === id
           ? {
               ...p,
@@ -43,12 +47,16 @@ export default function CrmPage() {
               score: stage === "signe" ? 100 : stage === "perdu" ? 0 : p.score,
             }
           : p
-      )
-    );
+      );
+      const updated = next.find((p) => p.id === id);
+      if (updated) void upsertProject(updated);
+      return next;
+    });
   }
 
   function handleCreate(p: Project) {
     setProjects((prev) => [p, ...prev]);
+    void upsertProject(p);
   }
 
   return (
@@ -57,7 +65,17 @@ export default function CrmPage() {
       <main className="mx-auto w-full max-w-7xl flex-1 px-5 py-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h1 className="font-serif text-2xl font-semibold text-bois-dark">Pilotage commercial</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="font-serif text-2xl font-semibold text-bois-dark">Pilotage commercial</h1>
+              <span
+                className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                  synced ? "bg-olive/15 text-olive" : "bg-sand text-muted"
+                }`}
+                title={synced ? "Données lues et écrites dans Supabase" : "Base indisponible : données de démonstration"}
+              >
+                {synced ? "Synchronisé · Supabase" : "Mode démo"}
+              </span>
+            </div>
             <p className="mt-0.5 text-sm text-muted">
               Le carnet de commandes de l'atelier, augmenté par l'IA : pipeline, scoring des devis,
               copilote de relance et résumé d'échanges.
