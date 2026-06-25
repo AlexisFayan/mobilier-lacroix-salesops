@@ -41,6 +41,7 @@ export default function ProjectDrawer({
   onClose,
   onStage,
   onUpdate,
+  onDelete,
 }: {
   project: Project;
   onClose: () => void;
