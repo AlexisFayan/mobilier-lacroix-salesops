@@ -324,6 +324,30 @@ export default function RenduPage() {
         </Section>
 
         <Section id="c6" n={6} pts={18} eyebrow="Pertinence & profondeur de l'IA" title="3 cas d'usage ancrés dans le funnel">
+          <div className="mb-5 rounded-2xl border border-border bg-paper p-4">
+            <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">Le pipeline IA, commun aux 3 cas</div>
+            <div className="grid items-center gap-2 text-center text-[12px] sm:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
+              <div className="rounded-xl border border-border bg-cream p-3">
+                <div className="font-semibold text-bois-dark">Données du dossier</div>
+                <div className="text-[11px] text-muted">étape, canal, panier, historique</div>
+              </div>
+              <div className="hidden font-serif text-xl text-clay sm:block" aria-hidden>→</div>
+              <div className="rounded-xl border border-terracotta/40 bg-terracotta/5 p-3">
+                <div className="font-semibold text-terracotta-dark">Moteur IA</div>
+                <div className="text-[11px] text-muted">Mistral UE → Groq → simulé</div>
+              </div>
+              <div className="hidden font-serif text-xl text-clay sm:block" aria-hidden>→</div>
+              <div className="rounded-xl border border-border bg-cream p-3">
+                <div className="font-semibold text-bois-dark">Proposition</div>
+                <div className="text-[11px] text-muted">score, relance ou fiche</div>
+              </div>
+              <div className="hidden font-serif text-xl text-clay sm:block" aria-hidden>→</div>
+              <div className="rounded-xl border border-olive/40 bg-olive/5 p-3">
+                <div className="font-semibold text-olive">Validation humaine</div>
+                <div className="text-[11px] text-muted">l'humain décide et envoie</div>
+              </div>
+            </div>
+          </div>
           <div className="grid gap-4 lg:grid-cols-3">
             {AI_USECASES.map((u) => (
               <div key={u.titre} className="rounded-2xl border border-border bg-paper p-5">
