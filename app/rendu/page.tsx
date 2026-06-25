@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Le dossier · Mobilier Lacroix",
-  description: "Les 9 critères du dossier noté, en 4 temps, avec sources vérifiées : marché, funnel, plan SalesOps, IA et garde-fous.",
+  description: "Les 9 critères du dossier noté, en 4 temps, avec sources vérifiées : marché, tunnel de vente, plan SalesOps, IA et garde-fous.",
 };
 
 export default function RenduPage() {
@@ -174,12 +174,12 @@ export default function RenduPage() {
         {/* =================== 02 DIAGNOSTIQUER =================== */}
         <PhaseHeader n={PHASES[1].n} id={PHASES[1].key} title={PHASES[1].title} desc={PHASES[1].desc} />
 
-        <Section id="c3" n={3} pts={13} eyebrow="Diagnostic" title="Le funnel reconstruit & les fuites">
+        <Section id="c3" n={3} pts={13} eyebrow="Diagnostic" title="Le tunnel de vente reconstruit & les fuites">
           <div className="grid gap-8 lg:grid-cols-2">
-            <SubCard title="Funnel commercial (par mois)">
+            <SubCard title="Tunnel commercial (par mois)">
               <SalesFunnel />
               <p className="mt-4 text-[12px] text-muted">
-                Vente « à l'instinct » : le funnel n'était pas mesuré, reconstitué à partir des ordres de
+                Vente « à l'instinct » : le tunnel n'était pas mesuré, reconstitué à partir des ordres de
                 grandeur de l'entreprise (15-20 demandes, 3-5 signés).
               </p>
             </SubCard>
@@ -319,7 +319,7 @@ export default function RenduPage() {
             </div>
           </div>
 
-          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Stack outils (gratuit, RGPD / UE)</h3>
+          <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Outils retenus (gratuit, RGPD / UE)</h3>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {STACK.map((s) => (
               <div key={s.poste} className="rounded-2xl border border-border bg-paper p-4">
@@ -400,7 +400,7 @@ export default function RenduPage() {
           </p>
         </Section>
 
-        <Section id="c6" n={6} pts={18} eyebrow="Pertinence & profondeur de l'IA" title="3 cas d'usage ancrés dans le funnel">
+        <Section id="c6" n={6} pts={18} eyebrow="Pertinence & profondeur de l'IA" title="3 cas d'usage ancrés dans le tunnel">
           <div className="mb-5 rounded-2xl border border-border bg-paper p-4">
             <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">Le pipeline IA, commun aux 3 cas</div>
             <div className="grid items-center gap-2 text-center text-[12px] sm:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
@@ -443,7 +443,7 @@ export default function RenduPage() {
           </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-olive/30 bg-olive/5 p-4 text-[12.5px]">
-              <strong className="text-olive">IA utile</strong> : résout un irritant précis, ancrée dans une étape du funnel, avec un indicateur mesurable.
+              <strong className="text-olive">IA utile</strong> : résout un irritant précis, ancrée dans une étape du tunnel, avec un indicateur mesurable.
             </div>
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px]">
               <strong className="text-muted">IA gadget (évitée)</strong> : « on a mis ChatGPT quelque part », sans problème réel ni mesure.

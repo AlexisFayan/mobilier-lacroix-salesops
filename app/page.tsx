@@ -209,7 +209,7 @@ export default function Home() {
               </div>
             </div>
             <p className="mt-6 text-[12.5px] text-muted">
-              Le diagnostic complet (funnel reconstruit, irritants priorisés) est détaillé dans
+              Le diagnostic complet (tunnel reconstruit, irritants priorisés) est détaillé dans
               <Link href="/rendu#diagnostiquer" className="font-medium text-terracotta-dark hover:underline"> le dossier</Link>.
             </p>
           </div>
@@ -224,7 +224,7 @@ export default function Home() {
             bas coût) et le commercial (qualifier et convertir).
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Feature n="1" title="Pipeline des projets" desc="Le funnel reconstruit, de la demande à la signature, avec les KPIs en direct." />
+            <Feature n="1" title="Pipeline des projets" desc="Le tunnel reconstruit, de la demande à la signature, avec les KPIs en direct." />
             <Feature n="2" title="Scoring des devis" desc="L'IA estime la probabilité de signature et fait remonter les devis à relancer." />
             <Feature n="3" title="Copilote de relance" desc="Des courriels « dans le ton » de la marque, adaptés à l'objection, prêts en un clic." />
             <Feature n="4" title="Résumé d'échanges" desc="Chaque dossier synthétisé en une fiche projet claire et exploitable." />

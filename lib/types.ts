@@ -86,8 +86,8 @@ export const TYPE_LABEL: Record<ClientType, string> = {
   agenceur: "Agenceur",
 };
 
-/** Seuil (en jours sans activité) au-delà duquel un devis envoyé est signalé « à relancer ». */
-export const DEVIS_RELANCE_DAYS = 6;
+/** Seuil (en jours sans activité) au-delà duquel un devis envoyé est signalé « à relancer ». 3 jours = 72 h, aligné sur la promesse du dossier. */
+export const DEVIS_RELANCE_DAYS = 3;
 
 export function euro(n: number): string {
   return new Intl.NumberFormat("fr-FR", {
