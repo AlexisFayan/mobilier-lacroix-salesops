@@ -46,6 +46,7 @@ export default function ProjectDrawer({
   onClose: () => void;
   onStage: (id: string, stage: Stage) => void;
   onUpdate: (p: Project) => void;
+  onDelete: (id: string) => void;
 }) {
   const [score, setScore] = useState<ScoreResult | null>(null);
   const [relance, setRelance] = useState<RelanceResult | null>(null);
@@ -287,12 +288,21 @@ export default function ProjectDrawer({
             )}
 
             <button
-              onClick={() => run("score", async () => setScore(await aiScore(project)))}
+              onClick={() =>
+                run("score", async () => {
+                  const r = await aiScore(project);
+                  setScore(r);
+                  onUpdate({ ...project, score: r.score });
+                })
+              }
               disabled={loading.score}
               className="mt-3 w-full rounded-lg bg-bois-dark py-2 text-[13px] font-medium text-paper transition hover:bg-bois disabled:opacity-50"
             >
               {score ? "Réanalyser" : "Analyser avec l'IA"}
             </button>
+            {score && (
+              <p className="mt-2 text-center text-[11px] text-olive">Score enregistré sur la fiche ({score.score}/100).</p>
+            )}
           </section>
 
           {/* 2. Copilote relance */}
@@ -394,6 +404,18 @@ export default function ProjectDrawer({
                 </li>
               ))}
             </ol>
+          </section>
+
+          {/* Suppression du projet */}
+          <section className="border-t border-border pt-4">
+            <button
+              onClick={() => {
+                if (confirm(`Supprimer définitivement le projet « ${project.client} » ?`)) onDelete(project.id);
+              }}
+              className="w-full rounded-lg border border-rouille/40 py-2 text-[13px] font-medium text-rouille transition hover:bg-rouille hover:text-paper"
+            >
+              Supprimer ce projet
+            </button>
           </section>
         </div>
       </aside>

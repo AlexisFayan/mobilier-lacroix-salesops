@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PROJECTS } from "@/lib/data";
-import { fetchProjects, upsertProject } from "@/lib/projects";
+import { fetchProjects, upsertProject, deleteProject } from "@/lib/projects";
 import type { Project, Stage } from "@/lib/types";
 import Header from "@/components/Header";
 import KpiBar from "@/components/crm/KpiBar";
@@ -63,6 +63,12 @@ export default function CrmPage() {
   function handleUpdate(updated: Project) {
     setProjects((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
     void upsertProject(updated);
+  }
+
+  function handleDelete(id: string) {
+    setProjects((prev) => prev.filter((p) => p.id !== id));
+    setSelectedId(null);
+    void deleteProject(id);
   }
 
   return (
@@ -146,7 +152,7 @@ export default function CrmPage() {
       </main>
 
       {selected && (
-        <ProjectDrawer project={selected} onClose={() => setSelectedId(null)} onStage={handleStage} onUpdate={handleUpdate} />
+        <ProjectDrawer project={selected} onClose={() => setSelectedId(null)} onStage={handleStage} onUpdate={handleUpdate} onDelete={handleDelete} />
       )}
 
       {creating && <NewProjectForm onCreate={handleCreate} onClose={() => setCreating(false)} />}

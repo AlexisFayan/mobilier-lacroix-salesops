@@ -98,3 +98,8 @@ export async function fetchProjects(): Promise<Project[] | null> {
 export async function upsertProject(project: Project): Promise<void> {
   await supabase.from(TABLE).upsert(toRow(project), { onConflict: "id" });
 }
+
+/** Supprime un projet du pipeline. Silencieux en cas d'échec. */
+export async function deleteProject(id: string): Promise<void> {
+  await supabase.from(TABLE).delete().eq("id", id);
+}
