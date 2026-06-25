@@ -47,7 +47,8 @@ Ne jamais s'en écarter. Tout ajout doit se rattacher à un critère, à l'oral,
   - Logique IA → `lib/ai.ts` : **vraie IA si une clé est configurée** (Mistral → Groq → Gemini),
     sinon **repli simulé déterministe** avec **badge honnête** (« IA » olive / « Démo » gold). Ne jamais présenter le repli comme de l'IA.
   - Endpoint serveur → `app/api/ai/route.ts`. **Les clés API restent côté serveur**, jamais exposées au client.
-- Variables d'environnement : `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GOOGLE_API_KEY` (+ `*_MODEL` optionnels).
+  - Données du CRM → **Supabase** (`lib/supabase.ts`, `lib/projects.ts`, table `crm_projects`) ; `lib/data.ts` (`PROJECTS`) reste la source d'amorçage et le repli de démo.
+- Variables d'environnement : `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GOOGLE_API_KEY` (+ `*_MODEL` optionnels) côté serveur ; `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` côté client (repli en dur sur les valeurs du projet si absentes).
 
 ## Definition of Done (auto-vérification avant de conclure une tâche)
 
@@ -59,7 +60,7 @@ Ne jamais s'en écarter. Tout ajout doit se rattacher à un critère, à l'oral,
 
 ## Ne PAS faire (anti-dérive)
 
-- Pas de backend, d'authentification, ni de base de données. `localStorage` suffit pour la persistance de démo.
+- Pas d'authentification ni de backend serveur custom (hors routes `app/api/*` existantes). Le prototype CRM persiste désormais dans **Supabase** (table `crm_projects`, clé *publishable*/anon côté client + policies RLS de démo, repli automatique sur `lib/data.ts` si la base est indisponible). Voir `lib/supabase.ts` et `lib/projects.ts`. Ne pas revenir au localStorage. La **clé secrète** Supabase, elle, ne vit que côté n8n, jamais dans le repo.
 - Pas de feature hors barème, pas de refonte de stack, pas de dépendance lourde ajoutée sans raison.
 - Pas d'orchestration multi-agents sans demande explicite (coûteux ; proportionner au projet).
 
