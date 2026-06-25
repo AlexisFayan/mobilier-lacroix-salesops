@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import type { Project, ClientType, Channel } from "./types";
 
 /**
  * Demandes de devis reçues via le formulaire de la landing (webhook n8n -> Supabase).
@@ -38,4 +39,35 @@ export async function fetchDevisLeads(): Promise<DevisLead[] | null> {
 export async function deleteDevisLead(id: string): Promise<boolean> {
   const { error } = await supabase.from("devis_leads").delete().eq("id", id);
   return !error;
+}
+
+const CLIENT_TYPES: ClientType[] = ["café", "restaurant", "hôtel", "bar", "brasserie", "coffee-shop", "agenceur"];
+
+/** Convertit une demande entrante en projet du pipeline (étape « nouveau »). */
+export function projectFromLead(l: DevisLead): Project {
+  const type = (CLIENT_TYPES as string[]).includes(l.type_etablissement)
+    ? (l.type_etablissement as ClientType)
+    : "restaurant";
+  const m = String(l.budget || "").match(/\d{3,}/);
+  const estValue = m ? parseInt(m[0], 10) : 0;
+  return {
+    id: l.id,
+    client: l.etablissement || l.nom || "Demande sans nom",
+    type,
+    city: l.ville || "",
+    contactName: l.nom || "",
+    contactRole: "Contact",
+    channel: "bouche-a-oreille" as Channel,
+    description: l.description || "",
+    estValue,
+    stage: "nouveau",
+    score: 0,
+    createdDaysAgo: 0,
+    lastActivityDaysAgo: 0,
+    devisSent: false,
+    nextAction: "Qualifier la demande reçue via le site",
+    exchanges: l.description
+      ? [{ id: "e1", daysAgo: 0, type: "email", author: l.nom || "Prospect", content: l.description }]
+      : [],
+  };
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchDevisLeads, deleteDevisLead, type DevisLead } from "@/lib/devis";
+import { fetchDevisLeads, deleteDevisLead, projectFromLead, type DevisLead } from "@/lib/devis";
+import type { Project } from "@/lib/types";
 
 type Draft = { subject: string; body: string; engine: string; real: boolean };
 
@@ -13,7 +14,7 @@ function formatDate(iso: string): string {
   }
 }
 
-export default function DevisInbox() {
+export default function DevisInbox({ onAddToPipeline }: { onAddToPipeline: (p: Project) => void }) {
   const [leads, setLeads] = useState<DevisLead[]>([]);
   const [loading, setLoading] = useState(true);
   const [unavailable, setUnavailable] = useState(false);
@@ -117,6 +118,18 @@ export default function DevisInbox() {
     clearBusy(lead.id);
   }
 
+  async function ajouter(lead: DevisLead) {
+    setLeadBusy(lead.id, "ajouter");
+    onAddToPipeline(projectFromLead(lead));
+    const ok = await deleteDevisLead(lead.id);
+    if (ok) {
+      setLeads((ls) => ls.filter((l) => l.id !== lead.id));
+    } else {
+      setFeedback((f) => ({ ...f, [lead.id]: { ok: true, msg: "Ajouté à la pipeline." } }));
+    }
+    clearBusy(lead.id);
+  }
+
   function updateDraft(id: string, patch: Partial<Draft>) {
     setDrafts((d) => ({ ...d, [id]: { ...d[id], ...patch } }));
   }
@@ -186,6 +199,13 @@ export default function DevisInbox() {
                 )}
 
                 <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => ajouter(lead)}
+                    disabled={!!action}
+                    className="rounded-full bg-olive px-3 py-1.5 text-[12px] font-medium text-paper transition hover:bg-olive/85 disabled:opacity-50"
+                  >
+                    {action === "ajouter" ? "Ajout…" : "Ajouter à la pipeline"}
+                  </button>
                   <button
                     onClick={() => generer(lead)}
                     disabled={!!action}

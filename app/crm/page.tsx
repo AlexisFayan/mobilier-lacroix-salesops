@@ -137,7 +137,7 @@ export default function CrmPage() {
           <PipelineBoard projects={projects} onSelect={setSelectedId} onMove={handleStage} />
         )}
         {view === "liste" && <ProjectList projects={projects} onSelect={setSelectedId} />}
-        {view === "demandes" && <DevisInbox />}
+        {view === "demandes" && <DevisInbox onAddToPipeline={handleCreate} />}
       </main>
 
       {selected && (
