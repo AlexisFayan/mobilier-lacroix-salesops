@@ -163,7 +163,7 @@ export default function RenduPage() {
               <strong>Sur-mesure, fabrication française &amp; éco-conception</strong> : la seconde main monte en puissance dans l'ameublement<Src ids={["fevad-circulaire"]} />, un argument réfection et réemploi.
             </div>
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
-              <strong>Roulement du parc CHR</strong> : défaillances resto +21 %<Src ids={["altares-umih"]} /> mais créations AURA +15,7 %<Src ids={["insee-aura-creations"]} />, un flux continu de projets.
+              <strong>Roulement du parc CHR</strong> : défaillances resto +21 %<Src ids={["altares-umih"]} /> mais le tertiaire marchand AURA reste créateur (+15,7 %)<Src ids={["insee-aura-creations"]} />, un flux continu de projets.
             </div>
             <div className="rounded-xl border border-border bg-paper p-4 text-[12.5px] text-ink/85">
               <strong>AURA, bassin majeur</strong> : 2e région CHR (16 679 ét.)<Src ids={["umih-hcr"]} />, Lyon 2e parc hôtelier<Src ids={["onlylyon-tourisme"]} />, la proximité devient un avantage.
@@ -286,7 +286,9 @@ export default function RenduPage() {
               <tbody>
                 {[
                   ["Qualification des demandes", "A", "R", "I"],
+                  ["Acquisition (aimants, prescripteurs)", "R", "C", "I"],
                   ["Relance des devis (sous 72 h)", "A", "R", "I"],
+                  ["Supervision IA (relances relues)", "A", "R", "I"],
                   ["Mise à jour du CRM", "C", "R", "C"],
                   ["Chiffrage et devis", "A", "C", "R"],
                   ["Bilan mensuel (KPI)", "R", "C", "I"],
@@ -549,7 +551,7 @@ export default function RenduPage() {
           </div>
 
           <p className="mt-4 rounded-xl border border-border bg-sand/40 p-4 text-[12.5px] text-ink/80">
-            <strong>Recoupement multi-sources</strong> : données légales des sociétés via Pappers / Societe.com<Src ids={["pappers-city"]} />, demande et saisonnalité via Google Trends<Src ids={["google-trends"]} />, empreinte digitale des concurrents via Similarweb<Src ids={["similarweb"]} />, en complément des sources primaires (INSEE, UMIH, filière).
+            <strong>Recoupement multi-sources</strong> : données légales des sociétés via Pappers / Societe.com<Src ids={["pappers-city"]} />, demande et saisonnalité via Google Trends<Src ids={["google-trends"]} />, empreinte numérique des concurrents via Similarweb<Src ids={["similarweb"]} />, en complément des sources primaires (INSEE, UMIH, filière).
           </p>
 
           <div className="mt-4 rounded-xl border border-gold/40 bg-gold/5 p-4">

@@ -24,17 +24,17 @@ export const SOURCES: Source[] = [
   { id: "insee-561", theme: "Marché CHR & restauration", org: "INSEE", title: "Fiche secteur 561, Restauration (171 356 entreprises)", url: "https://www.insee.fr/fr/statistiques/7763790", date: "2021" },
   { id: "altares-umih", theme: "Marché CHR & restauration", org: "Altares / UMIH", title: "Défaillances T2 2025, restauration trad. +21 %", url: "https://www.umih.fr/medias/news/16-600-defaillances-dentreprises-au-2e-trimestre-2025-la-restauration-traditionnelle-en-premiere-ligne.html", date: "2025" },
   { id: "insee-hotels-2024", theme: "Hôtellerie & tourisme", org: "INSEE", title: "Parc hôtelier 2024 : 15 155 hôtels ; 617 000 chambres", url: "https://www.insee.fr/fr/statistiques/2015412", date: "2024" },
-  { id: "aura-hotel", theme: "Hôtellerie & tourisme", org: "Auvergne-Rhône-Alpes Tourisme", title: "Mémento, 2 471 hôtels AURA ; 384 hôtels 4-5*", url: "https://pro.auvergnerhonealpes-tourisme.com/memento/hotellerie/", date: "2024" },
+  { id: "aura-hotel", theme: "Hôtellerie & tourisme", org: "Auvergne-Rhône-Alpes Tourisme", title: "Mémento, 2 471 hôtels AURA ; 384 hôtels 4-5*", url: "https://pro.auvergnerhonealpes-tourisme.com/memento/hotellerie/", date: "2025" },
   { id: "coach-omnium", theme: "Hôtellerie & tourisme", org: "Coach Omnium", title: "Panorama hôtellerie : 19 % de l'offre classée haut de gamme/luxe (vs 5 % en 2010)", url: "https://coachomnium.com/bonus/89-panorama-de-lhotellerie-en-france/", date: "2025" },
-  { id: "insee-aura-creations", theme: "Région AURA & Lyon", org: "INSEE", title: "Bilan 2024 AURA, créations héberg.-restauration +15,7 %", url: "https://www.insee.fr/fr/statistiques/8354533?sommaire=8354850", date: "2024" },
+  { id: "insee-aura-creations", theme: "Région AURA & Lyon", org: "INSEE", title: "Bilan 2024 AURA, créations d'entreprises du tertiaire marchand (commerce-transport-hébergement-restauration) +15,7 %", url: "https://www.insee.fr/fr/statistiques/8354533?sommaire=8354850", date: "2024" },
   { id: "onlylyon-resto", theme: "Région AURA & Lyon", org: "ONLYLYON / Métropole de Lyon", title: "Chiffres clés Métropole de Lyon (≈ 5 280 restaurants, INSEE-REE 2021)", url: "https://business.onlylyon.com/fileadmin/user_upload/documents/20240423-mdl-chiffres-cles-metropole-de-lyon-2024-plaquette-fr.pdf", date: "2021" },
-  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme", date: "2024" },
+  { id: "onlylyon-tourisme", theme: "Région AURA & Lyon", org: "ONLYLYON Tourisme & Congrès", title: "Tourisme à Lyon, 2e parc hôtelier français (18 929 chambres)", url: "https://www.onlylyon.com/secteur-tourisme", date: "2022" },
   { id: "fevad-circulaire", theme: "Tendances & conjoncture", org: "FEVAD", title: "Ameublement & seconde main 2025 (essor de l'occasion)", url: "https://www.fevad.com/special-ameublement-et-modeles-circulaires-2025/", date: "2025" },
   { id: "mistral-privacy", theme: "Outils IA", org: "Mistral AI", title: "Confidentialité de l'API La Plateforme (pas d'entraînement sur les données par défaut)", url: "https://docs.mistral.ai/admin/security-access/privacy", date: "2026" },
   { id: "groq-limits", theme: "Outils IA", org: "Groq", title: "Limites de l'offre gratuite (quotas publics)", url: "https://console.groq.com/docs/rate-limits", date: "2026" },
   { id: "pappers-city", theme: "Marché & filière du mobilier", org: "Pappers / Societe.com", title: "CM City Mobilier (820831402), Oullins : effectif < 10, comptes confidentiels (2021)", url: "https://www.pappers.fr/entreprise/cm-city-mobilier-820831402", date: "2021" },
   { id: "google-trends", theme: "Tendances & conjoncture", org: "Google Trends", title: "Intérêt de recherche « mobilier restaurant » (France), demande et saisonnalité", url: "https://trends.google.fr/trends/explore?geo=FR&q=mobilier%20restaurant", date: "2026" },
-  { id: "similarweb", theme: "Tendances & conjoncture", org: "Similarweb", title: "Empreinte digitale des concurrents (méthode de veille)", url: "https://www.similarweb.com/", date: "2026" },
+  { id: "similarweb", theme: "Tendances & conjoncture", org: "Similarweb", title: "Empreinte numérique des concurrents (méthode de veille)", url: "https://www.similarweb.com/", date: "2026" },
 ];
 
 export function srcIndex(id: string): number {
@@ -305,5 +305,5 @@ export const INCERTITUDES = [
   "La part « sur-mesure accessible » (~35 %) est une estimation d'expert non publiée : SAM et SOM sont donnés en fourchettes.",
   "Périmètres de comptage distincts : établissements employeurs (122 000 HCR) et unités légales INSEE (~171 000 restaurants) ne s'additionnent pas.",
   "Le cycle de rénovation CHR (5 à 10 ans) est une référence sectorielle, pas une statistique officielle.",
-  "2 sources à reconfirmer avant l'oral : créations d'entreprises AURA et nombre de restaurants à Lyon.",
+  "Le nombre de restaurants à Lyon (≈ 5 280, INSEE 2021) provient d'une plaquette en cours de réactualisation : nous le retenons comme ordre de grandeur.",
 ];
