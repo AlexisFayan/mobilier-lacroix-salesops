@@ -199,7 +199,7 @@ export default function ProjectDrawer({
 
             {!relance && !loading.relance && (
               <p className="mt-1 text-[12.5px] text-muted">
-                Rédige un email de relance « dans le ton » de la marque, adapté au dernier échange.
+                Rédige un courriel de relance « dans le ton » de la marque, adapté au dernier échange.
               </p>
             )}
             {loading.relance && <div className="mt-3"><Spinner label="Rédaction en cours…" /></div>}
@@ -221,7 +221,7 @@ export default function ProjectDrawer({
                   }}
                   className="mt-2 text-[12px] font-medium text-terracotta-dark hover:underline"
                 >
-                  {copied ? "Copié" : "Copier l'email"}
+                  {copied ? "Copié" : "Copier le courriel"}
                 </button>
               </div>
             )}
