@@ -1,6 +1,10 @@
 # Automatisation n8n - relance des devis
 
-Workflow **réel et importable** qui industrialise la relance des devis (la « fuite n°1 » du diagnostic) : `relance-devis.n8n.json`.
+Workflow **réel** qui industrialise la relance des devis (la « fuite n°1 » du diagnostic). Il existe sous deux formes, identiques :
+
+- **En ligne**, déjà construit dans notre instance n8n (n8n Cloud) :
+  **https://alexisfayan.app.n8n.cloud/workflow/xr1yq95IEPk8HlUk** (à montrer en direct le jour de la soutenance).
+- **Importable**, pour rejouer le scénario sur n'importe quelle instance : `relance-devis.n8n.json`.
 
 > À présenter honnêtement : c'est **l'automatisation qu'on industrialiserait après le POC**. Le prototype, lui, fait déjà les vrais appels IA. n8n n'est pas obligatoire au barème - c'est un plus qui rend le « process → outil → déclencheur » concret (critère 4) et montre le garde-fou humain (critère 7).
 
@@ -15,13 +19,10 @@ Workflow **réel et importable** qui industrialise la relance des devis (la « f
 
 ## Montrer le scénario au prof
 
-1. **Avoir un n8n** (au choix) :
-   - **n8n Cloud** - `app.n8n.cloud`, essai gratuit, rien à installer (le plus simple pour une démo).
-   - **En local** - `npx n8n` puis ouvrir `http://localhost:5678`.
-   - **Docker** - `docker run -it --rm -p 5678:5678 n8nio/n8n`.
-2. **Importer** : dans n8n → menu `...` → **Import from File** → choisir `relance-devis.n8n.json`. Le canvas s'affiche : on voit tout le scénario.
-3. **(Optionnel) le faire tourner** : remplacer `REMPLACER_PAR_VOTRE_CLE_MISTRAL` dans les 2 nœuds Mistral par une clé (console.mistral.ai, gratuite), puis **Execute Workflow**. Sans clé, le canvas reste parfaitement présentable.
+1. **Le plus simple** : ouvrir le workflow déjà en ligne (lien ci-dessus) et le présenter. Le canvas affiche tout le scénario, avec les deux notes (étapes IA, garde-fou humain).
+2. **Sur une autre instance** : dans n8n → menu `...` → **Import from File** → choisir `relance-devis.n8n.json`.
+3. **(Optionnel) le faire tourner** : créer une clé Mistral (console.mistral.ai, gratuite), puis la renseigner **une seule fois** dans la *credential* « Mistral API » (type **Bearer Auth**) partagée par les deux nœuds, et **Execute Workflow**. Sans clé, le canvas reste parfaitement présentable. La clé reste côté n8n, jamais dans le fichier ni exposée.
 
-## Si on veut piloter n8n depuis Claude Code (MCP)
+## Piloté depuis Claude Code (MCP)
 
-C'est possible mais il faut **votre instance n8n** : une URL n8n joignable + une **clé API n8n** (Settings → n8n API). Ensuite on configure le serveur MCP n8n dans Claude Code (`settings.json` → `mcpServers`) et on peut créer/modifier les workflows directement. Tant qu'on n'a pas d'instance + clé, le fichier `.json` importable ci-dessus reste la voie la plus simple pour la soutenance.
+Le workflow en ligne a été **construit directement depuis Claude Code via le serveur MCP n8n** (instance n8n Cloud + clé API n8n configurées dans `settings.json`). On peut donc le créer, le relire et le modifier sans quitter l'éditeur. Le fichier `.json` reste la copie de secours, importable partout en cas de besoin.
