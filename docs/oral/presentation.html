@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mobilier Lacroix · SalesOps B2B augmenté par l'IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#faf6ef; --paper:#fffdf8; --sand:#f1e8d8; --border:#e7dcc8;
+    --ink:#2a2320; --muted:#837567; --bois:#6f4e37; --bois-dark:#463122;
+    --terracotta:#c0653e; --terracotta-dark:#9f4e2d; --clay:#bc7d57;
+    --olive:#5e7150; --gold:#c39a45; --rouille:#a23d23; --bordeaux:#722f37;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:#2a2320;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased;}
+  .serif{font-family:"Fraunces",Georgia,serif;}
+  .deck{display:flex; flex-direction:column; align-items:center; gap:22px; padding:28px 0;}
+  .slide{
+    position:relative; width:1280px; height:720px; overflow:hidden;
+    background:var(--cream); border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.35);
+    padding:64px 72px; display:flex; flex-direction:column;
+  }
+  .dark{background:var(--bois-dark); color:var(--paper);}
+  .dark .muted{color:#c9b9a6;}
+  .grad-warm{background:
+     radial-gradient(900px 500px at 88% 18%, rgba(188,125,87,.40), transparent 60%),
+     radial-gradient(700px 500px at 95% 95%, rgba(192,101,62,.32), transparent 55%),
+     var(--bois-dark);}
+  .kicker{font-size:14px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--terracotta); margin-bottom:14px;}
+  .kicker .b{color:var(--bois);}
+  .dark .kicker{color:var(--clay);}
+  h1.title{font-size:50px; line-height:1.05; font-weight:600; color:var(--bois-dark); letter-spacing:-.01em;}
+  .dark h1.title{color:var(--paper);}
+  .sub{font-size:19px; line-height:1.5; color:var(--muted); margin-top:16px; max-width:640px;}
+  .dark .sub{color:#e8dccb;}
+  .muted{color:var(--muted);}
+  .eyebrow{font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:var(--muted);}
+  .row{display:flex;} .col{display:flex; flex-direction:column;}
+  .grow{flex:1;} .gap8{gap:8px;} .gap12{gap:12px;} .gap16{gap:16px;} .gap20{gap:20px;} .gap24{gap:24px;}
+  .center{align-items:center;} .between{justify-content:space-between;} .end{align-items:flex-end;}
+  .card{background:var(--paper); border:1px solid var(--border); border-radius:16px; padding:22px;}
+  .card.t{border-top:3px solid var(--clay);}
+  .chip{display:inline-block; background:var(--sand); color:var(--bois); border-radius:999px; padding:6px 14px; font-size:14px; font-weight:500;}
+  .pill{display:inline-block; border-radius:999px; padding:4px 12px; font-size:12px; font-weight:600;}
+  .pill.olive{background:rgba(94,113,80,.16); color:var(--olive);}
+  .pill.gold{background:rgba(195,154,69,.22); color:#8a6d1d;}
+  .pill.terra{background:var(--terracotta); color:var(--paper);}
+  .band{background:var(--bois-dark); color:var(--paper); border-radius:14px; padding:18px 22px;}
+  .num{font-family:"Fraunces",serif; font-weight:600;}
+  .footer{position:absolute; left:72px; right:72px; bottom:40px; display:flex; justify-content:space-between; font-size:14px; color:var(--muted);}
+  .stat .v{font-family:"Fraunces",serif; font-size:30px; font-weight:600; color:var(--terracotta-dark);}
+  .stat .l{font-size:13px; color:var(--muted); margin-top:2px;}
+  .logo{width:42px; height:42px; border-radius:11px; background:var(--bois-dark); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:"Fraunces",serif; font-size:22px;}
+  .dark .logo{background:var(--paper); color:var(--bois-dark);}
+  .arrow{align-self:center; color:var(--clay); font-size:24px;}
+  /* flow */
+  .flowbox{border-radius:14px; padding:14px 16px; font-size:15px; line-height:1.35;}
+  .fx-fonc{background:rgba(192,101,62,.12); border:1px solid rgba(192,101,62,.45);}
+  .fx-tech{background:rgba(94,113,80,.12); border:1px solid rgba(94,113,80,.40);}
+  .fx-neutral{background:var(--paper); border:1px solid var(--border);}
+  .ftitle{font-weight:700; color:var(--bois-dark);}
+  .fmeta{font-size:12.5px; color:var(--muted); margin-top:3px;}
+  .check{color:var(--olive); font-weight:700; margin-right:8px;}
+  /* page index */
+  .idx{position:absolute; right:22px; bottom:14px; font-size:11px; color:var(--muted);}
+  .dark .idx{color:#9a8a78;}
+  @media print{
+    @page{ size:1280px 720px; margin:0; }
+    html,body{background:#fff;}
+    .deck{gap:0; padding:0;}
+    .slide{border-radius:0; box-shadow:none; page-break-after:always; break-after:page;}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. COVER -->
+  <section class="slide dark grad-warm">
+    <div class="row center gap12">
+      <div class="logo">L</div>
+      <div><div class="serif" style="font-size:20px; font-weight:600;">Mobilier Lacroix</div>
+      <div class="muted" style="font-size:14px;">Mobilier sur-mesure pour le CHR</div></div>
+    </div>
+    <div class="grow"></div>
+    <div class="kicker">Étude de cas SalesOps B2B</div>
+    <h1 class="title serif" style="font-size:62px; max-width:760px;">SalesOps B2B,<br>augmenté par l'IA</h1>
+    <p class="sub">Repenser le tunnel de vente d'un atelier de mobilier sur-mesure : un système simple, des sources vérifiées, une IA gratuite et garde-fous compris.</p>
+    <div class="grow"></div>
+    <div class="footer"><span>Epitech Digital School Lyon · Promo 2026</span><span>Marché · funnel · IA · prototype</span></div>
+    <div class="idx">01</div>
+  </section>
+
+  <!-- 2. LA DEMARCHE -->
+  <section class="slide">
+    <div class="kicker"><span class="b">—</span> La démarche</div>
+    <h1 class="title serif">Une démarche de conseil,<br>en quatre temps</h1>
+    <div class="row gap16 grow" style="margin-top:36px;">
+      <div class="card t grow col"><div class="num" style="font-size:42px; color:var(--clay);">01</div><div class="grow"></div><div class="serif" style="font-size:22px; font-weight:600; color:var(--bois-dark);">Comprendre</div><p class="muted" style="font-size:15px; margin-top:6px;">L'atelier, ses clients, et la taille réelle de son marché.</p></div>
+      <div class="card t grow col"><div class="num" style="font-size:42px; color:var(--terracotta);">02</div><div class="grow"></div><div class="serif" style="font-size:22px; font-weight:600; color:var(--bois-dark);">Diagnostiquer</div><p class="muted" style="font-size:15px; margin-top:6px;">Le tunnel de vente actuel et l'endroit précis où il fuit.</p></div>
+      <div class="card t grow col"><div class="num" style="font-size:42px; color:var(--olive);">03</div><div class="grow"></div><div class="serif" style="font-size:22px; font-weight:600; color:var(--bois-dark);">Recommander</div><p class="muted" style="font-size:15px; margin-top:6px;">Un système d'acquisition simple, outillé de bout en bout.</p></div>
+      <div class="card t grow col"><div class="num" style="font-size:42px; color:var(--gold);">04</div><div class="grow"></div><div class="serif" style="font-size:22px; font-weight:600; color:var(--bois-dark);">Démontrer</div><p class="muted" style="font-size:15px; margin-top:6px;">Un copilote SalesOps, jouable en direct sur le prototype.</p></div>
+    </div>
+    <div class="idx">02</div>
+  </section>
+
+  <!-- 3. DIVIDER 01 -->
+  <section class="slide dark grad-warm">
+    <div class="grow"></div>
+    <div class="kicker">Premier temps</div>
+    <div class="num" style="font-size:120px; color:rgba(255,253,248,.14); line-height:.9;">01</div>
+    <h1 class="title serif" style="font-size:64px;">Comprendre</h1>
+    <p class="sub">L'atelier, ses clients, et la taille réelle de son marché.</p>
+    <div class="grow"></div>
+    <div class="idx">03</div>
+  </section>
+
+  <!-- 4. L'ATELIER -->
+  <section class="slide">
+    <div class="kicker"><span class="b">01 —</span> Comprendre</div>
+    <h1 class="title serif" style="font-size:42px;">L'atelier Mobilier Lacroix</h1>
+    <div class="row gap20 grow" style="margin-top:26px;">
+      <div class="col gap16" style="width:300px;">
+        <div class="band grow col" style="justify-content:flex-end; background:var(--bois);">
+          <div class="serif" style="font-size:24px; font-weight:600;">Chêne, noyer, velours</div>
+          <div class="muted" style="font-size:14px; color:#e8dccb;">Fabrication sur-mesure, soignée, durable</div>
+        </div>
+      </div>
+      <div class="col gap12 grow">
+        <div class="row gap12">
+          <div class="card grow"><div class="eyebrow">Équipe</div><div class="serif" style="font-size:30px; font-weight:600; color:var(--bois-dark); margin-top:4px;">15 personnes</div></div>
+          <div class="card grow"><div class="eyebrow">Modèle économique</div><div class="serif" style="font-size:24px; font-weight:600; color:var(--bois-dark); margin-top:6px;">Ponctuel · projets × panier</div></div>
+        </div>
+        <div class="card">
+          <div class="eyebrow">Qui sont les clients</div>
+          <div class="row gap8" style="margin-top:10px; flex-wrap:wrap;"><span class="chip">Cafés</span><span class="chip">Restaurants</span><span class="chip">Hôtels</span><span class="chip" style="background:rgba(188,125,87,.25);">Agenceurs &amp; architectes (sous-traitance)</span></div>
+        </div>
+        <div class="row gap12">
+          <div class="card grow" style="background:var(--bois-dark); border:none;"><div class="num" style="font-size:30px; color:var(--paper);">15-20</div><div style="font-size:13px; color:#c9b9a6;">demandes / mois</div></div>
+          <div class="card grow"><div class="num" style="font-size:30px; color:var(--bois-dark);">3-5</div><div class="muted" style="font-size:13px;">projets signés / mois</div></div>
+          <div class="card grow"><div class="num" style="font-size:30px; color:var(--bois-dark);">5-15 k€</div><div class="muted" style="font-size:13px;">panier projet</div></div>
+          <div class="card grow"><div class="num" style="font-size:30px; color:var(--bois-dark);">~250 €</div><div class="muted" style="font-size:13px;">budget com / mois</div></div>
+        </div>
+        <div class="card row between center" style="border-color:rgba(192,101,62,.4); background:rgba(192,101,62,.06); padding:14px 18px;">
+          <div style="font-size:15px;"><b style="color:var(--bois-dark);">Outils :</b> <span class="muted">devis Excel · SketchUp · téléphone</span></div>
+          <div style="color:var(--terracotta-dark); font-weight:700;">Pas de CRM</div>
+        </div>
+      </div>
+    </div>
+    <div class="idx">04</div>
+  </section>
+
+  <!-- 5. MARCHE NICHE -->
+  <section class="slide">
+    <div class="kicker"><span class="b">01 —</span> Comprendre</div>
+    <h1 class="title serif" style="font-size:40px;">Un marché de niche,<br>ancré en Auvergne-Rhône-Alpes</h1>
+    <div class="row gap20 grow" style="margin-top:24px;">
+      <div class="col gap14 grow">
+        <div class="eyebrow">À qui l'atelier vend</div>
+        <div class="card" style="border-left:4px solid var(--terracotta);"><div class="serif" style="font-size:19px; font-weight:600; color:var(--bois-dark);">Restaurateurs &amp; hôteliers</div><p class="muted" style="font-size:14.5px; margin-top:4px;">Qui ouvrent ou rénovent et veulent une pièce unique, durable, à leur image.</p></div>
+        <div class="card" style="border-left:4px solid var(--bordeaux);"><div class="serif" style="font-size:19px; font-weight:600; color:var(--bois-dark);">Architectes d'intérieur · prescripteurs</div><p class="muted" style="font-size:14.5px; margin-top:4px;">Cherchent un atelier fiable pour fabriquer leurs plans en marque blanche. Délais tenus, exécution soignée.</p></div>
+        <div class="card" style="background:var(--sand); border:none;"><div class="eyebrow">Acquisition actuelle, non pilotable</div><div class="row gap8" style="margin-top:8px; flex-wrap:wrap;"><span class="chip" style="background:var(--paper);">Bouche-à-oreille</span><span class="chip" style="background:var(--paper);">Salons pros</span><span class="chip" style="background:var(--paper);">Visites d'atelier</span><span class="chip" style="background:var(--paper);">Partenariats agenceurs</span></div></div>
+      </div>
+      <div class="col gap16" style="width:300px;">
+        <div class="band col grow center" style="justify-content:center; background:var(--bois-dark);"><div class="num" style="font-size:46px; color:var(--paper);">2<sup style="font-size:20px;">e</sup></div><div style="font-size:14px; color:#c9b9a6; text-align:center;">région touristique de France (AURA)</div>
+        <div style="height:1px; background:rgba(255,255,255,.15); width:80%; margin:18px 0;"></div>
+        <div class="num" style="font-size:46px; color:var(--paper);">14</div><div style="font-size:14px; color:#c9b9a6; text-align:center;">concurrents réels recensés, recoupés via Pappers</div></div>
+      </div>
+    </div>
+    <div class="idx">05</div>
+  </section>
+
+  <!-- 6. TAM SAM SOM -->
+  <section class="slide">
+    <div class="kicker"><span class="b">01 —</span> Comprendre · Dimensionner</div>
+    <h1 class="title serif" style="font-size:40px;">Dimensionner le marché :<br>TAM, SAM, SOM</h1>
+    <div class="row gap24 grow" style="margin-top:24px;">
+      <div class="col gap12 grow center" style="justify-content:center;">
+        <div class="band center row between" style="width:100%; background:var(--bois-dark);"><div><div style="font-size:13px; color:#c9b9a6;">TAM</div><div style="font-size:13px; color:#c9b9a6;">Marché total</div></div><div class="num" style="font-size:34px;">~675 M€</div></div>
+        <div class="arrow">▾</div>
+        <div class="band center row between" style="width:82%; background:var(--terracotta);"><div><div style="font-size:13px; color:#f3ded3;">SAM</div><div style="font-size:13px; color:#f3ded3;">Marché accessible</div></div><div class="num" style="font-size:34px;">~34 M€</div></div>
+        <div class="arrow">▾</div>
+        <div class="band center row between" style="width:64%; background:var(--olive);"><div><div style="font-size:13px; color:#dfe6d6;">SOM</div><div style="font-size:13px; color:#dfe6d6;">Atteignable 12-24 mois</div></div><div class="num" style="font-size:30px;">~0,55 M€</div></div>
+      </div>
+      <div class="col gap12" style="width:560px;">
+        <div class="card"><div class="row between center"><div><b class="serif" style="color:var(--bois-dark);">TAM</b> <span class="muted" style="font-size:14px;">— le marché total</span></div><span class="pill olive">Chiffre dur</span></div><p class="muted" style="font-size:14px; margin-top:6px;">Mobilier + agencement CHR &amp; commerce en France. <span style="color:var(--terracotta-dark);">L'Ameublement français · CODIFAB × MKG [1]</span></p></div>
+        <div class="card"><div class="row between center"><div><b class="serif" style="color:var(--bois-dark);">SAM</b> <span class="muted" style="font-size:14px;">— accessible</span></div><span class="pill gold">Estimation d'expert</span></div><p class="muted" style="font-size:14px; margin-top:6px;">Sur-mesure milieu / haut de gamme accessible en AURA. <span style="color:var(--terracotta-dark);">Branche HCR · UMIH [3]</span></p></div>
+        <div class="card"><div class="row between center"><div><b class="serif" style="color:var(--bois-dark);">SOM</b> <span class="muted" style="font-size:14px;">— atteignable</span></div><span class="pill gold">Estimation d'expert</span></div><p class="muted" style="font-size:14px; margin-top:6px;">3-5 projets/mois × 10 k€. Borné par la capacité (15 pers.) et ~250 €/mois de com.</p></div>
+        <div class="band row gap16 center"><div class="num" style="font-size:30px; color:var(--gold);">+10 à +25 pts</div><div style="font-size:15px;">Le levier n'est pas de viser plus grand, mais de <b>mieux convertir</b>, via le CRM.</div></div>
+      </div>
+    </div>
+    <div class="idx">06</div>
+  </section>
+
+  <!-- 7. DIVIDER 02 -->
+  <section class="slide dark grad-warm">
+    <div class="grow"></div>
+    <div class="kicker">Deuxième temps</div>
+    <div class="num" style="font-size:120px; color:rgba(255,253,248,.14); line-height:.9;">02</div>
+    <h1 class="title serif" style="font-size:64px;">Diagnostiquer</h1>
+    <p class="sub">Le tunnel de vente actuel, et l'endroit précis où il fuit.</p>
+    <div class="grow"></div>
+    <div class="idx">07</div>
+  </section>
+
+  <!-- 8. TUNNEL ACTUEL -->
+  <section class="slide">
+    <div class="row between" style="align-items:flex-start;">
+      <div><div class="kicker"><span class="b">02 —</span> Diagnostiquer</div><h1 class="title serif" style="font-size:38px;">Le tunnel actuel : une vente à l'instinct</h1></div>
+      <div style="text-align:right;"><div class="num" style="font-size:34px; color:var(--terracotta-dark);">~25%</div><div class="muted" style="font-size:13px;">de conversion</div></div>
+    </div>
+    <div class="row gap24 grow" style="margin-top:22px;">
+      <div class="col gap10 grow" style="justify-content:center;">
+        <div class="band row between center" style="width:100%; background:#6f4e37;"><span>Demandes entrantes</span><span><span class="muted" style="color:#d9cab9;">15-20</span> <b class="num" style="font-size:20px;">100%</b></span></div>
+        <div class="band row between center" style="width:88%; background:#7d5840;"><span>Qualifiées · besoin + budget</span><span><span style="color:#d9cab9;">10-13</span> <b class="num" style="font-size:20px;">65%</b></span></div>
+        <div class="band row between center" style="width:76%; background:#9a6a45;"><span>Visite atelier / devis</span><span><span style="color:#eaddcc;">7-9</span> <b class="num" style="font-size:20px;">45%</b></span></div>
+        <div class="band row between center" style="width:62%; background:var(--rouille);"><span>Négociation / relance</span><span><span style="color:#f0d6cb;">5-7</span> <b class="num" style="font-size:20px;">32%</b></span></div>
+        <div class="band row between center" style="width:50%; background:var(--bois-dark);"><span>Signés</span><span><span style="color:#d9cab9;">3-5</span> <b class="num" style="font-size:20px;">22%</b></span></div>
+      </div>
+      <div class="col gap12" style="width:520px;">
+        <div class="card" style="border-left:4px solid var(--terracotta);"><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--terracotta-dark); font-weight:700;">La fuite principale</div><div class="serif" style="font-size:20px; font-weight:600; color:var(--terracotta-dark); margin-top:4px;">Près d'1 devis sur 2 part sans jamais être relancé</div><p class="muted" style="font-size:14px; margin-top:6px;">Entre le devis (45%) et la signature (22%), le prospect refroidit faute de suivi. Zéro relance structurée.</p></div>
+        <div class="eyebrow">Les symptômes : une vente artisanale</div>
+        <div class="row gap12"><div class="card grow"><div class="serif" style="font-weight:600; color:var(--bois-dark);">Pas de CRM</div><div class="muted" style="font-size:13.5px;">les pistes vivent dans des têtes</div></div><div class="card grow"><div class="serif" style="font-weight:600; color:var(--bois-dark);">Relance au feeling</div><div class="muted" style="font-size:13.5px;">quand on y pense, si on y pense</div></div></div>
+        <div class="row gap12"><div class="card grow"><div class="serif" style="font-weight:600; color:var(--bois-dark);">Devis sous Excel</div><div class="muted" style="font-size:13.5px;">lents à produire, jamais tracés</div></div><div class="card grow"><div class="serif" style="font-weight:600; color:var(--bois-dark);">Aucun pilotage</div><div class="muted" style="font-size:13.5px;">ni mesure, ni prévision</div></div></div>
+      </div>
+    </div>
+    <div class="idx">08</div>
+  </section>
+
+  <!-- 9. TROIS FUITES -->
+  <section class="slide">
+    <div class="kicker"><span class="b">02 —</span> Diagnostiquer</div>
+    <h1 class="title serif">Trois fuites, une seule cause</h1>
+    <p class="sub" style="max-width:900px;">À chaque étage du tunnel, le même manque : aucun système pour capter, prioriser et relancer.</p>
+    <div class="row gap16 grow" style="margin-top:24px;">
+      <div class="card t grow col"><div class="row between center"><span class="serif" style="color:var(--clay); font-weight:600;">Haut du tunnel</span><span class="pill gold">Volume</span></div><div class="grow"></div><div class="serif" style="font-size:21px; font-weight:600; color:var(--bois-dark);">Le tunnel ne se re-remplit pas</div><p class="muted" style="font-size:14px; margin-top:6px;">L'acquisition dépend du hasard du bouche-à-oreille. Rien de pilotable ni de répétable.</p></div>
+      <div class="card t grow col"><div class="row between center"><span class="serif" style="color:var(--clay); font-weight:600;">Milieu</span><span class="pill gold">Tri</span></div><div class="grow"></div><div class="serif" style="font-size:21px; font-weight:600; color:var(--bois-dark);">Les demandes ne sont pas priorisées</div><p class="muted" style="font-size:14px; margin-top:6px;">On traite au fil de l'eau. Les beaux projets (hôtels, prescripteurs) ne passent pas devant.</p></div>
+      <div class="card grow col" style="border-top:3px solid var(--terracotta);"><div class="row between center"><span class="serif" style="color:var(--terracotta-dark); font-weight:600;">Bas du tunnel</span><span class="pill terra">La plus chère</span></div><div class="grow"></div><div class="serif" style="font-size:21px; font-weight:600; color:var(--terracotta-dark);">Les devis ne sont pas relancés</div><p class="muted" style="font-size:14px; margin-top:6px;">Près d'1 devis sur 2 reste sans réponse. C'est du chiffre d'affaires déjà gagné, puis perdu.</p></div>
+    </div>
+    <div class="band row gap16 center" style="margin-top:18px;"><span style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--clay); font-weight:700;">La cause unique</span><span class="serif" style="font-size:19px; font-weight:600;">Il n'y a pas de système. Tout repose sur la mémoire et l'instinct.</span></div>
+    <div class="idx">09</div>
+  </section>
+
+  <!-- 10. DIVIDER 03 -->
+  <section class="slide dark grad-warm">
+    <div class="grow"></div>
+    <div class="kicker">Troisième temps</div>
+    <div class="num" style="font-size:120px; color:rgba(255,253,248,.14); line-height:.9;">03</div>
+    <h1 class="title serif" style="font-size:64px;">Recommander</h1>
+    <p class="sub">Un système d'acquisition simple, outillé de bout en bout.</p>
+    <div class="grow"></div>
+    <div class="idx">10</div>
+  </section>
+
+  <!-- 11. ATTIRER CONVERTIR PILOTER -->
+  <section class="slide">
+    <div class="kicker"><span class="b">03 —</span> Recommander</div>
+    <h1 class="title serif">Attirer, convertir, piloter</h1>
+    <div class="row gap20 grow" style="margin-top:26px;">
+      <div class="card t grow"><div class="serif" style="font-size:20px; font-weight:600; color:var(--bois-dark);">Attirer <span class="muted" style="font-size:14px; font-weight:400;">5 aimants à prospects</span></div>
+        <div class="col gap8" style="margin-top:14px;">
+          <div class="row center gap12" style="background:var(--sand); border-radius:10px; padding:10px 14px;"><span class="pill terra" style="border-radius:8px;">1</span><span style="font-size:15px;">Guide expert · SEO local</span></div>
+          <div class="row center gap12" style="background:var(--sand); border-radius:10px; padding:10px 14px;"><span class="pill terra" style="border-radius:8px;">2</span><span style="font-size:15px;">Estimateur de budget en ligne</span> <span class="pill olive" style="margin-left:auto;">Prototype</span></div>
+          <div class="row center gap12" style="background:var(--sand); border-radius:10px; padding:10px 14px;"><span class="pill terra" style="border-radius:8px;">3</span><span style="font-size:15px;">Instagram &amp; bouche-à-oreille</span></div>
+          <div class="row center gap12" style="background:var(--sand); border-radius:10px; padding:10px 14px;"><span class="pill terra" style="border-radius:8px;">4</span><span style="font-size:15px;">Programme prescripteurs</span></div>
+          <div class="row center gap12" style="background:var(--sand); border-radius:10px; padding:10px 14px;"><span class="pill terra" style="border-radius:8px;">5</span><span style="font-size:15px;">Visite d'atelier sur rendez-vous</span></div>
+        </div>
+      </div>
+      <div class="col gap16" style="width:520px;">
+        <div class="card grow" style="border-top:3px solid var(--bordeaux);"><div class="serif" style="font-size:20px; font-weight:600; color:var(--bois-dark);">Convertir <span class="muted" style="font-size:14px; font-weight:400;">CRM léger</span></div><p style="font-size:15px; margin-top:10px; color:var(--ink);">Chaque demande est <b>tracée</b>, <b>scorée</b>, et la <b>relance se déclenche toute seule</b>. Plus rien ne dort dans une boîte mail.</p></div>
+        <div class="band grow"><div class="serif" style="font-size:20px; font-weight:600; color:var(--paper);">Piloter <span class="muted" style="font-size:14px; font-weight:400; color:#c9b9a6;">Tableau de bord</span></div><p style="font-size:15px; margin-top:10px; color:#eee3d3;">Un tunnel enfin <b>mesurable et prévisible</b> : taux de conversion, devis en attente, relances à faire, CA prévu.</p></div>
+      </div>
+    </div>
+    <div class="idx">11</div>
+  </section>
+
+  <!-- 12. TUNNEL CIBLE -->
+  <section class="slide">
+    <div class="row between" style="align-items:flex-start;">
+      <div><div class="kicker"><span class="b">03 —</span> Recommander · le tunnel cible</div><h1 class="title serif" style="font-size:38px;">Le tunnel cible, outillé de bout en bout</h1></div>
+      <div class="row gap10"><div class="card" style="padding:10px 16px; text-align:center;"><div class="num" style="font-size:22px; color:var(--olive);">30-35%</div><div class="muted" style="font-size:12px;">conversion (vs 25%)</div></div><div class="card" style="padding:10px 16px; text-align:center;"><div class="num" style="font-size:22px; color:var(--olive);">100%</div><div class="muted" style="font-size:12px;">devis relancés &lt;72h (vs 0)</div></div></div>
+    </div>
+    <div class="row gap12 center" style="margin-top:8px; font-size:13px;"><span><span style="display:inline-block;width:11px;height:11px;background:var(--terracotta);border-radius:3px;vertical-align:middle;"></span> Fonctionnel · ce que vit le client</span><span><span style="display:inline-block;width:11px;height:11px;background:var(--olive);border-radius:3px;vertical-align:middle;"></span> Technique · ce qui tourne en coulisse</span></div>
+    <div class="row gap10 grow" style="margin-top:18px;">
+      <div class="col grow gap10">
+        <div class="flowbox fx-fonc grow"><div class="ftitle">Attirer</div><div class="fmeta">Un aimant capte une demande qualifiée</div></div>
+        <div class="flowbox fx-tech"><div class="ftitle" style="color:var(--olive);">Formulaire</div><div class="fmeta">Webhook n8n → ligne dans Supabase</div></div>
+      </div>
+      <div class="col grow gap10">
+        <div class="flowbox fx-fonc grow"><div class="ftitle">Qualifier</div><div class="fmeta">Le bon projet passe devant</div></div>
+        <div class="flowbox fx-tech"><div class="ftitle" style="color:var(--olive);">IA Mistral</div><div class="fmeta">Scoring chaud / tiède / froid</div></div>
+      </div>
+      <div class="col grow gap10">
+        <div class="flowbox fx-fonc grow"><div class="ftitle">Chiffrer</div><div class="fmeta">Un devis clair, vite produit</div></div>
+        <div class="flowbox fx-tech"><div class="ftitle" style="color:var(--olive);">Statut CRM</div><div class="fmeta">« Devis envoyé » = le déclencheur</div></div>
+      </div>
+      <div class="col grow gap10">
+        <div class="flowbox fx-fonc grow" style="border-width:2px;"><div class="ftitle" style="color:var(--terracotta-dark);">Relancer</div><div class="fmeta">Sous 72h, dans le ton de la maison</div></div>
+        <div class="flowbox fx-tech"><div class="ftitle" style="color:var(--olive);">n8n + Mistral</div><div class="fmeta">72h → brouillon IA → validation humaine</div></div>
+      </div>
+      <div class="col grow gap10">
+        <div class="flowbox fx-fonc grow"><div class="ftitle">Signer</div><div class="fmeta">Signature, acompte, fidélisation</div></div>
+        <div class="flowbox fx-tech"><div class="ftitle" style="color:var(--olive);">Pipeline + KPI</div><div class="fmeta">Tableau de bord + relance post-projet</div></div>
+      </div>
+    </div>
+    <div class="idx">12</div>
+  </section>
+
+  <!-- 13. NOUVEAU : ARCHITECTURE n8n + SUPABASE -->
+  <section class="slide">
+    <div class="kicker"><span class="b">03 —</span> Recommander · le moteur réel</div>
+    <h1 class="title serif" style="font-size:38px;">Le moteur : n8n + Supabase, en réel</h1>
+    <p class="sub" style="max-width:980px; margin-top:10px;">Pas une maquette : les automatisations tournent vraiment sur n8n Cloud, et le prototype lit et écrit dans une base Supabase.</p>
+
+    <!-- Flow 1 : captation -->
+    <div class="card" style="margin-top:18px; padding:16px 20px;">
+      <div class="eyebrow" style="margin-bottom:10px;">Captation — du formulaire du site à la base</div>
+      <div class="row center gap8" style="font-size:14.5px;">
+        <div class="flowbox fx-fonc">Formulaire de devis<div class="fmeta">landing</div></div>
+        <span class="arrow" style="font-size:20px;">→</span>
+        <div class="flowbox fx-tech"><b style="color:var(--olive);">Webhook n8n</b><div class="fmeta">reçoit la demande</div></div>
+        <span class="arrow" style="font-size:20px;">→</span>
+        <div class="flowbox fx-tech"><b style="color:var(--olive);">Supabase</b><div class="fmeta">table <code>devis_leads</code></div></div>
+        <span class="arrow" style="font-size:20px;">+</span>
+        <div class="flowbox fx-fonc"><b style="color:var(--terracotta-dark);">Courriel</b><div class="fmeta">Resend · dans le ton</div></div>
+      </div>
+    </div>
+
+    <!-- Flow 2 : relance -->
+    <div class="card" style="margin-top:12px; padding:16px 20px;">
+      <div class="eyebrow" style="margin-bottom:10px;">Relance — l'IA propose, l'humain valide</div>
+      <div class="row center gap8" style="font-size:14.5px;">
+        <div class="flowbox fx-fonc">Devis sans réponse<div class="fmeta">condition 72h</div></div>
+        <span class="arrow" style="font-size:20px;">→</span>
+        <div class="flowbox fx-tech"><b style="color:var(--olive);">Scoring Mistral</b><div class="fmeta">probabilité de signature</div></div>
+        <span class="arrow" style="font-size:20px;">→</span>
+        <div class="flowbox fx-tech"><b style="color:var(--olive);">Brouillon Mistral</b><div class="fmeta">courriel de relance</div></div>
+        <span class="arrow" style="font-size:20px;">→</span>
+        <div class="flowbox fx-fonc" style="border-width:2px;"><b style="color:var(--terracotta-dark);">Validation humaine</b><div class="fmeta">garde-fou · rien ne part seul</div></div>
+      </div>
+    </div>
+
+    <div class="band row gap20 center" style="margin-top:14px;">
+      <span class="pill olive" style="background:rgba(94,113,80,.3); color:#cfe0c2;">Exécuté en réel</span>
+      <span style="font-size:15px;">Le pipeline du prototype n'est plus figé : demandes, déplacements et scores sont <b>persistés et partagés</b> dans Supabase.</span>
+    </div>
+    <div class="idx">13</div>
+  </section>
+
+  <!-- 14. IA UTILE -->
+  <section class="slide">
+    <div class="kicker"><span class="b">03 —</span> Recommander · l'IA</div>
+    <h1 class="title serif">Une IA utile, gratuite et responsable</h1>
+    <div class="row gap20 grow" style="margin-top:22px;">
+      <div class="col grow gap14">
+        <div class="eyebrow">Trois usages concrets</div>
+        <div class="row gap12 grow">
+          <div class="card t grow col"><div class="serif" style="font-size:19px; font-weight:600; color:var(--bois-dark);">Scorer</div><p class="muted" style="font-size:14px; margin-top:6px;">Lit la demande, propose un score et un budget estimé.</p></div>
+          <div class="card t grow col"><div class="serif" style="font-size:19px; font-weight:600; color:var(--bois-dark);">Rédiger</div><p class="muted" style="font-size:14px; margin-top:6px;">Des relances « dans le ton » de la maison, prêtes à valider.</p></div>
+          <div class="card t grow col"><div class="serif" style="font-size:19px; font-weight:600; color:var(--bois-dark);">Synthétiser</div><p class="muted" style="font-size:14px; margin-top:6px;">Résume l'historique et propose la prochaine action.</p></div>
+        </div>
+        <div class="band"><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--clay); font-weight:700;">Retour sur investissement</div><p style="font-size:15px; margin-top:6px; color:#eee3d3;">Outils à <b>0 €</b> (offres gratuites). Un seul devis relancé et signé = <b>un projet à 5-15 k€</b>. Et des heures rendues au commercial chaque semaine.</p></div>
+      </div>
+      <div class="card col" style="width:500px; background:var(--sand); border:none;">
+        <div class="serif" style="font-size:20px; font-weight:600; color:var(--bois-dark);">Les garde-fous</div>
+        <div class="col gap14" style="margin-top:16px; font-size:15px;">
+          <div><span class="check">✓</span><b>Humain dans la boucle.</b> Rien n'est envoyé sans validation.</div>
+          <div><span class="check">✓</span><b>Mistral, FR / UE [9].</b> RGPD natif, pas d'entraînement sur les données.</div>
+          <div><span class="check">✓</span><b>Repli automatique vers Groq [10]</b> si le quota gratuit est atteint.</div>
+          <div><span class="check">✓</span><b>n8n &amp; Supabase</b> hébergés en UE, préférés aux outils US.</div>
+        </div>
+        <div class="grow"></div>
+        <div style="border-top:1px solid var(--border); padding-top:14px; font-style:italic; color:var(--muted); font-size:15px;">« L'IA assiste l'artisan, elle ne le remplace pas. »</div>
+      </div>
+    </div>
+    <div class="idx">14</div>
+  </section>
+
+  <!-- 15. DEMO PROTOTYPE -->
+  <section class="slide dark">
+    <div class="row between center"><div><div class="kicker">04 — Démontrer</div><h1 class="title serif" style="font-size:38px;">Le copilote SalesOps, jouable en direct</h1></div>
+    <div class="pill olive" style="background:rgba(94,113,80,.35); color:#dfe9d6; font-size:14px; padding:8px 16px;">Démo live → mobilier-lacroix.vercel.app</div></div>
+    <div class="card grow" style="margin-top:20px; background:var(--cream); border:none; padding:0; overflow:hidden; display:flex; color:var(--ink);">
+      <div class="col" style="width:200px; background:var(--bois-dark); color:var(--paper); padding:22px 18px;">
+        <div class="row center gap8"><div class="logo" style="width:30px;height:30px;font-size:15px;">L</div><b style="font-size:15px;">SalesOps</b></div>
+        <div class="col gap6" style="margin-top:26px; font-size:14px;">
+          <div style="background:var(--olive); border-radius:8px; padding:8px 12px;">Pipeline</div>
+          <div style="padding:8px 12px; color:#c9b9a6;">Demandes</div>
+          <div style="padding:8px 12px; color:#c9b9a6;">Relances · 3 dues</div>
+          <div style="padding:8px 12px; color:#c9b9a6;">Tableau de bord</div>
+        </div>
+        <div class="grow"></div>
+        <div style="font-size:11px; color:#9a8a78;">Prototype · données Supabase</div>
+      </div>
+      <div class="grow col" style="padding:20px;">
+        <div class="row between center"><b class="serif" style="font-size:20px; color:var(--bois-dark);">Pipeline · juin</b><div class="row gap8"><span class="chip" style="font-size:12px;">CA prévu 48 k€</span><span class="chip" style="font-size:12px;">Conv. 33%</span></div></div>
+        <div class="row gap10 grow" style="margin-top:14px;">
+          <div class="col grow gap8"><div class="eyebrow" style="font-size:11px;">Nouveau · 4</div><div class="card" style="padding:12px;"><b style="font-size:14px;">Hôtel Lyon 6e</b><div class="muted" style="font-size:12px;">Banquettes · ~12 k€</div></div><div class="card" style="padding:12px;"><b style="font-size:14px;">Brasserie Part-Dieu</b><div class="muted" style="font-size:12px;">Tables · ~6 k€</div></div></div>
+          <div class="col grow gap8"><div class="eyebrow" style="font-size:11px;">Devis · 3</div><div class="card" style="padding:12px;"><b style="font-size:14px;">Café Croix-Rousse</b><div class="muted" style="font-size:12px;">Comptoir · ~9 k€</div></div></div>
+          <div class="col grow gap8"><div class="eyebrow" style="font-size:11px; color:var(--terracotta-dark);">Relance due</div><div class="card" style="padding:12px; background:rgba(192,101,62,.07); border-color:rgba(192,101,62,.3);"><b style="font-size:14px;">Hôtel *** Annecy</b><div style="font-size:12px; color:var(--terracotta-dark);">Devis J+5 · sans réponse</div></div></div>
+          <div class="col grow gap8"><div class="eyebrow" style="font-size:11px; color:var(--olive);">Signé · 2</div><div class="card" style="padding:12px; background:rgba(94,113,80,.08); border-color:rgba(94,113,80,.3);"><b style="font-size:14px;">Restaurant Bellecour</b><div class="muted" style="font-size:12px;">14 k€ · acompte reçu</div></div></div>
+        </div>
+      </div>
+      <div class="col" style="width:300px; border-left:1px solid var(--border); padding:18px;">
+        <div class="row between center"><div class="eyebrow" style="font-size:11px;">Copilote IA</div><span class="pill gold">Mistral</span></div>
+        <div class="card" style="margin-top:12px; padding:12px; background:rgba(192,101,62,.07); border-color:rgba(192,101,62,.25);"><b style="font-size:13px;">Hôtel *** Annecy</b><div><span class="serif" style="font-size:18px; color:var(--terracotta-dark); font-weight:600;">Chaud</span> <span class="muted" style="font-size:12px;">score 86 · ~18 k€</span></div></div>
+        <div class="eyebrow" style="font-size:11px; margin-top:14px;">Brouillon de relance</div>
+        <p style="font-size:12.5px; line-height:1.5; color:var(--ink); margin-top:8px;">Bonjour, j'espère que votre projet d'aménagement avance bien. Notre atelier vous a transmis un devis pour vos banquettes ; je reste à votre disposition pour ajuster les essences ou le calendrier de pose. Souhaitez-vous qu'on en échange cette semaine ?</p>
+        <div class="grow"></div>
+        <div class="row gap8" style="margin-top:12px;"><span class="pill" style="background:var(--olive); color:var(--paper);">Valider &amp; envoyer</span><span class="pill" style="background:var(--paper); border:1px solid var(--border); color:var(--ink);">Éditer</span></div>
+      </div>
+    </div>
+    <div class="idx">15</div>
+  </section>
+
+  <!-- 16. SYNTHESE -->
+  <section class="slide">
+    <div class="kicker"><span class="b">—</span> Synthèse</div>
+    <h1 class="title serif">Ce que ça change · et nos sources</h1>
+    <div class="row gap24 grow" style="margin-top:24px;">
+      <div class="col gap12" style="width:520px;">
+        <div class="eyebrow">Avant → Après</div>
+        <div class="card row between center"><span class="muted">Conversion</span><span><b class="num" style="font-size:22px; color:var(--rouille);">~25%</b> <span class="muted">→</span> <b class="num" style="font-size:22px; color:var(--olive);">30-35%</b></span></div>
+        <div class="card row between center"><span class="muted">Devis relancés &lt; 72h</span><span><b class="num" style="font-size:22px; color:var(--rouille);">0%</b> <span class="muted">→</span> <b class="num" style="font-size:22px; color:var(--olive);">100%</b></span></div>
+        <div class="card row between center"><span class="muted">Pilotage du tunnel</span><span><b class="num" style="font-size:20px; color:var(--rouille);">Aucun</b> <span class="muted">→</span> <b class="num" style="font-size:20px; color:var(--olive);">Mesurable</b></span></div>
+        <div class="band row gap16 center" style="margin-top:auto;"><div class="num" style="font-size:34px; color:var(--gold);">0 €</div><div style="font-size:14px;">de coût outils. L'investissement, c'est la mise en place, pas la facture mensuelle.</div></div>
+      </div>
+      <div class="card grow col" style="background:var(--sand); border:none;">
+        <div class="row between center"><div class="eyebrow">Sources vérifiées</div><span class="muted" style="font-size:12px;">cliquables · dossier en ligne</span></div>
+        <div class="row gap20" style="margin-top:14px; font-size:13.5px;">
+          <div class="col gap10 grow">
+            <div><b class="num" style="color:var(--terracotta-dark);">1</b> Marché Contract &amp; Agencement · L'Ameublement fr.</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">3</b> Branche HCR 2024 · UMIH</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">5</b> Panorama hôtellerie · Coach Omnium</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">7</b> Chiffres clés Métropole de Lyon</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">9</b> Confidentialité &amp; RGPD · Mistral AI</div>
+          </div>
+          <div class="col gap10 grow">
+            <div><b class="num" style="color:var(--terracotta-dark);">2</b> Étude CODIFAB × MKG · Courrier du Meuble</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">4</b> Mémento hôtellerie AURA</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">6</b> Démographie des entreprises · INSEE</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">8</b> Concurrents recoupés · Pappers</div>
+            <div><b class="num" style="color:var(--terracotta-dark);">10</b> Quotas API · Groq</div>
+          </div>
+        </div>
+        <div class="grow"></div>
+        <div class="band row between center"><b class="serif" style="font-size:17px;">Dossier complet · 19 sources datées</b><span style="color:var(--gold); font-size:14px;">mobilier-lacroix.vercel.app/rendu →</span></div>
+      </div>
+    </div>
+    <div class="idx">16</div>
+  </section>
+
+</div>
+<script>
+  // Navigation : flèches / espace pour défiler slide par slide ; F pour plein écran.
+  const slides=[...document.querySelectorAll('.slide')]; let i=0;
+  function go(n){ i=Math.max(0,Math.min(slides.length-1,n)); slides[i].scrollIntoView({behavior:'smooth',block:'center'}); }
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(i+1);}
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1);}
+    if(e.key.toLowerCase()==='f'){ if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+  });
+</script>
+</body>
+</html>
