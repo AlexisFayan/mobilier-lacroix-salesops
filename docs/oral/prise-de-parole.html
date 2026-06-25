@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<title>Mobilier Lacroix — Trame de prise de parole</title>
+<style>
+  :root{
+    --cream:#faf6ef; --paper:#fffdf8; --sand:#f1e8d8; --border:#e7dcc8;
+    --ink:#2a2320; --muted:#837567; --bois:#6f4e37; --bois-dark:#463122;
+    --terracotta:#c0653e; --terracotta-dark:#9f4e2d; --clay:#bc7d57;
+    --olive:#5e7150; --gold:#c39a45; --rouille:#a23d23;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--cream); font-size:11.5px; line-height:1.45;}
+  .serif{font-family:"Fraunces",Georgia,serif;}
+  .page{width:210mm; min-height:297mm; margin:0 auto; background:var(--cream); padding:16mm 15mm;}
+  h1{font-family:"Fraunces",serif; font-size:26px; color:var(--bois-dark); font-weight:600;}
+  .lead{color:var(--muted); font-size:12.5px; margin-top:3px;}
+  .box{border:1px solid var(--border); background:var(--paper); border-radius:12px; padding:12px 16px; margin-top:12px; break-inside:avoid;}
+  .box.dark{background:var(--bois-dark); color:var(--paper); border:none;}
+  .box.warn{background:rgba(192,101,62,.07); border-color:rgba(192,101,62,.4);}
+  .box.olive{background:rgba(94,113,80,.08); border-color:rgba(94,113,80,.4);}
+  .lbl{font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--terracotta-dark);}
+  .dark .lbl{color:var(--clay);}
+  ul{margin:5px 0 0 16px;} li{margin:2px 0;}
+  .slide{display:flex; gap:14px; padding:11px 0; border-top:1px solid var(--border); break-inside:avoid;}
+  .num{flex:none; width:30px; height:30px; border-radius:9px; background:var(--bois-dark); color:var(--paper); font-family:"Fraunces",serif; font-weight:600; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .num.div{background:var(--clay);}
+  .num.demo{background:var(--olive);}
+  .stitle{font-family:"Fraunces",serif; font-size:15px; font-weight:600; color:var(--bois-dark);}
+  .meta{font-size:10px; color:var(--muted); margin-left:auto; text-align:right; white-space:nowrap;}
+  .msg{font-style:italic; color:var(--bois); margin:3px 0 4px;}
+  .say{color:var(--ink);}
+  .tag{display:inline-block; font-size:9px; font-weight:700; border-radius:999px; padding:2px 8px; margin-left:6px; vertical-align:middle;}
+  .tag.add{background:rgba(94,113,80,.18); color:var(--olive);}
+  .tag.demo{background:rgba(192,101,62,.16); color:var(--terracotta-dark);}
+  .trans{font-size:10.5px; color:var(--terracotta-dark); margin-top:4px;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;}
+  .foot{margin-top:14px; font-size:9.5px; color:var(--muted); text-align:center;}
+  @media print{ @page{ size:A4 portrait; margin:0; } body{background:#fff;} .page{margin:0;} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Trame de prise de parole · oral ~14 min</h1>
+  <div class="lead">Mobilier Lacroix · SalesOps B2B augmenté par l'IA. Slide par slide : le message, quoi dire, quand glisser Supabase / n8n, quand montrer en direct.</div>
+
+  <div class="box dark">
+    <span class="lbl">Règles d'or</span>
+    <ul>
+      <li>On ne lit pas la slide : elle illustre, on raconte.</li>
+      <li>Toute l'équipe parle (2 pts à l'oral). Équipe de 6 : <b>Luca, Sasha, Nico, Jordan, Mattis, Alexis</b>. Alexis et Nico, qui connaissent le mieux le projet, tiennent l'ouverture, la partie technique, la démo et les questions. Répartition par slide ci-dessous.</li>
+      <li>Cible 13-14 min + questions. Ne pas dépasser 15 min (1 pt).</li>
+      <li>Jamais de chiffre non sourcé. Jamais le produit dans le « pourquoi » (le pourquoi = offrir une âme aux lieux de rencontre).</li>
+    </ul>
+  </div>
+
+  <div class="box olive">
+    <span class="lbl" style="color:var(--olive)">Check technique avant de monter</span>
+    <div class="grid2" style="margin-top:5px;">
+      <ul>
+        <li>URL de prod ouverte + onglet local <code>npm run dev</code> en secours.</li>
+        <li>Appel IA à blanc 2 min avant (réveiller la route, éviter le cold start).</li>
+        <li>Onglets prêts : <b>n8n Cloud</b>, <b>Supabase</b> (table <code>devis_leads</code>), la <b>landing avec le formulaire</b>.</li>
+      </ul>
+      <ul>
+        <li>Clé Mistral active dans n8n (sinon repli simulé assumé).</li>
+        <li>Le CRM est branché Supabase : <b>rafraîchir ne casse plus rien</b> (l'état est persistant).</li>
+        <li>Avoir une capture vidéo de secours de la démo, au cas où.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <span class="lbl">Répartition de la parole · 6 personnes</span>
+    <div class="grid2" style="margin-top:5px;">
+      <ul>
+        <li><b>Alexis</b> — accroche (1-2), conclusion (15), pilote les questions, renfort démo.</li>
+        <li><b>Luca</b> — l'atelier (3-4).</li>
+        <li><b>Sasha</b> — marché &amp; dimensionnement (5-6).</li>
+      </ul>
+      <ul>
+        <li><b>Jordan</b> — diagnostic : le tunnel &amp; les fuites (7-9).</li>
+        <li><b>Mattis</b> — le plan (10-11) &amp; l'IA responsable (13).</li>
+        <li><b>Nico</b> — l'architecture n8n / Supabase (12) &amp; la démo live (14).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S1 -->
+  <div class="slide">
+    <div class="num">1</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Couverture · l'accroche</span><span class="meta">Alexis · 0:30</span></div>
+      <div class="msg">Le pourquoi, avant le produit.</div>
+      <ul class="say">
+        <li>« Mobilier Lacroix, c'est offrir à chaque lieu de rencontre un morceau d'histoire française. »</li>
+        <li>On ne parle pas de meubles : on donne une âme aux lieux où les gens se réunissent (archétype le Créateur, le raffinement de l'Amant).</li>
+        <li>Notre mission de conseil : remettre de l'ordre dans leur façon de vendre, et y greffer une IA utile.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="slide">
+    <div class="num">2</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">La démarche en quatre temps</span><span class="meta">Alexis · 0:30</span></div>
+      <div class="msg">Annoncer le fil conducteur (il est noté).</div>
+      <ul class="say">
+        <li>Quatre temps : Comprendre, Diagnostiquer, Recommander, Démontrer.</li>
+        <li>« Et on finit par une démonstration en direct : tout ce qu'on affirme, on le montre en vrai. »</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="slide">
+    <div class="num div">3</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Intercalaire · 01 Comprendre</span><span class="meta">Luca · 0:10</span></div>
+      <ul class="say"><li>Transition courte : « D'abord, comprendre l'atelier, ses clients et la taille réelle de son marché. »</li></ul>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="slide">
+    <div class="num">4</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">L'atelier Mobilier Lacroix</span><span class="meta">Luca · 1:00</span></div>
+      <div class="msg">Une belle maison, mais qui vend à l'instinct.</div>
+      <ul class="say">
+        <li>Atelier lyonnais, 15 personnes, mobilier sur-mesure pour le CHR : cafés, restaurants, hôtels, plus la sous-traitance pour agenceurs et architectes.</li>
+        <li>Modèle ponctuel : le chiffre se fait en projets × panier (5 à 15 k€). 15-20 demandes par mois, 3 à 5 signées, budget commercial ~250 €/mois.</li>
+        <li>Le point qui change tout : <b>pas de CRM</b>. Devis sous Excel, suivi de tête, au téléphone.</li>
+      </ul>
+      <div class="trans">→ « On sait faire de belles pièces. La question, c'est : combien de projets nous échappent en chemin ? »</div>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="slide">
+    <div class="num">5</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Un marché de niche, ancré en AURA</span><span class="meta">Sasha · 1:00</span></div>
+      <div class="msg">Le marché est réel, local, et mal exploité.</div>
+      <ul class="say">
+        <li>Deux clients : restaurateurs / hôteliers (qui veulent une pièce unique à leur image) et architectes / prescripteurs (marque blanche, un canal récurrent précieux).</li>
+        <li>Ancrage Auvergne-Rhône-Alpes : 2e région touristique de France, donc une vraie demande de mobilier sur-mesure.</li>
+        <li>14 concurrents réels recensés et recoupés via Pappers : on a fait le travail terrain, pas une estimation au doigt mouillé.</li>
+        <li>Aujourd'hui l'acquisition tient au bouche-à-oreille et aux salons : non pilotable. C'est là qu'est le levier.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="slide">
+    <div class="num">6</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Dimensionner le marché : TAM / SAM / SOM</span><span class="meta">Sasha · 1:15</span></div>
+      <div class="msg">Un chiffre défendable vaut mieux qu'un gros chiffre faux.</div>
+      <ul class="say">
+        <li>Du marché total à l'atteignable : ~675 M€ → ~34 M€ → ~0,55 M€ sur 12-24 mois.</li>
+        <li>Honnêteté assumée : le TAM est un chiffre dur sourcé ; SAM et SOM sont des estimations d'expert, données en fourchettes.</li>
+        <li>Le message clé : « On ne cherche pas à viser plus grand, mais à mieux convertir : +10 à +25 points, via le CRM. »</li>
+        <li><i>Si question :</i> SAM 28-40 M€, SOM borné par la capacité de l'atelier (15 personnes).</li>
+      </ul>
+      <div class="trans">→ « On sait qui ils sont et ce que vaut le marché. Voyons maintenant ce qui bloque. »</div>
+    </div>
+  </div>
+
+  <!-- S7 -->
+  <div class="slide">
+    <div class="num div">7</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Intercalaire · 02 Diagnostiquer</span><span class="meta">Jordan · 0:10</span></div>
+      <ul class="say"><li>« Deuxième temps : le tunnel de vente actuel, et l'endroit précis où il fuit. »</li></ul>
+    </div>
+  </div>
+
+  <!-- S8 -->
+  <div class="slide">
+    <div class="num">8</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Le tunnel actuel : une vente à l'instinct</span><span class="meta">Jordan · 1:30</span></div>
+      <div class="msg">Montrer la fuite, chiffrée.</div>
+      <ul class="say">
+        <li>Funnel reconstruit (il n'était pas mesuré) : 100 → 65 → 45 → 32 → 22 %. Conversion globale ~25 %.</li>
+        <li><b>La fuite n°1 :</b> entre le devis (45 %) et la signature (22 %), près d'un devis sur deux part sans jamais être relancé.</li>
+        <li>C'est du chiffre d'affaires déjà gagné, puis perdu, faute de suivi.</li>
+        <li>Symptômes : pas de CRM, relance au feeling, devis sous Excel, aucun pilotage.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S9 -->
+  <div class="slide">
+    <div class="num">9</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Trois fuites, une seule cause</span><span class="meta">Jordan · 1:00</span></div>
+      <div class="msg">Une cause unique, donc une solution unique.</div>
+      <ul class="say">
+        <li>Trois fuites : le haut du tunnel ne se re-remplit pas (volume), le milieu ne priorise pas (tri), le bas ne relance pas (la plus chère).</li>
+        <li>La cause unique : « Il n'y a pas de système. Tout repose sur la mémoire et l'instinct. »</li>
+      </ul>
+      <div class="trans">→ « La fuite est claire. Voici comment on la colmate. »</div>
+    </div>
+  </div>
+
+  <!-- S10 -->
+  <div class="slide">
+    <div class="num div">10</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Intercalaire · 03 Recommander</span><span class="meta">Mattis · 0:10</span></div>
+      <ul class="say"><li>« Troisième temps : un système d'acquisition simple, outillé de bout en bout. »</li></ul>
+    </div>
+  </div>
+
+  <!-- S11 -->
+  <div class="slide">
+    <div class="num">11</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Attirer, convertir, piloter</span><span class="meta">Mattis · 1:15</span></div>
+      <div class="msg">Un plan équilibré, à bas coût.</div>
+      <ul class="say">
+        <li>Marketing + commercial, en organique (~250 €/mois, jamais de pub massive, cohérent avec le SOM).</li>
+        <li><b>Attirer :</b> 5 aimants (guide expert SEO local, estimateur en ligne — c'est notre prototype, Instagram, programme prescripteurs, visites d'atelier).</li>
+        <li><b>Convertir :</b> un CRM léger où chaque demande est tracée, scorée, et où la relance se déclenche toute seule.</li>
+        <li><b>Piloter :</b> un tableau de bord (conversion, devis en attente, relances à faire, CA prévu).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S12 -->
+  <div class="slide">
+    <div class="num">12</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Le tunnel cible, outillé de bout en bout <span class="tag add">+ n8n / Supabase</span></span><span class="meta">Nico · 1:30</span></div>
+      <div class="msg">Le plan ne reste pas sur le papier : il tourne.</div>
+      <ul class="say">
+        <li>Cinq étapes : Attirer, Qualifier, Chiffrer, Relancer, Signer. Chacune a une couche technique en coulisse.</li>
+        <li>Objectif chiffré : 30-35 % de conversion (vs 25 %), 100 % des devis relancés sous 72 h (vs 0).</li>
+      </ul>
+      <div class="box warn" style="margin-top:7px;">
+        <span class="lbl">À dire en plus (ce qui n'est pas écrit sur la slide)</span>
+        <ul class="say">
+          <li>« Le formulaire de devis du site envoie la demande par <b>webhook à n8n</b>, qui l'enregistre dans notre base <b>Supabase</b> et la fait apparaître dans le CRM. »</li>
+          <li>« Quand un devis reste sans réponse 72 h, <b>n8n</b> appelle <b>Mistral</b> pour le scorer et rédiger un brouillon de relance, puis s'arrête sur une <b>validation humaine</b>. Rien ne part tout seul. »</li>
+          <li>« Et ce n'est pas une maquette : ça tourne pour de vrai. Je vous le montre dans deux minutes. »</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- S13 -->
+  <div class="slide">
+    <div class="num">13</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Une IA utile, gratuite et responsable <span class="tag add">+ Supabase / n8n UE</span></span><span class="meta">Mattis · 1:15</span></div>
+      <div class="msg">Pas un gadget : un irritant + un indicateur, à chaque fois.</div>
+      <ul class="say">
+        <li>Trois usages : Scorer (priorité), Rédiger (relance dans le ton), Synthétiser (résumé + prochaine action).</li>
+        <li><b>Garde-fous :</b> l'humain valide tout ; Mistral FR/UE, RGPD natif, pas d'entraînement sur les données ; repli automatique vers Groq ; <b>n8n et Supabase hébergés en UE</b>, préférés aux outils US.</li>
+        <li><b>ROI :</b> outils à 0 €. Un seul devis relancé et signé = un projet à 5-15 k€, plus des heures rendues au commercial.</li>
+        <li>La phrase à garder : « L'IA assiste l'artisan, elle ne le remplace pas. »</li>
+      </ul>
+      <div class="trans">→ « Assez parlé. Regardons tout ça tourner. »</div>
+    </div>
+  </div>
+
+  <!-- S14 -->
+  <div class="slide">
+    <div class="num demo">14</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Le copilote SalesOps, jouable en direct <span class="tag demo">DÉMO LIVE</span></span><span class="meta">Nico (Alexis en renfort) · 2:30</span></div>
+      <div class="msg">Le moment qui prouve tout. Scénario répété, rien d'improvisé.</div>
+      <div class="box olive" style="margin-top:6px;">
+        <span class="lbl" style="color:var(--olive)">Déroulé conseillé (montrer le parcours réel de bout en bout)</span>
+        <ul class="say">
+          <li><b>1. L'aimant —</b> ouvrir l'estimateur, remplir 2-3 postes, montrer la fourchette → « voilà comment on attire et qualifie, à bas coût ».</li>
+          <li><b>2. Le formulaire de devis —</b> envoyer une demande depuis la landing.</li>
+          <li><b>3. n8n (live) —</b> basculer sur n8n Cloud : montrer l'exécution qui part (webhook reçu, scoring, brouillon, validation humaine).</li>
+          <li><b>4. Supabase (live) —</b> basculer sur la table <code>devis_leads</code> : la ligne vient d'apparaître. « La donnée est réelle et persistée. »</li>
+          <li><b>5. CRM, onglet Demandes —</b> la demande est là → bouton « <b>Ajouter à la pipeline</b> ».</li>
+          <li><b>6. La fiche —</b> « Analyser avec l'IA » (le score s'enregistre), « Générer un message » dans le ton, relire, valider. Pointer le badge <b>IA · Mistral</b> ou <b>Démo</b>.</li>
+          <li><b>7. Le pipeline —</b> glisser une carte d'une colonne à l'autre. « Le carnet de commandes piloté, plus à l'instinct. »</li>
+        </ul>
+      </div>
+      <div class="trans" style="margin-top:6px;">Filet de sécurité : si l'IA tombe, le repli simulé prend le relais, signalé honnêtement (« notre garde-fou »). Le commercial n'est jamais bloqué.</div>
+    </div>
+  </div>
+
+  <!-- S15 -->
+  <div class="slide">
+    <div class="num">15</div>
+    <div>
+      <div style="display:flex;"><span class="stitle">Ce que ça change · et nos sources</span><span class="meta">Alexis · 0:45</span></div>
+      <div class="msg">Refermer sur l'impact et le pourquoi.</div>
+      <ul class="say">
+        <li>Avant → après : conversion ~25 % → 30-35 % ; devis relancés sous 72 h : 0 → 100 % ; pilotage : aucun → mesurable.</li>
+        <li>Coût des outils : 0 €. L'investissement, c'est la mise en place, pas une facture mensuelle.</li>
+        <li>Rigueur : 19 sources datées et cliquables, dossier complet en ligne.</li>
+        <li><b>Conclusion (rappel du pourquoi) :</b> « On a redonné à l'atelier les moyens d'offrir, à chaque lieu de rencontre, un morceau d'histoire française, sans en perdre une miette en route. »</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box dark" style="margin-top:16px;">
+    <span class="lbl">Phrases de secours (questions)</span>
+    <ul>
+      <li><b>« Est-ce vraiment de l'IA ? »</b> → « Oui, de vrais appels à Mistral (FR/UE) ; le badge le prouve en direct, et l'exécution n8n est consultable. »</li>
+      <li><b>« C'est vraiment branché, ou une maquette ? »</b> → « Branché : n8n Cloud tourne, Supabase stocke, le CRM lit et écrit. On vient de le voir. »</li>
+      <li><b>« Et le RGPD ? »</b> → « Intérêt légitime (prospection B2B), Mistral via l'API La Plateforme (no-training par défaut, traitement UE), n8n et Supabase en UE. On ne dit pas 100 % serveurs France : on défend RGPD natif, UE par défaut, validation humaine. »</li>
+      <li><b>ROI contesté</b> → « Coût outil nul : même sans aucun devis sauvé, le gain de temps est positif. Un seul devis sauvé sur l'année rentabilise l'année. »</li>
+    </ul>
+  </div>
+
+  <div class="foot">Mobilier Lacroix · Epitech Digital School Lyon · Promo 2026 · trame interne, ne pas projeter.</div>
+
+</div>
+</body>
+</html>
