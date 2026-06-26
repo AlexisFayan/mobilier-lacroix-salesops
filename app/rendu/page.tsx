@@ -263,19 +263,21 @@ export default function RenduPage() {
             ))}
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-            <div>
+          <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_360px]">
+            <div className="flex flex-col">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Des articles utiles, calés sur la recherche locale (SEO)</div>
-              <div className="mt-2 grid gap-2.5 sm:grid-cols-2">
-                {CONTENU.articles.map((a) => (
-                  <div key={a.titre} className="rounded-xl border border-border bg-paper p-3">
-                    <div className="text-[12.5px] font-semibold leading-snug text-bois-dark">{a.titre}</div>
-                    <p className="mt-1 text-[11.5px] leading-snug text-ink/75">{a.intent}</p>
-                    <div className="mt-1.5 text-[11px]"><span className="text-clay">→</span> <span className="font-medium text-olive">{a.aimant}</span></div>
+              <div className="mt-2 flex flex-1 flex-col overflow-hidden rounded-2xl border border-border bg-paper">
+                {CONTENU.articles.map((a, i) => (
+                  <div key={a.titre} className={`flex flex-1 items-center gap-3 px-4 py-3 ${i ? "border-t border-border" : ""}`}>
+                    <div className="grow">
+                      <div className="text-[12.5px] font-semibold leading-snug text-bois-dark">{a.titre}</div>
+                      <div className="mt-0.5 text-[11px] leading-snug text-muted">{a.intent}</div>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-olive/15 px-2.5 py-1 text-[10.5px] font-medium text-olive">→ {a.aimant}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-3 grid gap-2 rounded-2xl border border-border bg-sand/40 p-3.5 sm:grid-cols-2">
+              <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 rounded-2xl border border-border bg-sand/40 px-4 py-3 sm:grid-cols-2">
                 {CONTENU.cadence.map((c) => (
                   <div key={c.l} className="text-[12px]">
                     <span className="font-semibold text-bois-dark">{c.l} : </span>
@@ -284,10 +286,10 @@ export default function RenduPage() {
                 ))}
               </div>
             </div>
-            <div>
-              <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">Instagram : la preuve par l'image (exemple)</div>
-              <InstagramPost />
-              <p className="mt-2 text-[11px] italic leading-snug text-muted">Le visuel met en scène une réalisation, la légende ramène vers l'estimateur (l'aimant). On montre le savoir-faire, on ne force jamais la vente.</p>
+            <div className="flex flex-col">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Instagram : la preuve par l'image (exemple)</div>
+              <div className="mt-2"><InstagramPost /></div>
+              <p className="mt-2 text-[11px] italic leading-snug text-muted">Le visuel montre le savoir-faire, la légende raconte l'histoire et ramène vers l'estimateur. On ne force jamais la vente.</p>
             </div>
           </div>
 

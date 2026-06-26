@@ -15,14 +15,11 @@ export function InstagramPost() {
         <span className="ml-auto text-lg leading-none text-muted">···</span>
       </div>
 
-      {/* Visuel : maquette typographique (à remplacer par une photo de l'atelier) */}
-      <div className="relative aspect-square w-full" style={{ background: "radial-gradient(130% 120% at 72% 18%, #8a6243, #463122 78%)" }}>
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-9 text-center">
-          <div className="font-serif text-[23px] font-semibold leading-snug text-cream">{p.visuelTitre}</div>
-          <div className="mt-3 h-px w-12 bg-gold/70" />
-          <div className="mt-3 text-[11px] leading-snug text-cream/80">{p.visuelLieu}</div>
-        </div>
-        <span className="absolute right-3 top-3 rounded-full bg-black/30 px-2 py-0.5 text-[9px] font-medium text-cream/90">exemple · maquette</span>
+      {/* Visuel : vraie photo d'atelier (CC) */}
+      <div className="relative aspect-square w-full overflow-hidden bg-bois-dark">
+        <img src={p.image} alt={p.alt} className="h-full w-full object-cover" />
+        <span className="absolute right-3 top-3 rounded-full bg-black/35 px-2 py-0.5 text-[9px] font-medium text-cream/90">exemple</span>
+        <span className="absolute bottom-2 left-3 text-[8.5px] text-cream/70">{p.credit}</span>
       </div>
 
       {/* Actions */}

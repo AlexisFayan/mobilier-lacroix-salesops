@@ -240,12 +240,13 @@ export const CONTENU = {
 export const INSTA_POST = {
   handle: "mobilier.lacroix",
   lieu: "Lyon · Atelier de mobilier sur-mesure",
-  visuelTitre: "« Chaque lieu mérite sa pièce unique »",
-  visuelLieu: "Banquette velours côtelé · chêne massif · Brasserie des Brotteaux, Lyon 6e",
+  image: "/images/artisan.jpg",
+  alt: "Les mains d'un artisan rabotant une pièce de bois, copeaux sur l'établi",
+  credit: "Photo · Edward Morgan, CC BY-SA",
   legende:
-    "Une banquette façonnée à la main pour la Brasserie des Brotteaux : velours côtelé et chêne massif, pensés pour durer dix ans, pas trois. Offrir à chaque lieu de rencontre un morceau d'histoire française, c'est tout notre métier.\n\nUn projet en tête ? Estimez votre budget en deux minutes, le lien est dans la bio.",
-  hashtags: ["#MobilierSurMesure", "#SavoirFaireFrançais", "#ArtisanatLyonnais", "#Agencement", "#CHR", "#Brasserie"],
-  jaime: 184,
+    "Dans l'atelier : les mains qui façonnent une pièce pour la Brasserie des Brotteaux. Chêne massif raboté à la main, ajusté au dixième, pensé pour durer dix ans et pas trois. Offrir à chaque lieu de rencontre un morceau d'histoire française, c'est tout notre métier.\n\nUn projet en tête ? Estimez votre budget en deux minutes, le lien est dans la bio.",
+  hashtags: ["#MobilierSurMesure", "#SavoirFaireFrançais", "#ArtisanatLyonnais", "#TravailDuBois", "#CHR", "#Atelier"],
+  jaime: 247,
 };
 
 /** Stack outils retenu (gratuit, FR/UE, RGPD), benchmark surfacé sur la page notée. */
