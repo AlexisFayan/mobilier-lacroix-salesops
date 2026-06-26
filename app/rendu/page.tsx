@@ -1,9 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { RenduNav, Section, SubCard, PhaseHeader, PHASES } from "@/components/rendu/Section";
-import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap, N8nWorkflow } from "@/components/rendu/Viz";
+import { TamSamSom, SalesFunnel, ImpactEffortMatrix, CompetitorMap, N8nWorkflow, InstagramPost } from "@/components/rendu/Viz";
 import { Src } from "@/components/rendu/Src";
-import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, PLAN_BALANCE, STACK, FICHE, AUTOMATION, BENCHMARK_IA, PERSONAS, INCERTITUDES, srcIndex } from "@/lib/rendu";
+import { KPIS, AI_USECASES, ROI, SOURCES, ICP, SOURCE_THEMES, LEAD_MAGNETS, CONTENU, PLAN_BALANCE, STACK, FICHE, AUTOMATION, BENCHMARK_IA, PERSONAS, INCERTITUDES, srcIndex } from "@/lib/rendu";
 import Link from "next/link";
 
 export const metadata = {
@@ -248,6 +248,47 @@ export default function RenduPage() {
                 )}
               </div>
             ))}
+          </div>
+
+          {/* Capter par le contenu : SEO local, blog, Instagram */}
+          <h3 className="mb-1 mt-8 font-serif text-lg font-semibold text-bois-dark">Capter par le contenu : le moteur d'acquisition</h3>
+          <p className="mb-3 max-w-3xl text-[12.5px] text-muted">{CONTENU.intro}</p>
+
+          <div className="mb-5 flex flex-wrap items-center gap-2">
+            {CONTENU.flow.map((s, i) => (
+              <div key={s} className="flex items-center gap-2">
+                <div className="rounded-xl border border-border bg-paper px-3 py-2 text-[12px] font-medium text-bois-dark">{s}</div>
+                {i < CONTENU.flow.length - 1 && <span className="font-serif text-lg text-clay" aria-hidden>→</span>}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Des articles utiles, calés sur la recherche locale (SEO)</div>
+              <div className="mt-2 grid gap-2.5 sm:grid-cols-2">
+                {CONTENU.articles.map((a) => (
+                  <div key={a.titre} className="rounded-xl border border-border bg-paper p-3">
+                    <div className="text-[12.5px] font-semibold leading-snug text-bois-dark">{a.titre}</div>
+                    <p className="mt-1 text-[11.5px] leading-snug text-ink/75">{a.intent}</p>
+                    <div className="mt-1.5 text-[11px]"><span className="text-clay">→</span> <span className="font-medium text-olive">{a.aimant}</span></div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 grid gap-2 rounded-2xl border border-border bg-sand/40 p-3.5 sm:grid-cols-2">
+                {CONTENU.cadence.map((c) => (
+                  <div key={c.l} className="text-[12px]">
+                    <span className="font-semibold text-bois-dark">{c.l} : </span>
+                    <span className="text-ink/80">{c.v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted">Instagram : la preuve par l'image (exemple)</div>
+              <InstagramPost />
+              <p className="mt-2 text-[11px] italic leading-snug text-muted">Le visuel met en scène une réalisation, la légende ramène vers l'estimateur (l'aimant). On montre le savoir-faire, on ne force jamais la vente.</p>
+            </div>
           </div>
 
           <h3 className="mb-3 mt-8 font-serif text-lg font-semibold text-bois-dark">Process &amp; gouvernance</h3>

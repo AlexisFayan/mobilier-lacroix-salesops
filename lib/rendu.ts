@@ -216,6 +216,38 @@ export const LEAD_MAGNETS: { titre: string; aimant: string; cible: string; canal
   { titre: "Programme prescripteurs", aimant: "Marque blanche et commission pour agenceurs & architectes.", cible: "Agenceurs / architectes", canal: "Partenariats", kpi: "Projets apportés / partenaire" },
 ];
 
+/** Moteur d'acquisition par le contenu (inbound) : capter sans publicité payante. */
+export const CONTENU = {
+  intro:
+    "Le haut du tunnel se re-remplit par le contenu, pas par la publicité : des articles utiles bien référencés en local (SEO) et une présence Instagram qui prouve le savoir-faire. Le contenu attire, l'aimant capte le courriel, le CRM qualifie et relance.",
+  flow: ["Contenu · blog & SEO local", "Aimant · guide, estimateur", "Demande qualifiée", "CRM · scoring & relance"],
+  /** Idées d'articles calées sur ce que cherchent vraiment les restaurateurs et hôteliers. */
+  articles: [
+    { titre: "Combien coûte l'agencement sur-mesure d'un restaurant ?", intent: "Recherche « prix mobilier restaurant Lyon »", aimant: "Estimateur de budget" },
+    { titre: "Banquette de restaurant : velours, simili ou cuir ?", intent: "Le client compare les matières avant d'acheter", aimant: "Carnet de réalisations" },
+    { titre: "Rénover sa salle sans fermer : la méthode en 5 étapes", intent: "Peur du chantier et de la perte d'exploitation", aimant: "Guide de l'aménagement CHR" },
+    { titre: "Chêne, noyer, frêne : quelle essence pour votre établissement ?", intent: "Cherche l'expertise qui rassure avant de signer", aimant: "Visite d'atelier" },
+  ],
+  cadence: [
+    { l: "Rythme", v: "1 article SEO / mois + 2-3 posts Instagram / semaine" },
+    { l: "Coût", v: "Organique, dans le budget ~250 €/mois (aucune pub payante)" },
+    { l: "Qui", v: "Gérant + commercial, environ 2 h / semaine" },
+    { l: "Mesure", v: "Trafic → courriels captés → rendez-vous" },
+  ],
+};
+
+/** Exemple de publication Instagram (maquette), pour illustrer le volet « preuve par l'image ». */
+export const INSTA_POST = {
+  handle: "mobilier.lacroix",
+  lieu: "Lyon · Atelier de mobilier sur-mesure",
+  visuelTitre: "« Chaque lieu mérite sa pièce unique »",
+  visuelLieu: "Banquette velours côtelé · chêne massif · Brasserie des Brotteaux, Lyon 6e",
+  legende:
+    "Une banquette façonnée à la main pour la Brasserie des Brotteaux : velours côtelé et chêne massif, pensés pour durer dix ans, pas trois. Offrir à chaque lieu de rencontre un morceau d'histoire française, c'est tout notre métier.\n\nUn projet en tête ? Estimez votre budget en deux minutes, le lien est dans la bio.",
+  hashtags: ["#MobilierSurMesure", "#SavoirFaireFrançais", "#ArtisanatLyonnais", "#Agencement", "#CHR", "#Brasserie"],
+  jaime: 184,
+};
+
 /** Stack outils retenu (gratuit, FR/UE, RGPD), benchmark surfacé sur la page notée. */
 export const STACK = [
   { poste: "CRM & pipeline", choix: "Le prototype (sinon HubSpot Free / Brevo FR)", pourquoi: "gratuit, simple, hébergé UE", limite: "HubSpot Free plafonne vite ; le prototype reste sur-mesure" },

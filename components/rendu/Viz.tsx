@@ -1,5 +1,47 @@
-import { SIZING, FUNNEL, IRRITANTS, COMPETITORS, CAT_META, LACROIX_MARKER } from "@/lib/rendu";
+import { SIZING, FUNNEL, IRRITANTS, COMPETITORS, CAT_META, LACROIX_MARKER, INSTA_POST } from "@/lib/rendu";
 import { Src } from "./Src";
+
+/* ───────── Exemple de publication Instagram (maquette aux couleurs de la marque) ───────── */
+export function InstagramPost() {
+  const p = INSTA_POST;
+  return (
+    <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-2xl border border-border bg-paper shadow-sm">
+      <div className="flex items-center gap-2.5 px-3 py-2.5">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-bois-dark font-serif text-paper">L</span>
+        <div className="leading-tight">
+          <div className="text-[12.5px] font-semibold text-ink">{p.handle}</div>
+          <div className="text-[10.5px] text-muted">{p.lieu}</div>
+        </div>
+        <span className="ml-auto text-lg leading-none text-muted">···</span>
+      </div>
+
+      {/* Visuel : maquette typographique (à remplacer par une photo de l'atelier) */}
+      <div className="relative aspect-square w-full" style={{ background: "radial-gradient(130% 120% at 72% 18%, #8a6243, #463122 78%)" }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-9 text-center">
+          <div className="font-serif text-[23px] font-semibold leading-snug text-cream">{p.visuelTitre}</div>
+          <div className="mt-3 h-px w-12 bg-gold/70" />
+          <div className="mt-3 text-[11px] leading-snug text-cream/80">{p.visuelLieu}</div>
+        </div>
+        <span className="absolute right-3 top-3 rounded-full bg-black/30 px-2 py-0.5 text-[9px] font-medium text-cream/90">exemple · maquette</span>
+      </div>
+
+      {/* Actions */}
+      <div className="flex items-center gap-4 px-3 pb-1 pt-2.5 text-bois-dark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M12 21s-7.5-4.6-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5-2 4.4-9.5 9-9.5 9Z" /></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z" /></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M22 2 11 13" /><path d="M22 2 15 22l-4-9-9-4 20-7Z" /></svg>
+        <svg className="ml-auto" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M6 3h12v18l-6-4-6 4V3Z" /></svg>
+      </div>
+
+      <div className="px-3 text-[11.5px] font-semibold text-ink">{p.jaime} j'aime</div>
+      <div className="px-3 pb-3 pt-1 text-[12px] leading-snug text-ink/85">
+        <span className="whitespace-pre-line"><span className="font-semibold text-ink">{p.handle}</span> {p.legende}</span>
+        <div className="mt-1.5 text-clay">{p.hashtags.join(" ")}</div>
+        <div className="mt-1.5 text-[10px] uppercase tracking-wide text-muted">il y a 2 heures</div>
+      </div>
+    </div>
+  );
+}
 
 /* ───────── Aperçu du workflow n8n (canvas reconstitué, fidèle à l'éditeur) ───────── */
 const WF = {
